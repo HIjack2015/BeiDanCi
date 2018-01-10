@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">BeiDanCi</string>
+    <string name="app_name">背单词</string>
+
+    <string name="title_home">主页</string>
+    <string name="startLearn">开始学习</string>
+    <string name="title_review">复习</string>
+    <string name="title_setting">设置</string>
 </resources>
