@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/book_cover"
+        android:layout_width="@dimen/book_cover_width"
+        android:layout_height="@dimen/book_cover_height"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_book_cover"
+        android:contentDescription="@string/app_name" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/app_content_main_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/wordCountTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/originTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>

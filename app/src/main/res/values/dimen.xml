@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="book_cover_height">110.0dip</dimen>
+    <dimen name="book_cover_width">80.0dip</dimen>
+</resources>

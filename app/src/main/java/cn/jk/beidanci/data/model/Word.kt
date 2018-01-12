@@ -2,12 +2,16 @@ package cn.jk.beidanci.data.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Created by jack on 2018/1/10.
+ */
+
 class Word(
         var wordRank: String?,
         var headWord: String?,
         var content: WordContentOutOut)
 
-class WordContentOutOut(var word: WordContentOut) {}
+class WordContentOutOut(var word: WordContentOut)
 class WordContentOut(var wordHead: String, var wordId: String, var content: WordContent)
 class WordContent(var sentence: SentenceOut, var usphone: String, var ukphone: String,
                   var ukspeech: String, var syno: SynoOut, var star: String, var speech: String,

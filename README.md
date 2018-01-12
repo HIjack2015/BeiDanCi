@@ -15,7 +15,7 @@ Copyright (C) 2018 火把工作室.
 3. 本地数据库用sqlite,套一层[Anko-SQLite](https://github.com/Kotlin/anko/wiki/Anko-SQLite)
 4. 用户统计/异常上报仍然用bugly.
 5. 采用mvp架构,致力于分清职责.
-6. 设计使用material design.在用户友好的基础上尽可能简介.
+6. 设计使用material design.在用户友好的基础上尽可能简洁.
 #### 后台技术
 1. 语言用java
 2. 框架为spring+springmvc+mybatis

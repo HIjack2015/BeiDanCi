@@ -8,12 +8,7 @@ import cn.jk.beidanci.BaseView
  * 首页的约定.
  */
 interface HomeContract {
-    interface View : BaseView<Presenter> {
+    interface View : BaseView<Presenter>
 
-
-    }
-
-    interface Presenter : BasePresenter {
-
-    }
+    interface Presenter : BasePresenter
 }
