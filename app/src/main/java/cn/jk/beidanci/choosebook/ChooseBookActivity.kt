@@ -2,15 +2,17 @@ package cn.jk.beidanci.choosebook
 
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import cn.jk.beidanci.BaseViewActivity
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.model.BooksResult
 import kotlinx.android.synthetic.main.activity_choose_book.*
 import org.jetbrains.anko.design.snackbar
 
 
-class ChooseBookActivity : AppCompatActivity(), ChooseBookContract.View {
+class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), ChooseBookContract.View {
+    override var mPresenter: ChooseBookContract.Presenter = ChooseBookPresenter(this)
+
     override fun showMsg(message: Int) {
         snackbar(mainView, message)
     }
@@ -31,23 +33,14 @@ class ChooseBookActivity : AppCompatActivity(), ChooseBookContract.View {
 
     private var blfpAdapter: BookListFragmentPagerAdapter = BookListFragmentPagerAdapter(supportFragmentManager)
 
-    private lateinit var presenter: ChooseBookContract.Presenter
-    override fun setPresenter(presenter: ChooseBookContract.Presenter) {
-        this.presenter = presenter
-    }
 
     fun getPresenter(): ChooseBookContract.Presenter {
-        return presenter
+        return mPresenter
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_book)
-
-
-
-        presenter = ChooseBookPresenter(this)
-        presenter.start()
 
     }
 
@@ -65,10 +58,6 @@ class ChooseBookActivity : AppCompatActivity(), ChooseBookContract.View {
 
     }
 
-    override fun onStop() {
-        super.onStop()
-        presenter.stop()
-    }
 
     override fun hideLoad() {
         progress_bar.visibility = View.GONE

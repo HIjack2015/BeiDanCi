@@ -17,7 +17,7 @@ interface ChooseBookContract : BaseContract {
         fun showNetError()
         fun showDownLoad()
         fun hideDownLoad()
-        fun showMsg(message: String)
+ 
         fun showMsg(message: Int)
     }
 
