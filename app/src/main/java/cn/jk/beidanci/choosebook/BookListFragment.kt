@@ -31,7 +31,7 @@ class BookListFragment : Fragment() {
         super.onStart()
         val cate = Gson().fromJson<Cate>(arguments!!.getString(key), Cate::class.java)
 
-        val adapter = BookListAdapter(context, cate.bookList)
+        val adapter = BookListAdapter(cate.bookList)
         var layoutManager = LinearLayoutManager(context)
         bookListRcy.setHasFixedSize(true)
         bookListRcy.setLayoutManager(layoutManager)

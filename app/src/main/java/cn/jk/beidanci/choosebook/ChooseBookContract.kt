@@ -3,6 +3,7 @@ package cn.jk.beidanci.choosebook
 import cn.jk.beidanci.BaseContract
 import cn.jk.beidanci.BasePresenter
 import cn.jk.beidanci.BaseView
+import cn.jk.beidanci.data.model.Book
 import cn.jk.beidanci.data.model.BooksResult
 
 /**
@@ -14,11 +15,15 @@ interface ChooseBookContract : BaseContract {
         fun showLoad()
         fun hideLoad()
         fun showNetError()
-
+        fun showDownLoad()
+        fun hideDownLoad()
+        fun showMsg(message: String)
+        fun showMsg(message: Int)
     }
 
     interface Presenter : BasePresenter {
         override fun stop()
+        fun downloadBook(book: Book)
     }
 
 }

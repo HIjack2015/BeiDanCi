@@ -1,7 +1,5 @@
 package cn.jk.beidanci.choosebook
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +14,7 @@ import kotlinx.android.synthetic.main.layout_book_item.view.*
  * Created by jack on 2018/1/11.
  * 展示单词书列表的adapter
  */
-class BookListAdapter(val context: Context?, val bookList: List<Book>) : RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
+class BookListAdapter(val bookList: List<Book>) : RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val book = bookList[position]
         holder.setValue(book)
@@ -43,6 +41,12 @@ class BookListAdapter(val context: Context?, val bookList: List<Book>) : Recycle
                 originTxt.text = book.bookOrigin.toString()
                 wordCountTxt.text = context.getText(R.string.word_count).toString() + book.wordNum.toString()
                 GlideApp.with(context).load(book.cover).diskCacheStrategy(DiskCacheStrategy.ALL).into(book_cover)
+                var context2 = context
+                if (context2 is ChooseBookActivity) {
+                    this.setOnClickListener {
+                        context2.getPresenter().downloadBook(book)
+                    }
+                }
             }
         }
 

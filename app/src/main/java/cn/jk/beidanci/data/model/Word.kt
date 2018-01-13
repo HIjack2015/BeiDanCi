@@ -12,7 +12,8 @@ class Word(
         var content: WordContentOutOut)
 
 class WordContentOutOut(var word: WordContentOut)
-class WordContentOut(var wordHead: String, var wordId: String, var content: WordContent)
+//此处使用any方便入库
+class WordContentOut(var wordHead: String, var wordId: String, var content: Any)
 class WordContent(var sentence: SentenceOut, var usphone: String, var ukphone: String,
                   var ukspeech: String, var syno: SynoOut, var star: String, var speech: String,
                   var usspeech: String, var trans: List<Trans>, var phrase: PhraseOut, var remMethod: RemMethod, var relWord: RelWordOut)

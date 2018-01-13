@@ -11,12 +11,33 @@ import org.jetbrains.anko.design.snackbar
 
 
 class ChooseBookActivity : AppCompatActivity(), ChooseBookContract.View {
+    override fun showMsg(message: Int) {
+        snackbar(mainView, message)
+    }
+
+    override fun showMsg(message: String) {
+        snackbar(mainView, message)
+    }
+
+    override fun showDownLoad() {
+        progress_bar.visibility = View.VISIBLE
+
+    }
+
+    override fun hideDownLoad() {
+        progress_bar.visibility = View.GONE
+
+    }
 
     private var blfpAdapter: BookListFragmentPagerAdapter = BookListFragmentPagerAdapter(supportFragmentManager)
 
     private lateinit var presenter: ChooseBookContract.Presenter
     override fun setPresenter(presenter: ChooseBookContract.Presenter) {
         this.presenter = presenter
+    }
+
+    fun getPresenter(): ChooseBookContract.Presenter {
+        return presenter
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
