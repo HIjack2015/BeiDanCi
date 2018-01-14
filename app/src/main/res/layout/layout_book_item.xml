@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="1dp"
     android:background="?attr/selectableItemBackground"
     android:orientation="horizontal"
     android:padding="16dp">
@@ -10,15 +11,18 @@
         android:id="@+id/book_cover"
         android:layout_width="@dimen/book_cover_width"
         android:layout_height="@dimen/book_cover_height"
+        android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
-        android:src="@drawable/default_book_cover"
-        android:contentDescription="@string/app_name" />
+        android:src="@drawable/default_book_cover" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@+id/book_cover"
+        android:layout_toRightOf="@+id/book_cover"
         android:orientation="vertical">
 
         <TextView
@@ -42,5 +46,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:textSize="13sp" />
+
     </LinearLayout>
-</LinearLayout>
+
+    <Button
+        android:id="@+id/downloadBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="@string/downloadBook" />
+</RelativeLayout>

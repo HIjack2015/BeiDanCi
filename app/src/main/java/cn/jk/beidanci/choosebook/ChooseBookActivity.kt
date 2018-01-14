@@ -5,12 +5,35 @@ import android.os.Bundle
 import android.view.View
 import cn.jk.beidanci.BaseViewActivity
 import cn.jk.beidanci.R
+import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.BooksResult
 import kotlinx.android.synthetic.main.activity_choose_book.*
 import org.jetbrains.anko.design.snackbar
+import org.jetbrains.anko.toast
 
 
 class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), ChooseBookContract.View {
+    override fun downloadSuccess(bookId: String) {
+        hideDownLoad()
+        toast(R.string.downloadSuccess)
+        //TODO 写sharedpreference 明显该由presenter来做,downlodSuccess也不应该接受一个bookId的参数.
+        //但是当前真的没什么好办法,先这样吧.
+        prefs[Constant.CURRENT_BOOK] = bookId
+
+        finish()
+    }
+
+    override fun hideReload() {
+        refreshLyt.finishRefresh()
+    }
+
+    var downLoadBookDialog: DownloadBookDialog? = null
+
+    override fun clear() {
+        blfpAdapter.clear()
+        blfpAdapter.notifyDataSetChanged()
+    }
+
     override var mPresenter: ChooseBookContract.Presenter = ChooseBookPresenter(this)
 
     override fun showMsg(message: Int) {
@@ -22,12 +45,13 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
     }
 
     override fun showDownLoad() {
-        progress_bar.visibility = View.VISIBLE
+        downLoadBookDialog!!.show(fragmentManager, "downloadBook")
+
 
     }
 
     override fun hideDownLoad() {
-        progress_bar.visibility = View.GONE
+        downLoadBookDialog!!.dismiss()
 
     }
 
@@ -41,7 +65,10 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_book)
-
+        refreshLyt.setOnRefreshListener {
+            mPresenter.reload()
+        }
+        downLoadBookDialog = DownloadBookDialog()
     }
 
     override fun showBookList(bookResult: BooksResult) {
@@ -67,10 +94,5 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
         progress_bar.visibility = View.VISIBLE
     }
 
-
-    override fun showNetError() {
-        snackbar(mainView, R.string.net_work_error)
-        hideLoad()
-    }
 
 }

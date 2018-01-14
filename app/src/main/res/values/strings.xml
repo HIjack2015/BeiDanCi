@@ -12,4 +12,7 @@
     <string name="word_count">单词数 :</string>
     <string name="downloadSuccess">下载成功</string>
     <string name="internet_connection_unavailable">网络不可用.</string>
+    <string name="downloading">正在下载</string>
+    <string name="downloadBook">下载</string>
+    <string name="alreadyDownload">已下载</string>
 </resources>

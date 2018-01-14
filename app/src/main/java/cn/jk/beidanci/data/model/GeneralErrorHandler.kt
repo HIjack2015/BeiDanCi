@@ -15,9 +15,8 @@ import java.net.UnknownHostException
  * Created by jack on 2018/1/14.
  */
 class GeneralErrorHandler(view: BaseView? = null,
-                          private val mShowError: Boolean = true,
-                          val onFailure: () -> Unit = {})
-    : Consumer<Throwable> {
+                          private val mShowError: Boolean = true
+) : Consumer<Throwable> {
     override fun accept(throwable: Throwable?) {
 
         var errorBody: ErrorBody? = null
@@ -29,8 +28,10 @@ class GeneralErrorHandler(view: BaseView? = null,
             if (errorBody != null) {
                 handleError(errorBody)
             }
+        } else {
+            showErrorIfRequired(throwable.toString())
         }
-        onFailure
+
     }
 
     private val mViewReference = WeakReference<BaseView>(view)

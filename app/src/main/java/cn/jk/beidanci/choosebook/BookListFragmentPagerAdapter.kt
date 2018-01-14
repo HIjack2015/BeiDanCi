@@ -9,12 +9,17 @@ import android.support.v4.app.FragmentPagerAdapter
  * Created by jack on 2018/1/11.
  */
 class BookListFragmentPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
-    private val fragmentList = ArrayList<Fragment>()
-    private val titleList = ArrayList<String>()
+    private var fragmentList = ArrayList<Fragment>()
+    private var titleList = ArrayList<String>()
 
     fun add(fragment: Fragment, str: String) {
         this.fragmentList.add(fragment)
         this.titleList.add(str)
+    }
+
+    fun clear() {
+        fragmentList = ArrayList<Fragment>()
+        titleList = ArrayList<String>()
     }
 
     fun setTitle(i: Int, str: String) {

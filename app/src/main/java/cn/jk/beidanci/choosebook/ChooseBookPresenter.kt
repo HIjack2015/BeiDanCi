@@ -1,12 +1,15 @@
 package cn.jk.beidanci.choosebook
 
-import cn.jk.beidanci.R
+import android.util.Log
 import cn.jk.beidanci.data.api.ApiManager
 import cn.jk.beidanci.data.model.Book
 import cn.jk.beidanci.data.model.BooksResult
 import cn.jk.beidanci.data.model.DbWord
 import cn.jk.beidanci.data.model.GeneralErrorHandler
+import cn.jk.beidanci.data.source.AppDatabase
+import com.raizlabs.android.dbflow.config.FlowManager
 import com.raizlabs.android.dbflow.kotlinextensions.insert
+import com.raizlabs.android.dbflow.structure.database.transaction.FastStoreModelTransaction
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -18,22 +21,28 @@ import java.util.zip.ZipInputStream
  * Created by jack on 2018/1/10.
  */
 class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBookContract.Presenter {
+
+
     override fun downloadBook(book: Book) {
         ApiManager.booksService.downloadBookFile(book.offlinedata)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
                     view.showDownLoad()
+                    Log.i("time", "1")
                 }
                 .observeOn(Schedulers.io())
-                .map {
+                .map({
                     dealResponse(it, book)
-                }
+                    Log.i("time", "1")
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({
+                    view.downloadSuccess(book.id)
+                }, {
                     view.hideDownLoad()
-                    view.showMsg(R.string.downloadSuccess)
-                }, { GeneralErrorHandler(view, true).accept(it) })
+                    GeneralErrorHandler(view, true).accept(it)
+                })
 
     }
 
@@ -41,6 +50,9 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
     private fun dealResponse(body: ResponseBody, book: Book) {
         val zis = ZipInputStream(BufferedInputStream(body.byteStream()))
         zis.nextEntry
+
+        var wordList = ArrayList<DbWord>()
+
         zis.bufferedReader().use {
             while (true) {
                 val aWord = it.readLine()
@@ -49,13 +61,22 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
                 }
 
                 val dbWord = DbWord(aWord, book)
-                dbWord.insert()
+                wordList.add(dbWord)
             }
 
-            book.insert()
         }
+        FlowManager.getDatabase(AppDatabase::class.java).executeTransaction(FastStoreModelTransaction
+                .insertBuilder(FlowManager.getModelAdapter(DbWord::class.java))
+                .addAll(wordList)
+                .build())
+        book.insert()
     }
 
+    override fun reload() {
+        view.clear()
+        start()
+        view.hideReload()
+    }
 
     private lateinit var disposable: Disposable
     override fun start() {

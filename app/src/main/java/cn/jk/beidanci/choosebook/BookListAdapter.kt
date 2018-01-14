@@ -8,6 +8,7 @@ import cn.jk.beidanci.GlideApp
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.model.Book
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.raizlabs.android.dbflow.kotlinextensions.exists
 import kotlinx.android.synthetic.main.layout_book_item.view.*
 
 /**
@@ -40,12 +41,18 @@ class BookListAdapter(val bookList: List<Book>) : RecyclerView.Adapter<BookListA
                 nameTxt.text = book.title
                 originTxt.text = book.bookOrigin.toString()
                 wordCountTxt.text = context.getText(R.string.word_count).toString() + book.wordNum.toString()
-                GlideApp.with(context).load(book.cover).diskCacheStrategy(DiskCacheStrategy.ALL).into(book_cover)
-                var context2 = context
-                if (context2 is ChooseBookActivity) {
-                    this.setOnClickListener {
-                        context2.getPresenter().downloadBook(book)
+                if (book.exists()) {
+                    downloadBtn.setText(R.string.alreadyDownload)
+                    downloadBtn.isEnabled = false
+                } else {
+                    downloadBtn.setOnClickListener {
+                        var context2 = context
+                        if (context2 is ChooseBookActivity) {
+                            context2.getPresenter().downloadBook(book)
+                        }
                     }
+                    GlideApp.with(context).load(book.cover).diskCacheStrategy(DiskCacheStrategy.ALL).into(book_cover)
+
                 }
             }
         }
