@@ -10,15 +10,14 @@ import cn.jk.beidanci.data.model.BooksResult
  * Created by jack on 2018/1/10.
  */
 interface ChooseBookContract : BaseContract {
-    interface View : BaseView<Presenter> {
+    interface View : BaseView {
         fun showBookList(bookResult: BooksResult)
         fun showLoad()
         fun hideLoad()
         fun showNetError()
         fun showDownLoad()
         fun hideDownLoad()
- 
-        fun showMsg(message: Int)
+
     }
 
     interface Presenter : BasePresenter {

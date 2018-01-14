@@ -20,7 +20,7 @@ class InitApplication : Application() {
     companion object {
 
         var context: Context? = null
-            private set
+
     }
 
 

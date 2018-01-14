@@ -6,7 +6,7 @@ import org.jetbrains.anko.design.snackbar
 /**
  * Created by jack on 2018/1/13.
  */
-abstract open class BaseViewActivity<V : BasePresenter> : BaseActivity(), BaseView<V> {
+abstract open class BaseViewActivity<T : BasePresenter> : BaseActivity(), BaseView {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +14,7 @@ abstract open class BaseViewActivity<V : BasePresenter> : BaseActivity(), BaseVi
         mPresenter.start()
     }
 
-    protected abstract var mPresenter: V
+    protected abstract var mPresenter: T
     override fun showMsg(msg: String) {
         snackbar(window.decorView.rootView, msg)
     }

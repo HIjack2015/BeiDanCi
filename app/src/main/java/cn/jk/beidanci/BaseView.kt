@@ -1,8 +1,9 @@
 package cn.jk.beidanci
 
-interface BaseView<T> {
+import android.support.annotation.StringRes
 
-
+interface BaseView {
     fun showMsg(msg: String)
+    fun showMsg(@StringRes msg: Int)
 
 }

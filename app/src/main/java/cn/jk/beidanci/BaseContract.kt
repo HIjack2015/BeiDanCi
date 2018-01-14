@@ -5,7 +5,7 @@ package cn.jk.beidanci
  * Created by jack on 2018/1/10.
  */
 interface BaseContract {
-    interface View : BaseView<Presenter>
+    interface View : BaseView
     interface Presenter : BasePresenter {
     }
 }

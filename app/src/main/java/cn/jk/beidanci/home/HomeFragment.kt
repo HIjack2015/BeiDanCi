@@ -4,6 +4,10 @@ package cn.jk.beidanci.home
  * Created by jack on 2018/1/9.
  */
 class HomeFragment : HomeContract.View {
+    override fun showMsg(msg: Int) {
+
+    }
+
     override fun showMsg(msg: String) {
 
     }
