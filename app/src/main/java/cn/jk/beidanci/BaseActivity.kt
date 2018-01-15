@@ -1,6 +1,7 @@
 package cn.jk.beidanci
 
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import cn.jk.beidanci.utils.PreferenceHelper
 
@@ -8,7 +9,11 @@ import cn.jk.beidanci.utils.PreferenceHelper
  * Created by jack on 2018/1/13.
  */
 open class BaseActivity : AppCompatActivity() {
-    val prefs = PreferenceHelper.defaultPrefs(this)
+    lateinit var prefs: SharedPreferences
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        prefs = PreferenceHelper.defaultPrefs(this)
+    }
 
     inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
         val editor = this.edit()
