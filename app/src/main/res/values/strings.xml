@@ -17,8 +17,6 @@
     <string name="alreadyDownload">已下载</string>
 
 
-
-
     <string name="tips_never_show">这表示您已经完全掌握了这个单词,它将不再显示在学习和复习中,是否不再显示?</string>
     <string name="searchTips">所查单词不在考研大纲内,请点击键盘上的的搜索按钮来联网搜索.</string>
     <string name="confirm_never_show">已完全掌握</string>
@@ -97,4 +95,11 @@
     <string name="hide_easy">hideEasy</string>
     <string name="easy_word_list">easy_word_list</string>
     <string name="title_activity_my_word_list">MyWordListActivity</string>
+    <string name="unlearnedDesc">未学习</string>
+    <string name="knownDesc">已认识</string>
+    <string name="unknownDesc">不认识</string>
+    <string name="neverShowDesc">已掌握</string>
+    <string name="DEFAULT_PIE_WORD">进度</string>
+    <string name="NOT_LEARNED_YET">不曾学过</string>
+
 </resources>

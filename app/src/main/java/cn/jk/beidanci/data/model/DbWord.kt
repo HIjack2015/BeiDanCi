@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName
 import com.raizlabs.android.dbflow.annotation.Column
 import com.raizlabs.android.dbflow.annotation.PrimaryKey
 import com.raizlabs.android.dbflow.annotation.Table
+import org.json.JSONObject
+import java.util.*
 
 /**
  * Created by jack on 2018/1/12.
@@ -24,7 +26,8 @@ class DbWord(
         var state: WordState = WordState.unlearned,
         @Column(getterName = "getImportant") var important: Boolean = false,
         @Column var knownCount: Int = 0,
-        @Column var unknownCount: Int = 0
+        @Column var unknownCount: Int = 0,
+        @Column var lastLearnTime: Date? = null
 
 ) {
     constructor(netWord: String, book: Book) : this() {
@@ -34,9 +37,14 @@ class DbWord(
             bookId = book.id
             rank = wordRank!!.toInt()
             head = headWord!!
-            content = contentOutOut.word.content.toString()
+            content = JSONObject(JSONObject(JSONObject(netWord).get("content").toString()).get("word").toString()).get("content").toString()
         }
     }
+
+    fun getWordContent(): WordContent {
+        return Gson().fromJson<WordContent>(content, WordContent::class.java)
+    }
+
 
     private class Word(
             var wordRank: String?,

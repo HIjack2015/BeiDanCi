@@ -1,19 +1,30 @@
 package cn.jk.beidanci
 
+import android.app.Fragment
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import cn.jk.beidanci.utils.PreferenceHelper
 
 /**
- * Created by jack on 2018/1/13.
+ * Created by jack on 2018/1/15.
  */
-open class BaseActivity : AppCompatActivity() {
+abstract open class BaseViewFragment<T : BasePresenter> : BaseView, Fragment() {
     lateinit var prefs: SharedPreferences
+    protected abstract var mPresenter: T
+
+    override fun onStart() {
+        super.onStart()
+        mPresenter.start()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mPresenter.stop()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        prefs = PreferenceHelper.defaultPrefs(this)
-
+        prefs = PreferenceHelper.defaultPrefs(activity)
     }
 
     inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {

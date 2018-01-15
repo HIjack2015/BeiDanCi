@@ -3,10 +3,14 @@ package cn.jk.beidanci.home
 import android.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.view.Menu
+import android.view.MenuItem
 import cn.jk.beidanci.BaseActivity
 import cn.jk.beidanci.R
 import cn.jk.beidanci.choosebook.ChooseBookActivity
 import cn.jk.beidanci.data.Constant
+import cn.jk.beidanci.myword.MyWordActivity
+import cn.jk.beidanci.searchword.SearchWordActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
@@ -29,6 +33,29 @@ class MainActivity : BaseActivity() {
         } else {
             dealFragment(savedInstanceState)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.searchWordView -> {
+                startActivity<SearchWordActivity>()
+                return true
+            }
+            R.id.myWordView -> {
+                startActivity<MyWordActivity>()
+                return true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+        menuInflater.inflate(R.menu.menu_main, menu)
+
+
+        return true
     }
 
     private fun dealFragment(savedInstanceState: Bundle?) {

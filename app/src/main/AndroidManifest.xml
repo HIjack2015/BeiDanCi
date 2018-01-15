@@ -21,12 +21,14 @@
         <activity android:name=".home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".choosebook.ChooseBookActivity">
-
-        </activity>
+        <activity android:name=".choosebook.ChooseBookActivity" />
+        <activity android:name=".searchword.SearchWordActivity" />
+        <activity android:name=".myword.MyWordActivity" />
+        <activity android:name=".learnword.LearnWordActivity"></activity>
     </application>
 
 </manifest>

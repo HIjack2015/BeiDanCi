@@ -1,5 +1,6 @@
 package cn.jk.beidanci.data.model
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -9,11 +10,17 @@ import com.google.gson.annotations.SerializedName
 class Word(
         var wordRank: String?,
         var headWord: String?,
-        var content: WordContentOutOut)
+        var content: WordContentOutOut) {
+    constructor (dbWord: DbWord) : this(dbWord.wordId, dbWord.head,
+            WordContentOutOut(WordContentOut(dbWord.head, dbWord.wordId,
+                    Gson().fromJson(dbWord.content, WordContent::class.java)
+            )))
+}
 
 class WordContentOutOut(var word: WordContentOut)
 //此处使用any方便入库
 class WordContentOut(var wordHead: String, var wordId: String, var content: Any)
+
 class WordContent(var sentence: SentenceOut, var usphone: String, var ukphone: String,
                   var ukspeech: String, var syno: SynoOut, var star: String, var speech: String,
                   var usspeech: String, var trans: List<Trans>, var phrase: PhraseOut, var remMethod: RemMethod, var relWord: RelWordOut)
