@@ -1,6 +1,6 @@
 package cn.jk.beidanci
 
-import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_choose_book.*
 import org.jetbrains.anko.design.snackbar
 
 /**
@@ -9,14 +9,18 @@ import org.jetbrains.anko.design.snackbar
 abstract open class BaseViewActivity<T : BasePresenter> : BaseActivity(), BaseView {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         mPresenter.start()
     }
 
     protected abstract var mPresenter: T
     override fun showMsg(msg: String) {
         snackbar(window.decorView.rootView, msg)
+    }
+
+    override fun showMsg(message: Int) {
+        snackbar(mainView, message)
     }
 
     override fun onStop() {

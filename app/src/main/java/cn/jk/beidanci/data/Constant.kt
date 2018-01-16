@@ -19,7 +19,7 @@ class Constant {
 
 
         val REVIEW_MODE = "review"
-        val LEARN_MODE = "learn"
+        val LEARN_MODE = "学习单词"
         val EXAM_DATE = "examDate"
         val DATABASE_NAME = "word.db"
         val ENGLISH = "english"
@@ -30,14 +30,14 @@ class Constant {
         val youdaoVoiceUrl = "http://dict.youdao.com//dictvoice?type=2&audio="
         val shanbeiVoiceUrl = "http://media.shanbay.com/audio/us/"
         var cibaUrl = "http://dict-co.iciba.com/api/dictionary.php?key=AA6C7429C3884C9E766C51187BD1D86F&type=json&w="
-        val PLAN_LEARN = "shouldLearn"
+        val PLAN_LEARN = "shouldLearnPerDay"
 
         val COMMON_QUESTION = "commonQuestion"
         val DISPLAY_SETTING = "displaySetting"
         val AUTO_REVIEW_MODE = "AUTO_REVIEW_MODE"
         val ENGLISH_FILE_DIR = "/Android/data/cn.jk.kaoyandanci/cache/video-cache"
         val ENGLISH_ZIP_PATH = ENGLISH_FILE_DIR + "/english.zip"
-        val VOICE_PACK_MD5 = "e11f8c98076f134da51fe22b2262dd85"//TODO;
+
         val GUID = "GUID"
         val PROJECT_ID = "kydc"
         val DEFAULT_GUID: Any = "DEFAULT_GUID"
@@ -61,12 +61,13 @@ class Constant {
         var DATA_CHANGED = false
         var nextDelay = 1500
         var allWordCount = 5492
-        var PLAN_LEARN_NO = 10
+        var PLAN_LEARN_NO = 60
         var youdaoWordPageUrl = "https://m.youdao.com/dict?le=eng&q="
         var searchTipShow = "searchTipShow"
         var shouldShowGuide = "shouldShowGuide"
         var downloadVoicePackUrl = "http://kydc-1253381140.costj.myqcloud.com/english.zip"
         val US_PHONETIC = "US_PHONETIC"
+        val EXTRA_LEARN: String = "超额学习"
 
 
     }

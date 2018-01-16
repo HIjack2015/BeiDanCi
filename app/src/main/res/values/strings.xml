@@ -101,5 +101,6 @@
     <string name="neverShowDesc">已掌握</string>
     <string name="DEFAULT_PIE_WORD">进度</string>
     <string name="NOT_LEARNED_YET">不曾学过</string>
+    <string name="FINISH_PLAN">已完成今天学习计划,请随意发挥</string>
 
 </resources>

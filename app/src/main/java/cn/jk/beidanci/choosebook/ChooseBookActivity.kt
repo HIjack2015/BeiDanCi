@@ -39,9 +39,6 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
 
     override var mPresenter: ChooseBookContract.Presenter = ChooseBookPresenter(this)
 
-    override fun showMsg(message: Int) {
-        snackbar(mainView, message)
-    }
 
     override fun showMsg(message: String) {
         snackbar(mainView, message)
@@ -68,6 +65,11 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_book)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         refreshLyt.setOnRefreshListener {
             mPresenter.reload()
         }

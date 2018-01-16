@@ -2,15 +2,16 @@ package cn.jk.beidanci
 
 import android.app.Application
 import android.content.Context
+import android.net.Uri
+import com.danikula.videocache.HttpProxyCacheServer
+import com.danikula.videocache.file.FileNameGenerator
 
 import com.raizlabs.android.dbflow.config.FlowManager
 import com.scwang.smartrefresh.header.MaterialHeader
-import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.SmartRefreshLayout.setDefaultRefreshHeaderCreater
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.header.ClassicsHeader
 
 
 /**
@@ -39,5 +40,19 @@ class InitApplication : Application() {
 
     }
 
+    private fun newProxy(): HttpProxyCacheServer {
+        return HttpProxyCacheServer.Builder(context)
+                .fileNameGenerator(FileNameGenerator {
+                    val uri = Uri.parse(it)
+                    uri.lastPathSegment
+                })
+                .build()
+    }
 
+    private var proxy: HttpProxyCacheServer? = null
+
+    fun getProxy(context: Context): HttpProxyCacheServer? {
+        val app = context.applicationContext as InitApplication
+        return if (app.proxy == null) app.newProxy() else app.proxy
+    }
 }

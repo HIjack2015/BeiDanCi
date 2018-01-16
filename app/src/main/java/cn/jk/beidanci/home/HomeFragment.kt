@@ -37,6 +37,7 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
     override fun onStart() {
         super.onStart()
         startLearnBtn.setOnClickListener {
+            mPresenter.setLearnWordList()
             startActivity<LearnWordActivity>()
         }
 

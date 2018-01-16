@@ -15,5 +15,6 @@ interface HomeContract {
 
     interface Presenter : BasePresenter {
         fun drawPi()
+        fun setLearnWordList()
     }
 }
