@@ -23,7 +23,7 @@ class Constant {
         val EXAM_DATE = "examDate"
         val DATABASE_NAME = "word.db"
         val ENGLISH = "english"
-        val TIPS_OF_NEVER_SHOW = "TIPS_OF_NEVER_SHOW"
+        val TIPS_OF_NEVER_SHOW_SHOULD_SHOW = "TIPS_OF_NEVER_SHOW_SHOULD_SHOW"
         val AUTO_DISPLAY = "autoDisplay"
         val PIE_WORD = "pieWord"
         val QUESTION = "QUESTION"

@@ -1,11 +1,12 @@
 package cn.jk.beidanci.learnword
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import cn.jk.beidanci.BaseViewActivity
 import cn.jk.beidanci.InitApplication.Companion.context
 import cn.jk.beidanci.R
-
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.DbWord
 import cn.jk.beidanci.utils.MediaUtil
@@ -35,46 +36,82 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
         }
         supportActionBar!!.setTitle(dbWordList.title)
         setLogic()
-
+        mPresenter.start()
     }
 
-    fun next() {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+        menuInflater.inflate(R.menu.menu_learn_word, menu)
+        val autoDisplayChk = menu.findItem(R.id.autoDisplayChk)
+
+        autoDisplayChk.isChecked = prefs[Constant.AUTO_DISPLAY, false]
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.neverShowBtn -> {
+                if (prefs[Constant.TIPS_OF_NEVER_SHOW_SHOULD_SHOW, true]) {
+                    //NeverShowWordDialog().show(fragmentManager, "neverShowTag")//TODO
+                } else {
+                    prefs[Constant.TIPS_OF_NEVER_SHOW_SHOULD_SHOW] = false
+                    dbWordList.currentNeverShow()
+                    next()
+                }
+                return true
+            }
+            R.id.autoDisplayChk -> {
+                item.isChecked = !item.isChecked
+                autoDisplay = item.isChecked
+                prefs[Constant.AUTO_DISPLAY] = autoDisplay
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+
+    private fun next() {
         var dbWord = WordListHelper.wordList.next();
         if (dbWord == null) {
             toast(dbWordList.getFinishMessage())
             finish()
-        } else {
-            inflateCardView(dbWord)
+            return
         }
-        unknownBtn.text = "不认识"
-        knowBtn.text = "认识"
+        if (prefs[Constant.AUTO_DISPLAY, false]) {
+            displayPronunciation(dbWord.head)
+        }
+        setPercent(dbWordList.getPercent())
+        inflateCardView(dbWord)
+        unknownBtn.setText(R.string.dontKnow)
+        knowBtn.setText(R.string.know)
     }
 
-    fun setLogic() {
+    private fun setLogic() {
         voiceBtn.setOnClickListener(View.OnClickListener {
             netErrorShouldShow = true
             displayPronunciation(dbWordList.getCurrentWord()!!.head)
         })
+        setPercent(dbWordList.getPercent())
         unknownBtn.setOnClickListener {
-            if (unknownBtn.text == "下一个") {
+            if (unknownBtn.text == getString(R.string.next)) {
                 dbWordList.currentUnknown()
                 next()
             } else {
-                dbWordList.currentUnknown()
-                unknownBtn.text = "下一个"
-                knowBtn.text = "认识"
-                wordDescLyt.setVisibility(View.VISIBLE)
+                unknownBtn.text = getString(R.string.next)
+                knowBtn.text = getString(R.string.know)
+                wordDescLyt.visibility = View.VISIBLE
                 learnRecordLyt.visibility = View.GONE
             }
         }
         knowBtn.setOnClickListener {
-            if (knowBtn.text == "下一个") {
+            if (knowBtn.text == getString(R.string.next)) {
                 dbWordList.currentKnown()
                 next()
             } else {
-                knowBtn.text = "下一个"
-                unknownBtn.text = "不认识"
-                wordDescLyt.setVisibility(View.VISIBLE)
+                knowBtn.text = getString(R.string.next)
+                unknownBtn.text = getString(R.string.dontKnow)
+                wordDescLyt.visibility = View.VISIBLE
                 learnRecordLyt.visibility = View.GONE
             }
         }
@@ -86,7 +123,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
 
     }
 
-    fun displayPronunciation(english: String) {
+    private fun displayPronunciation(english: String) {
 
 
         // String voiceUrl = Constant.youdaoVoiceUrl + words.getCurrent().getEnglish();
@@ -94,7 +131,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
         val urlOk = MediaUtil.display(voiceUrl, context)
         if (!urlOk) {
             if (netErrorShouldShow) {
-                toast("单词发音需要连接网络,或在高级设置中下载语音包")
+                toast(R.string.voice_need_net)
                 netErrorShouldShow = false
             }
         }
@@ -107,14 +144,14 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
             englishTxt.text = head
             coreImg.visibility = if (important) View.VISIBLE else View.GONE
             voiceBtn.setOnClickListener {
-                //TODO
+                displayPronunciation(head)
             }
             with(getWordContent()) {
                 wordDescLyt.forEachChild {
                     it.visibility = View.VISIBLE
                 }
-                val isUsPhonetic: Boolean? = prefs[Constant.US_PHONETIC]
-                phoneticTxt.text = if (isUsPhonetic == null || isUsPhonetic)
+                val isUsPhonetic: Boolean = prefs[Constant.US_PHONETIC, true]
+                phoneticTxt.text = if (isUsPhonetic)
                     usphone else ukphone
                 knownTimeTxt.text = knownCount.toString()
                 unknownTimeTxt.text = unknownCount.toString()

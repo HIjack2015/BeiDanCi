@@ -1,6 +1,11 @@
 package cn.jk.beidanci.learnword
 
 import cn.jk.beidanci.data.model.DbWord
+import cn.jk.beidanci.data.model.LearnRecord
+import cn.jk.beidanci.data.model.WordState
+import com.raizlabs.android.dbflow.kotlinextensions.save
+import com.raizlabs.android.dbflow.kotlinextensions.update
+import java.util.*
 
 /**
  * Created by jack on 2018/1/15.
@@ -40,11 +45,26 @@ open class WordList(var words: List<DbWord>, var title: String,
     }
 
     fun currentUnknown() {
-        //TODO
+        val dbWord = getCurrentWord()
+        if (dbWord != null) {
+            dbWord.state = WordState.unknown
+            dbWord.unknownCount += 1
+            dbWord.lastLearnTime = Date()
+            dbWord.update()
+            LearnRecord(dbWord = dbWord).save()
+        }
+
     }
 
     fun currentKnown() {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val dbWord = getCurrentWord()
+        if (dbWord != null) {
+            dbWord.state = WordState.known
+            dbWord.knownCount += 1
+            dbWord.lastLearnTime = Date()
+            dbWord.update()
+            LearnRecord(dbWord = dbWord).save()
+        }
     }
 
     /**
@@ -54,5 +74,16 @@ open class WordList(var words: List<DbWord>, var title: String,
     fun next(): DbWord? {
         currentPosition++
         return getCurrentWord()
+    }
+
+    fun currentNeverShow() {
+        val dbWord = getCurrentWord()
+        if (dbWord != null) {
+            dbWord.state = WordState.neverShow
+            dbWord.knownCount += 1
+            dbWord.lastLearnTime = Date()
+            dbWord.update()
+            LearnRecord(dbWord = dbWord).save()
+        }
     }
 }

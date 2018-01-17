@@ -1,6 +1,7 @@
 package cn.jk.beidanci.data.model
 
 import cn.jk.beidanci.data.source.AppDatabase
+import cn.jk.beidanci.utils.DateUtil
 import com.raizlabs.android.dbflow.annotation.Column
 import com.raizlabs.android.dbflow.annotation.ForeignKey
 import com.raizlabs.android.dbflow.annotation.PrimaryKey
@@ -17,7 +18,7 @@ class LearnRecord(@PrimaryKey(autoincrement = true)
                   @ForeignKey(stubbedRelationship = true)
                   var dbWord: DbWord? = null,
                   @Column
-                  var learnTime: String = "",
+                  var learnTime: String = DateUtil.formateToday(),
                   @Column(getterName = "getReviewed")
                   var reviewed: Boolean = false
 

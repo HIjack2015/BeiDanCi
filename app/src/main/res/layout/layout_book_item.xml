@@ -54,5 +54,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:background="@color/bar_black"
         android:text="@string/downloadBook" />
 </RelativeLayout>

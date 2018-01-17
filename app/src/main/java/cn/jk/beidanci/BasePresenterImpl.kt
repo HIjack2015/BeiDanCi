@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 /**
  * Created by jack on 2018/1/15.
  */
-abstract open class BasePresenterImpl {
+abstract class BasePresenterImpl {
     inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
         val editor = this.edit()
         operation(editor)

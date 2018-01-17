@@ -14,13 +14,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.warn
 import java.io.BufferedInputStream
 import java.util.zip.ZipInputStream
 
 /**
  * Created by jack on 2018/1/10.
  */
-class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBookContract.Presenter {
+class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBookContract.Presenter, AnkoLogger {
 
 
     override fun downloadBook(book: Book) {
@@ -52,7 +54,7 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
         zis.nextEntry
 
         var wordList = ArrayList<DbWord>()
-
+        warn("解析返回")
         zis.bufferedReader().use {
             while (true) {
                 val aWord = it.readLine()
@@ -65,11 +67,13 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
             }
 
         }
+        warn("完成构造list")
         FlowManager.getDatabase(AppDatabase::class.java).executeTransaction(FastStoreModelTransaction
                 .insertBuilder(FlowManager.getModelAdapter(DbWord::class.java))
                 .addAll(wordList)
                 .build())
         book.insert()
+        warn("插入成功")
     }
 
     override fun reload() {

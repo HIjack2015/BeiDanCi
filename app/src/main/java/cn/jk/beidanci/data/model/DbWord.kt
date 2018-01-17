@@ -31,14 +31,25 @@ class DbWord(
 
 ) {
     constructor(netWord: String, book: Book) : this() {
-        val word = Gson().fromJson<Word>(netWord, Word::class.java)
-        with(word) {
-            wordId = contentOutOut.word.wordId
-            bookId = book.id
-            rank = wordRank!!.toInt()
-            head = headWord!!
-            content = JSONObject(JSONObject(JSONObject(netWord).get("content").toString()).get("word").toString()).get("content").toString()
-        }
+        val wordJsonObject = JSONObject(netWord)
+        val contentOut = wordJsonObject.getJSONObject("content").getJSONObject("word")
+        wordId = contentOut.getString("wordId")
+        head = wordJsonObject.getString("headWord")
+        bookId = book.id
+        rank = wordJsonObject.getInt("wordRank")
+        content = contentOut.getJSONObject("content").toString()
+//
+//        val word = Gson().fromJson<Word>(netWord, Word::class.java)
+//        with(word) {
+//
+//            wordId = contentOutOut.word.wordId
+//            bookId = book.id
+//            rank = wordRank!!.toInt()
+//            head = headWord!!
+//
+//            //   content = JSONObject(JSONObject(JSONObject(netWord).get("content").toString()).get("word").toString()).get("content").toString()
+//
+//        }
     }
 
     fun getWordContent(): WordContent {

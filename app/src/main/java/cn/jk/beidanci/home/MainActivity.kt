@@ -1,6 +1,7 @@
 package cn.jk.beidanci.home
 
 import android.app.Fragment
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.view.Menu
@@ -26,9 +27,8 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        val currentBookName: String? = prefs[Constant.CURRENT_BOOK] //getter
-        if (currentBookName == null) {
+        val currentBookName: String = prefs[Constant.CURRENT_BOOK, ""] //getter
+        if (currentBookName.isEmpty()) {
             startActivity<ChooseBookActivity>()
         } else {
             dealFragment(savedInstanceState)
@@ -114,7 +114,10 @@ class MainActivity : BaseActivity() {
         } else if (fragment === settingFragment) {
             title = getString(R.string.title_setting)
         }
-        supportActionBar!!.setTitle(title)
+        if(getSupportActionBar()!=null) {
+            getSupportActionBar()!!.setTitle(title)
+        }
+
     }
 }
 

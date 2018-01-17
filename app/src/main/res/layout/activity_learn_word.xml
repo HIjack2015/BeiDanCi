@@ -61,15 +61,6 @@
                         android:textSize="28sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/phoneticTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="2dp"
-                        android:text="此处是音标"
-                        android:textSize="20sp" />
 
                     <ImageView
                         android:id="@+id/coreImg"
@@ -102,212 +93,227 @@
                     android:background="@android:color/darker_gray" />
 
                 <LinearLayout
-                    android:id="@+id/learnRecordLyt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/DescText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="认识次数" />
-
-                        <TextView
-                            android:id="@+id/knownTimeTxt"
-                            style="@style/ValueText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="10" />
-
-                        <TextView
-                            style="@style/DescText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="不认识次数" />
-
-                        <TextView
-                            android:id="@+id/unknownTimeTxt"
-                            style="@style/ValueText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="10" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/phoneticTxt"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/DescText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="上次学习时间" />
-
-                        <TextView
-                            android:id="@+id/lastLearnTimeTxt"
-                            style="@style/ValueText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="10-10 3:5" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="此处是音标"
+                        android:textSize="20sp" />
 
                     <LinearLayout
-                        android:id="@+id/wordDescLyt"
+                        android:id="@+id/learnRecordLyt"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/transTxt"
+                            <TextView
+                                style="@style/DescText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="认识次数" />
+
+                            <TextView
+                                android:id="@+id/knownTimeTxt"
+                                style="@style/ValueText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10" />
+
+                            <TextView
+                                style="@style/DescText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="不认识次数" />
+
+                            <TextView
+                                android:id="@+id/unknownTimeTxt"
+                                style="@style/ValueText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="翻译的内容,仅显示汉语,最多三行" />
-
-                        <LinearLayout
-                            android:id="@+id/phraseLyt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:orientation="vertical">
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@android:color/darker_gray" />
+                            android:layout_height="wrap_content">
 
                             <TextView
+                                style="@style/DescText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="短语" />
+                                android:text="上次学习时间" />
 
                             <TextView
-
-                                android:id="@+id/phraseTxt"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="一些短语\n能在一行尽量在一行,\n最多的话可能是6行" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/sentenceLyt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:orientation="vertical">
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@android:color/darker_gray" />
-
-                            <TextView
+                                android:id="@+id/lastLearnTimeTxt"
+                                style="@style/ValueText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="例句" />
+                                android:text="10-10 3:5" />
 
-                            <TextView
-
-                                android:id="@+id/sentenceTxt"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="一些例句\n每个大概是两行的样子\n最多的话可能是6行" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/remMethodLyt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:orientation="vertical">
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@android:color/darker_gray" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="记忆方法" />
-
-                            <TextView
-
-                                android:id="@+id/remMthodTxt"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="最多两行." />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/relsLyt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:orientation="vertical">
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@android:color/darker_gray" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="同根词" />
-
-                            <TextView
-
-                                android:id="@+id/relsTxt"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="三行最多" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/hwdLyt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:orientation="vertical">
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@android:color/darker_gray" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="近义词" />
-
-                            <TextView
-
-                                android:id="@+id/hwdTxt"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="也就两行" />
                         </LinearLayout>
 
                     </LinearLayout>
-                </ScrollView>
+
+
+                    <ScrollView
+                        android:id="@+id/wordDescLyt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:id="@+id/transTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="翻译的内容,仅显示汉语,最多三行" />
+
+                            <LinearLayout
+                                android:id="@+id/phraseLyt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:orientation="vertical">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@android:color/darker_gray" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="短语" />
+
+                                <TextView
+
+                                    android:id="@+id/phraseTxt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="一些短语\n能在一行尽量在一行,\n最多的话可能是6行" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/sentenceLyt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@android:color/darker_gray" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="例句" />
+
+                                <TextView
+
+                                    android:id="@+id/sentenceTxt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="一些例句\n每个大概是两行的样子\n最多的话可能是6行" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/remMethodLyt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@android:color/darker_gray" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="记忆方法" />
+
+                                <TextView
+
+                                    android:id="@+id/remMthodTxt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="最多两行." />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/relsLyt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@android:color/darker_gray" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="同根词" />
+
+                                <TextView
+
+                                    android:id="@+id/relsTxt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="三行最多" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/hwdLyt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@android:color/darker_gray" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="近义词" />
+
+                                <TextView
+
+                                    android:id="@+id/hwdTxt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="也就两行" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
             </LinearLayout>
 
 

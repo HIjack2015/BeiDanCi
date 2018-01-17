@@ -66,14 +66,17 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_book)
 
-    }
 
-    override fun onStart() {
-        super.onStart()
+        mPresenter.start()
         refreshLyt.setOnRefreshListener {
             mPresenter.reload()
         }
         downLoadBookDialog = DownloadBookDialog()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 
     override fun showBookList(bookResult: BooksResult) {

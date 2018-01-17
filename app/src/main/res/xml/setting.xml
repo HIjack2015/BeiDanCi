@@ -9,6 +9,13 @@
         android:key="displaySetting"
         android:title="主题设置"></Preference>
     <Preference
+
+        android:key="@string/download_book_pref"
+        android:title="@string/download_book_pref">
+
+    </Preference>
+
+    <Preference
         android:defaultValue="10"
         android:dialogTitle="每日应学单词数"
         android:inputType="number"

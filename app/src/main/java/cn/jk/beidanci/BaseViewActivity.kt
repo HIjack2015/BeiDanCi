@@ -6,13 +6,8 @@ import org.jetbrains.anko.design.snackbar
 /**
  * Created by jack on 2018/1/13.
  */
-abstract open class BaseViewActivity<T : BasePresenter> : BaseActivity(), BaseView {
+abstract class BaseViewActivity<T : BasePresenter> : BaseActivity(), BaseView {
 
-
-    override fun onStart() {
-        super.onStart()
-        mPresenter.start()
-    }
 
     protected abstract var mPresenter: T
     override fun showMsg(msg: String) {

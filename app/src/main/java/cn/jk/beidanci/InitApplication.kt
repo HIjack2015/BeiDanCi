@@ -5,7 +5,6 @@ import android.content.Context
 import android.net.Uri
 import com.danikula.videocache.HttpProxyCacheServer
 import com.danikula.videocache.file.FileNameGenerator
-
 import com.raizlabs.android.dbflow.config.FlowManager
 import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout.setDefaultRefreshHeaderCreater

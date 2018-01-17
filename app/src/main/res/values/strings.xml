@@ -102,5 +102,10 @@
     <string name="DEFAULT_PIE_WORD">进度</string>
     <string name="NOT_LEARNED_YET">不曾学过</string>
     <string name="FINISH_PLAN">已完成今天学习计划,请随意发挥</string>
+    <string name="download_book_pref">选单词书</string>
+    <string name="next">下一个</string>
+    <string name="know">认识</string>
+    <string name="dontKnow">不认识</string>
+    <string name="voice_need_net">单词发音需要连接网络,或在高级设置中下载语音包</string>
 
 </resources>
