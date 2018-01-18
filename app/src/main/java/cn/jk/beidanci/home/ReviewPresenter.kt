@@ -7,19 +7,48 @@ import cn.jk.beidanci.data.model.LearnRecord
 import cn.jk.beidanci.data.model.LearnRecord_Table
 import cn.jk.beidanci.data.model.WordState
 import cn.jk.beidanci.utils.DateUtil
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.raizlabs.android.dbflow.rx2.kotlinextensions.list
+import com.raizlabs.android.dbflow.rx2.kotlinextensions.rx
 import com.raizlabs.android.dbflow.sql.language.SQLite
+import java.util.*
+
 
 /**
  * Created by jack on 2018/1/14.
  */
 class ReviewPresenter(val view: ReviewContract.View, val prefs: SharedPreferences) : ReviewContract.Presenter, BasePresenterImpl() {
-    override fun stop() {
+
+
+    override fun highLightMonth(year: Int, month: Int) {
+        val firstDayOfMonth = DateUtil.firstDayOfMonth(year, month)
+        val lastDayOfMonth = DateUtil.lastDayOfMonth(year, month)
+
+
+        SQLite.select(LearnRecord_Table.learnTime).distinct().from(LearnRecord::class.java)
+                .where(LearnRecord_Table.learnTime.greaterThanOrEq(firstDayOfMonth), LearnRecord_Table.learnTime.lessThanOrEq(lastDayOfMonth))
+                .rx().list {
+            val days = it.map {
+                val dateStrArr = it.learnTime.split("-")
+                val year = dateStrArr[0].toInt()
+                val month = dateStrArr[1].toInt() - 1
+                val day = dateStrArr[2].toInt()
+                CalendarDay(year, month, day)
+            }
+            if (days.isNotEmpty()) {
+                view.highlightDay(days)
+            }
+        }
+
+
     }
 
-    override fun start() {
-        val currentBookId: String? = prefs[Constant.CURRENT_BOOK]
+
+    override fun setSelectDay(calendarDay: CalendarDay) {
+        val month = "%02d".format(calendarDay.month + 1)
+        val dbDay = "${calendarDay.year}-$month-${calendarDay.day}"
         var todayLearnRecord = SQLite.select().from(LearnRecord::class.java).
-                where(LearnRecord_Table.learnTime.eq(DateUtil.formateToday())).queryList()
+                where(LearnRecord_Table.learnTime.eq(dbDay)).queryList()
         var knownCount = 0
         var unknownCount = 0
         var neverShowCount = 0
@@ -33,6 +62,20 @@ class ReviewPresenter(val view: ReviewContract.View, val prefs: SharedPreference
             }
         }
         view.showReviewCount(unknownCount, knownCount, neverShowCount)
+
     }
+
+    override fun stop() {
+    }
+
+    override fun start() {
+        val currentBookId: String? = prefs[Constant.CURRENT_BOOK]
+        val year = Calendar.getInstance().get(Calendar.YEAR)
+        val month = Calendar.getInstance().get(Calendar.MONTH)
+        highLightMonth(year, month)
+        setSelectDay(CalendarDay(Date()))
+
+    }
+
 
 }
