@@ -15,7 +15,8 @@ import com.raizlabs.android.dbflow.annotation.Table
 @Table(database = AppDatabase::class)
 class LearnRecord(@PrimaryKey(autoincrement = true)
                   var id: Long = 0,
-                  @ForeignKey(stubbedRelationship = true)
+                  //如果设为true则只取主键
+                  @ForeignKey(stubbedRelationship = false)
                   var dbWord: DbWord? = null,
                   @Column
                   var learnTime: String = DateUtil.formateToday(),

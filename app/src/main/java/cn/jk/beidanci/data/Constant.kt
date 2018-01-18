@@ -29,6 +29,8 @@ class Constant {
         val QUESTION = "QUESTION"
         val youdaoVoiceUrl = "http://dict.youdao.com//dictvoice?type=2&audio="
         val shanbeiVoiceUrl = "http://media.shanbay.com/audio/us/"
+        val YOUDAO_SPEECH_TYPE_PARA = "type"
+        val youdaoDictUrl = "http://dict.youdao.com/dictvoice?" + YOUDAO_SPEECH_TYPE_PARA + "="
         var cibaUrl = "http://dict-co.iciba.com/api/dictionary.php?key=AA6C7429C3884C9E766C51187BD1D86F&type=json&w="
         val PLAN_LEARN = "shouldLearnPerDay"
 
@@ -66,8 +68,12 @@ class Constant {
         var searchTipShow = "searchTipShow"
         var shouldShowGuide = "shouldShowGuide"
         var downloadVoicePackUrl = "http://kydc-1253381140.costj.myqcloud.com/english.zip"
-        val US_PHONETIC = "US_PHONETIC"
+   
         val EXTRA_LEARN: String = "超额学习"
+        val SPEECH_COUNTRY: String = "SPEECH_COUNTRY"
+        val UK_SPEECH: Int = 1
+        val US_SPEECH: Int = 2
+        val ENGLISH_AUDIO_QUERY_PARA = "audio"
 
 
     }

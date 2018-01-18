@@ -43,14 +43,6 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
 
     }
 
-    override fun showMsg(msg: Int) {
-
-    }
-
-    override fun showMsg(msg: String) {
-
-    }
-
 
     override fun showPi(map: HashMap<WordState, Int>, countAll: Int) {
         var pieWord: String? = prefs[Constant.PIE_WORD]

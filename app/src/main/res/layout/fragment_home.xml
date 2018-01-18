@@ -53,6 +53,7 @@
     <Button
         android:id="@+id/startLearnBtn"
         style="@style/longButton"
+
         android:text="@string/startLearn" />
 
 </android.support.constraint.ConstraintLayout>

@@ -12,6 +12,7 @@ import cn.jk.beidanci.data.model.DbWord
 import cn.jk.beidanci.utils.MediaUtil
 import kotlinx.android.synthetic.main.activity_learn_word.*
 import org.jetbrains.anko.forEachChild
+import org.jetbrains.anko.selector
 import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 
@@ -64,6 +65,16 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                 item.isChecked = !item.isChecked
                 autoDisplay = item.isChecked
                 prefs[Constant.AUTO_DISPLAY] = autoDisplay
+                return true
+            }
+            R.id.speechBtn -> {
+                val countries = listOf(getString(R.string.UK_SPEECH_DESC), getString(R.string.US_SPEECH_DESC))
+                selector(getString(R.string.CHOOSE_SPEECH), countries, { dialogInterface, i ->
+                    when (i) {
+                        0 -> prefs[Constant.SPEECH_COUNTRY] = Constant.UK_SPEECH
+                        1 -> prefs[Constant.SPEECH_COUNTRY] = Constant.US_SPEECH
+                    }
+                })
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -123,11 +134,11 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
 
     }
 
+    //注意单词必须为最后一个参数.否则缓存会有问题
     private fun displayPronunciation(english: String) {
-
-
+        val speech = prefs[Constant.SPEECH_COUNTRY, Constant.US_SPEECH]
         // String voiceUrl = Constant.youdaoVoiceUrl + words.getCurrent().getEnglish();
-        val voiceUrl = Constant.shanbeiVoiceUrl + english + ".mp3"
+        val voiceUrl = Constant.youdaoDictUrl + speech + "&" + Constant.ENGLISH_AUDIO_QUERY_PARA + "=" + english
         val urlOk = MediaUtil.display(voiceUrl, context)
         if (!urlOk) {
             if (netErrorShouldShow) {
@@ -150,9 +161,16 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                 wordDescLyt.forEachChild {
                     it.visibility = View.VISIBLE
                 }
-                val isUsPhonetic: Boolean = prefs[Constant.US_PHONETIC, true]
-                phoneticTxt.text = if (isUsPhonetic)
+                val isUsPhonetic: Boolean = prefs[Constant.SPEECH_COUNTRY, Constant.US_SPEECH] == Constant.US_SPEECH
+                var phoneticStr = if (isUsPhonetic)
                     usphone else ukphone
+                if (phoneticStr == null || phoneticStr.isEmpty()) {
+                    phoneticTxt.visibility = View.GONE
+                } else {
+                    phoneticTxt.visibility = View.VISIBLE
+                    phoneticTxt.text = "/" + phoneticStr + "/"
+                }
+
                 knownTimeTxt.text = knownCount.toString()
                 unknownTimeTxt.text = unknownCount.toString()
                 if (lastLearnTime == null) {

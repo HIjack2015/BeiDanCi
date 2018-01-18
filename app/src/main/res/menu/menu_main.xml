@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/myWordView"
-        android:icon="@drawable/ic_action_name"
+        android:icon="@drawable/ic_book_black_24dp"
         android:title="单词本"
         app:showAsAction="always" />
     <item

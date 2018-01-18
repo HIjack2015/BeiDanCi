@@ -107,5 +107,8 @@
     <string name="know">认识</string>
     <string name="dontKnow">不认识</string>
     <string name="voice_need_net">单词发音需要连接网络,或在高级设置中下载语音包</string>
+    <string name="UK_SPEECH_DESC">英音</string>
+    <string name="US_SPEECH_DESC">美音</string>
+    <string name="CHOOSE_SPEECH">发音选择</string>
 
 </resources>

@@ -62,4 +62,12 @@ abstract open class BaseViewFragment<T : BasePresenter> : BaseView, Fragment() {
             else -> throw UnsupportedOperationException("Not yet implemented")
         }
     }
+
+    override fun showMsg(msg: Int) {
+
+    }
+
+    override fun showMsg(msg: String) {
+
+    }
 }
