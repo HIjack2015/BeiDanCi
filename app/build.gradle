@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -28,7 +28,8 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
-    compile 'com.tencent.bugly:crashreport:2.6.5'
+ //   compile 'com.tencent.bugly:crashreport:2.6.5'
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.danikula:videocache:2.7.0'
     kapt "com.github.Raizlabs.DBFlow:dbflow-processor:$dbflow_version"
     compile "com.github.Raizlabs.DBFlow:dbflow-core:$dbflow_version"

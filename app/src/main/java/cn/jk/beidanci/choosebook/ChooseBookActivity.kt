@@ -9,7 +9,6 @@ import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.BooksResult
 import cn.jk.beidanci.home.MainActivity
 import kotlinx.android.synthetic.main.activity_choose_book.*
-import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -39,10 +38,6 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
 
     override var mPresenter: ChooseBookContract.Presenter = ChooseBookPresenter(this)
 
-
-    override fun showMsg(message: String) {
-        snackbar(mainView, message)
-    }
 
     override fun showDownLoad() {
         downLoadBookDialog!!.show(fragmentManager, "downloadBook")

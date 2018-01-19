@@ -19,7 +19,7 @@ class GeneralErrorHandler(view: BaseView? = null,
 ) : Consumer<Throwable> {
     override fun accept(throwable: Throwable?) {
 
-        var errorBody: ErrorBody? = null
+        var errorBody: ErrorBody?
         if (isNetworkError(throwable)) {
 
             showMessage(R.string.internet_connection_unavailable)

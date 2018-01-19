@@ -21,5 +21,7 @@ interface ReviewContract {
          */
         fun highLightMonth(year: Int, month: Int)
 
+        fun setReviewList(selectedDate: CalendarDay)
+
     }
 }

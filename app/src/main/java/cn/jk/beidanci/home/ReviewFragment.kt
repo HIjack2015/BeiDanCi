@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import cn.jk.beidanci.BaseViewFragment
 import cn.jk.beidanci.R
+import cn.jk.beidanci.learnword.LearnWordActivity
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.android.synthetic.main.fragment_review.*
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 /**
@@ -23,9 +25,7 @@ class ReviewFragment : BaseViewFragment<ReviewContract.Presenter>(), ReviewContr
         super.onStart()
         //仅在手动点击后触发.
         calendarView.setOnDateChangedListener { materialCalendarView: MaterialCalendarView, calendarDay: CalendarDay, b: Boolean ->
-            if (b) {
-                mPresenter.setSelectDay(calendarDay)
-            }
+            if (b) mPresenter.setSelectDay(calendarDay)
         }
         calendarView.setOnMonthChangedListener({ materialCalendarView: MaterialCalendarView, calendarDay: CalendarDay ->
             val month = calendarDay.month
@@ -33,6 +33,10 @@ class ReviewFragment : BaseViewFragment<ReviewContract.Presenter>(), ReviewContr
             mPresenter.highLightMonth(year, month)
         })
         calendarView.setSelectedDate(Date())
+        startReviewBtn.setOnClickListener {
+            mPresenter.setReviewList(calendarView.selectedDate)
+            startActivity<LearnWordActivity>()
+        }
 
     }
 

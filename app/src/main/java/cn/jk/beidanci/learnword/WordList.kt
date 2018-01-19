@@ -44,19 +44,22 @@ open class WordList(var words: List<DbWord>, var title: String,
 
     }
 
-    fun currentUnknown() {
+    /**
+     * 将当前单词标记为不认识.并更新db
+     */
+    open fun currentUnknown() {
         val dbWord = getCurrentWord()
         if (dbWord != null) {
             dbWord.state = WordState.unknown
             dbWord.unknownCount += 1
             dbWord.lastLearnTime = Date()
             dbWord.update()
-            LearnRecord(dbWord = dbWord).save()
+
         }
 
     }
 
-    fun currentKnown() {
+    open fun currentKnown() {
         val dbWord = getCurrentWord()
         if (dbWord != null) {
             dbWord.state = WordState.known

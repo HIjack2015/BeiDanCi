@@ -68,12 +68,13 @@ class Constant {
         var searchTipShow = "searchTipShow"
         var shouldShowGuide = "shouldShowGuide"
         var downloadVoicePackUrl = "http://kydc-1253381140.costj.myqcloud.com/english.zip"
-   
+
         val EXTRA_LEARN: String = "超额学习"
         val SPEECH_COUNTRY: String = "SPEECH_COUNTRY"
         val UK_SPEECH: Int = 1
         val US_SPEECH: Int = 2
         val ENGLISH_AUDIO_QUERY_PARA = "audio"
+        val REVIEW_TITLE: String = "复习模式"
 
 
     }

@@ -5,7 +5,7 @@ import cn.jk.beidanci.BasePresenterImpl
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.*
-import cn.jk.beidanci.learnword.WordList
+import cn.jk.beidanci.learnword.LearnWordList
 import cn.jk.beidanci.learnword.WordListHelper
 import cn.jk.beidanci.utils.DateUtil
 import com.raizlabs.android.dbflow.sql.language.OrderBy
@@ -54,19 +54,19 @@ class HomePresenter(private val view: HomeContract.View, val prefs: SharedPrefer
                     where(DbWord_Table.bookId.eq(currentBookId), DbWord_Table.state.notEq(WordState.neverShow))
                     .orderBy(OrderBy.fromString(" RANDOM() "))
                     .limit(learnPerDay!!).queryList()
-            WordListHelper.wordList = WordList(dbWordList, Constant.LEARN_MODE)
+            WordListHelper.wordList = LearnWordList(dbWordList, Constant.LEARN_MODE)
         } else if (todayLearnCount < learnPerDay!!) {
             val needLearn = learnPerDay - todayLearnCount
             val dbWordList = SQLite.select().from(DbWord::class.java).
                     where(DbWord_Table.bookId.eq(currentBookId), DbWord_Table.state.notEq(WordState.neverShow), DbWord_Table.wordId.notIn(todayWordIdList))
                     .limit(needLearn).queryList()
-            WordListHelper.wordList = WordList(dbWordList, Constant.LEARN_MODE, todayLearnCount)
+            WordListHelper.wordList = LearnWordList(dbWordList, Constant.LEARN_MODE, todayLearnCount)
         } else {
             val dbWordList = SQLite.select().from(DbWord::class.java).
                     where(DbWord_Table.bookId.eq(currentBookId), DbWord_Table.state.notEq(WordState.neverShow), DbWord_Table.wordId.notIn(todayWordIdList))
                     .limit(learnPerDay).queryList() //再取出计划学习数.
             view.showMsg(R.string.FINISH_PLAN)
-            WordListHelper.wordList = WordList(dbWordList, Constant.EXTRA_LEARN, learnPerDay, learnPerDay)
+            WordListHelper.wordList = LearnWordList(dbWordList, Constant.EXTRA_LEARN, learnPerDay, learnPerDay)
         }
     }
 

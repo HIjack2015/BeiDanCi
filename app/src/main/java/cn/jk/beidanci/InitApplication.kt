@@ -3,6 +3,7 @@ package cn.jk.beidanci
 import android.app.Application
 import android.content.Context
 import android.net.Uri
+import android.support.multidex.MultiDexApplication
 import cn.jk.beidanci.data.Constant
 import cn.jk.colorful.Colorful
 import com.danikula.videocache.HttpProxyCacheServer
@@ -13,13 +14,14 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout.setDefaultRefreshHeader
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.tencent.bugly.Bugly.applicationContext
 import java.net.URLDecoder
 
 
 /**
  *
  */
-class InitApplication : Application() {
+class InitApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
