@@ -19,7 +19,7 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/neverShowBtn"
-        android:icon="@drawable/ic_delete_black_24dp"
+        android:icon="@drawable/ic_delete_24dp"
         android:tint="@android:color/white"
         android:title="不再出现"
         app:showAsAction="always" />

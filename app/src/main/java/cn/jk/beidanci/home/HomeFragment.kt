@@ -10,9 +10,13 @@ import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.WordState
 import cn.jk.beidanci.learnword.LearnWordActivity
+import cn.jk.beidanci.wordlist.WordListActivity
+import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.startActivity
 
@@ -77,5 +81,19 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
 
         progressRatePi.data = data
         progressRatePi.invalidate()
+
+        progressRatePi.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
+            override fun onValueSelected(e: Entry, h: Highlight) {
+                val label = (e as PieEntry).label
+                val wordType = label.replace("\\d".toRegex(), "")
+                mPresenter.setShowWordList(label, WordState.neverShow.getState(activity, wordType))
+                progressRatePi.highlightValue(null)
+                startActivity<WordListActivity>()
+            }
+
+            override fun onNothingSelected() {
+
+            }
+        })
     }
 }

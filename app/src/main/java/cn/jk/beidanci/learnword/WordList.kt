@@ -66,7 +66,6 @@ open class WordList(var words: List<DbWord>, var title: String,
             dbWord.knownCount += 1
             dbWord.lastLearnTime = Date()
             dbWord.update()
-            LearnRecord(dbWord = dbWord).save()
         }
     }
 

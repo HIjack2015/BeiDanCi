@@ -2,6 +2,7 @@ package cn.jk.beidanci.home
 
 import cn.jk.beidanci.BasePresenter
 import cn.jk.beidanci.BaseView
+import cn.jk.beidanci.data.model.WordState
 import com.prolificinteractive.materialcalendarview.CalendarDay
 
 /**
@@ -22,6 +23,7 @@ interface ReviewContract {
         fun highLightMonth(year: Int, month: Int)
 
         fun setReviewList(selectedDate: CalendarDay)
-
+        fun setReviewList(selectedDate: CalendarDay, unknown: WordState)
+        fun setForgetCurveReviewList(selectedDate: CalendarDay)
     }
 }

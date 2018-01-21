@@ -75,6 +75,7 @@ class Constant {
         val US_SPEECH: Int = 2
         val ENGLISH_AUDIO_QUERY_PARA = "audio"
         val REVIEW_TITLE: String = "复习模式"
+        val FORGET_CURVE_LEARN_MODE: String = "遗忘曲线复习"
 
 
     }

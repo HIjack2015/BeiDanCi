@@ -45,4 +45,13 @@ enum class WordState {
         }
         return context.getString(result)
     }
+
+    fun getState(context: Context, stateDesc: String): WordState {
+        val wordStates = mutableListOf(unlearned, unknown, known, neverShow)
+        val wordStateStrings = mutableListOf(context.getString(R.string.unlearnedDesc), context.getString(R.string.unknownDesc),
+                context.getString(R.string.knownDesc), context.getString(R.string.neverShowDesc))
+        val position = wordStateStrings.indexOf(stateDesc)
+        return wordStates[position]
+    }
+
 }

@@ -18,7 +18,7 @@
 
 
     <string name="tips_never_show">这表示您已经完全掌握了这个单词,它将不再显示在学习和复习中,是否不再显示?</string>
-    <string name="searchTips">所查单词不在考研大纲内,请点击键盘上的的搜索按钮来联网搜索.</string>
+    <string name="searchTips">所查单词不在当前单词书内,请点击键盘上的的搜索按钮来联网搜索.</string>
     <string name="confirm_never_show">已完全掌握</string>
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>
@@ -74,8 +74,8 @@
     <string name="cancel_grasp">取消掌握</string>
     <string name="alipayUrl">http://qr.alipay.com/FKX001588VV47I7FULZF7F</string>
     <string name="about_app">about_pref</string>
-    <string name="app_desc">小巧干净的考研单词工具</string>
-    <string name="share_content">我正在使用考研单词app备战考研英语,这东西还不错,你也来试试?</string>
+    <string name="app_desc">小巧干净的背单词工具</string>
+    <string name="share_content">我正在使用背单词app来背单词,这东西还不错,你也来试试?</string>
     <string name="donate_use">  &#160;&#160;&#160;&#160;你的捐赠是我继续前行的动力,谢谢你的支持.</string>
     <string name="download_voice_pack">download_voice_pack</string>
     <string name="pleaseDonate">语音包使用了云存储,这东西开发者是贴了钱的,所以如果您要使用此功能,
@@ -110,5 +110,7 @@
     <string name="UK_SPEECH_DESC">英音</string>
     <string name="US_SPEECH_DESC">美音</string>
     <string name="CHOOSE_SPEECH">发音选择</string>
+    <string name="ONLY_CHINESE_ENGLISH_SUPPORT">只能输入中英文</string>
+    <string name="youdaoTitle">有道单词详情</string>
 
 </resources>

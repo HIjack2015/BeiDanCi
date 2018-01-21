@@ -8,6 +8,8 @@ import cn.jk.beidanci.data.model.*
 import cn.jk.beidanci.learnword.LearnWordList
 import cn.jk.beidanci.learnword.WordListHelper
 import cn.jk.beidanci.utils.DateUtil
+import cn.jk.beidanci.wordlist.ShowWordListHelper
+import com.raizlabs.android.dbflow.kotlinextensions.select
 import com.raizlabs.android.dbflow.sql.language.OrderBy
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import java.util.*
@@ -16,6 +18,14 @@ import java.util.*
  * Created by jack on 2018/1/9.
  */
 class HomePresenter(private val view: HomeContract.View, val prefs: SharedPreferences) : HomeContract.Presenter, BasePresenterImpl() {
+    override fun setShowWordList(label: String, wordState: WordState) {
+        val bookId: String? = prefs[Constant.CURRENT_BOOK]
+        val dbWords = select.from(DbWord::class.java).
+                where(DbWord_Table.state.eq(wordState)).
+                and(DbWord_Table.bookId.eq(bookId)).queryList().map { it as DbWord }
+        ShowWordListHelper.title = label
+        ShowWordListHelper.dbWordList = dbWords as MutableList<DbWord>
+    }
 
 
     override fun drawPi() {

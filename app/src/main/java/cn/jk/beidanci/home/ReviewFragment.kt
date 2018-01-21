@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import cn.jk.beidanci.BaseViewFragment
 import cn.jk.beidanci.R
+import cn.jk.beidanci.data.model.WordState
 import cn.jk.beidanci.learnword.LearnWordActivity
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
@@ -36,6 +37,23 @@ class ReviewFragment : BaseViewFragment<ReviewContract.Presenter>(), ReviewContr
         startReviewBtn.setOnClickListener {
             mPresenter.setReviewList(calendarView.selectedDate)
             startActivity<LearnWordActivity>()
+        }
+        unknownLyt.setOnClickListener {
+            mPresenter.setReviewList(calendarView.selectedDate, WordState.unknown)
+            startActivity<LearnWordActivity>()
+        }
+        knowLyt.setOnClickListener {
+            mPresenter.setReviewList(calendarView.selectedDate, WordState.known)
+            startActivity<LearnWordActivity>()
+        }
+        neverShowLyt.setOnClickListener {
+            mPresenter.setReviewList(calendarView.selectedDate, WordState.neverShow)
+            startActivity<LearnWordActivity>()
+        }
+        startReviewBtn.setOnLongClickListener {
+            mPresenter.setForgetCurveReviewList(calendarView.selectedDate)
+            startActivity<LearnWordActivity>()
+            false
         }
 
     }

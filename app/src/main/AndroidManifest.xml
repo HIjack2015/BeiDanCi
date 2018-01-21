@@ -28,7 +28,10 @@
         <activity android:name=".choosebook.ChooseBookActivity" />
         <activity android:name=".searchword.SearchWordActivity" />
         <activity android:name=".myword.MyWordActivity" />
-        <activity android:name=".learnword.LearnWordActivity"></activity>
+        <activity android:name=".learnword.LearnWordActivity" />
+        <activity android:name=".showword.ShowWordActivity" />
+        <activity android:name=".searchword.NetWordActivity" />
+        <activity android:name=".wordlist.WordListActivity"></activity>
     </application>
 
 </manifest>

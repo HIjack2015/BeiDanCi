@@ -3,16 +3,17 @@ package cn.jk.beidanci.home
 import android.content.SharedPreferences
 import cn.jk.beidanci.BasePresenterImpl
 import cn.jk.beidanci.data.Constant
-import cn.jk.beidanci.data.model.LearnRecord
-import cn.jk.beidanci.data.model.LearnRecord_Table
-import cn.jk.beidanci.data.model.WordState
+import cn.jk.beidanci.data.model.*
 import cn.jk.beidanci.learnword.ReviewWordList
+import cn.jk.beidanci.learnword.WordList
 import cn.jk.beidanci.learnword.WordListHelper
 import cn.jk.beidanci.utils.DateUtil
 import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.raizlabs.android.dbflow.kotlinextensions.and
 import com.raizlabs.android.dbflow.kotlinextensions.select
 import com.raizlabs.android.dbflow.rx2.kotlinextensions.list
 import com.raizlabs.android.dbflow.rx2.kotlinextensions.rx
+import com.raizlabs.android.dbflow.sql.language.OperatorGroup
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import java.util.*
 
@@ -21,6 +22,42 @@ import java.util.*
  * Created by jack on 2018/1/14.
  */
 class ReviewPresenter(val view: ReviewContract.View, val prefs: SharedPreferences) : ReviewContract.Presenter, BasePresenterImpl() {
+    override fun setForgetCurveReviewList(selectedDate: CalendarDay) {
+        val dbDay = calendarDayToDbDay(selectedDate)
+
+        val now = Date().time
+        val duringSecond = arrayOf(longArrayOf(3, 8), longArrayOf(20, 40), longArrayOf((10 * 60).toLong(), (14 * 60).toLong()), longArrayOf((22 * 60).toLong(), (26 * 60).toLong()), longArrayOf((24 * 2 * 60).toLong(), (24 * 3 * 60).toLong()), longArrayOf((24 * 6 * 60).toLong(), (24 * 7 * 60).toLong()), longArrayOf((24 * 14 * 60).toLong(), (24 * 15 * 60).toLong()))
+        for (i in duringSecond.indices) {
+            for (j in 0 until duringSecond[0].size) {
+                duringSecond[i][j] = now - duringSecond[i][j] * 60 * 1000
+            }
+        }
+        var operatorGroup: OperatorGroup = OperatorGroup.clause().and(DbWord_Table.state.notEq(WordState.neverShow))
+        var timeGroup: OperatorGroup = OperatorGroup.clause()
+        for (i in duringSecond.indices) {
+            val beforeWhen = Date(duringSecond[i][0])
+            val afterWhen = Date(duringSecond[i][1])
+
+            timeGroup.or(DbWord_Table.lastLearnTime.greaterThan(afterWhen)
+                    .and(DbWord_Table.lastLearnTime.lessThan(beforeWhen)))
+        }
+        operatorGroup.and(timeGroup)
+        val wordList = select.from(DbWord::class.java).where(operatorGroup).queryList().map { it as DbWord }
+        WordListHelper.wordList = WordList(wordList, Constant.FORGET_CURVE_LEARN_MODE)
+    }
+
+
+    /**
+     * 按照当天单词状态进行复习,不更新学习记录表中的记录
+     */
+    override fun setReviewList(selectedDate: CalendarDay, state: WordState) {
+        val dbDay = calendarDayToDbDay(selectedDate)
+        val wordList = select.from(LearnRecord::class.java)
+                .where(LearnRecord_Table.learnTime.eq(dbDay), LearnRecord_Table.reviewed.eq(false))
+                .queryList().map { it.dbWord as DbWord }.filter { it.state == state }
+        WordListHelper.wordList = WordList(wordList, Constant.REVIEW_TITLE)
+    }
+
     override fun setReviewList(selectedDate: CalendarDay) {
         val dbDay = calendarDayToDbDay(selectedDate)
         val recordList = select.from(LearnRecord::class.java)

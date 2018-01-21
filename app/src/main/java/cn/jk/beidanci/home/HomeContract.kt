@@ -16,5 +16,6 @@ interface HomeContract {
     interface Presenter : BasePresenter {
         fun drawPi()
         fun setLearnWordList()
+        fun setShowWordList(label: String, wordState: WordState)
     }
 }
