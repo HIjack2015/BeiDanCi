@@ -38,11 +38,11 @@ class WordListAdapter(var wordList: MutableList<DbWord>, var showChinese: Boolea
                 chineseTxt.setOnClickListener {
                     setChineseVisibility(true)
                 }
-                if(dbWord.) {
-
-                } else {
-
-                }
+//                if(dbWord) {
+//
+//                } else {
+//
+//                }
             }
         }
 
