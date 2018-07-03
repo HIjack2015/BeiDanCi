@@ -20,5 +20,6 @@ class SettingFragment : PreferenceFragment() {
             startActivity<ChooseBookActivity>()
             false
         }
+       
     }
 }

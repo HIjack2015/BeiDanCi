@@ -134,10 +134,11 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
 
     }
 
-    //注意单词必须为最后一个参数.否则缓存会有问题
+
     private fun displayPronunciation(english: String) {
         val speech = prefs[Constant.SPEECH_COUNTRY, Constant.US_SPEECH]
         // String voiceUrl = Constant.youdaoVoiceUrl + words.getCurrent().getEnglish();
+        //注意单词必须为最后一个参数.否则缓存会有问题
         val voiceUrl = Constant.youdaoDictUrl + speech + "&" + Constant.ENGLISH_AUDIO_QUERY_PARA + "=" + english
         val urlOk = MediaUtil.display(voiceUrl, context)
         if (!urlOk) {

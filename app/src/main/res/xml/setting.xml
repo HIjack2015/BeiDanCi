@@ -6,8 +6,8 @@
         android:persistent="true"
         android:title="@string/dark_theme" />
     <Preference
-        android:key="displaySetting"
-        android:title="主题设置"></Preference>
+        android:key="@string/theme_setting"
+        android:title="@string/theme_setting"></Preference>
     <Preference
 
         android:key="@string/download_book_pref"
