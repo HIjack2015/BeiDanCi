@@ -1,1 +1,1 @@
-include ':app', ':colorful'
+include ':app'
