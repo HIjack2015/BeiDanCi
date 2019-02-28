@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="@string/progress"
+        android:dialogTitle="饼图中部文字"
+        android:key="pieWord"
+        android:maxLength="4"
+        android:title="饼图文字" />
+    <cn.jk.beidanci.settings.DatePreference
+        android:defaultValue="@string/defaultTestDate"
+        android:key="examDate"
+        android:summary="Summary"
+        android:title="开考时间" />
+    <Preference
+        android:key="@string/export_word"
+        android:title="单词导出" />
+    <Preference
+        android:key="@string/download_voice_pack"
+        android:title="下载语音包" />
+    <Preference
+        android:key="@string/back_to_server"
+        android:title="备份学习记录到云端"/>
+    <Preference
+        android:key="@string/restore_record"
+        android:title="从云端恢复学习记录"/>
+</PreferenceScreen>

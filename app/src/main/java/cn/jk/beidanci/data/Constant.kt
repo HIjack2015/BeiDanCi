@@ -65,8 +65,8 @@ class Constant {
         var allWordCount = 5492
         var PLAN_LEARN_NO = 60
         var youdaoWordPageUrl = "https://m.youdao.com/dict?le=eng&q="
-        var searchTipShow = "searchTipShow"
-        var shouldShowGuide = "shouldShowGuide"
+         public val searchTipShow = "searchTipShow"
+          var shouldShowGuide = "shouldShowGuide"
         var downloadVoicePackUrl = "http://kydc-1253381140.costj.myqcloud.com/english.zip"
 
         val EXTRA_LEARN: String = "超额学习"

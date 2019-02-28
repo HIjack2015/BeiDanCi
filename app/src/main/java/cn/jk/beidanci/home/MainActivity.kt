@@ -24,6 +24,11 @@ class MainActivity : BaseActivity() {
     internal lateinit var reviewFragment: ReviewFragment
     internal lateinit var settingFragment: SettingFragment
     internal var currentFragment: Fragment? = null
+
+
+    private var needRefreshdata: Boolean=false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -110,6 +115,12 @@ class MainActivity : BaseActivity() {
             getSupportActionBar()!!.setTitle(title)
         }
 
+    }
+
+
+
+    fun setNeedRefreshData() {
+        needRefreshdata=true
     }
 }
 
