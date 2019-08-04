@@ -62,6 +62,14 @@
                         android:textStyle="bold" />
 
 
+                    <TextView
+                        android:id="@+id/phoneticTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="此处是音标"
+                        android:textSize="20sp" />
+
                     <ImageView
                         android:id="@+id/coreImg"
                         android:layout_width="20dp"
@@ -98,14 +106,6 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/phoneticTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="此处是音标"
-                        android:textSize="20sp" />
 
                     <LinearLayout
                         android:id="@+id/learnRecordLyt"

@@ -122,7 +122,7 @@ class ChoosePlanDialog : DialogFragment() {
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(customView)
         // Add action buttons
-        builder.setPositiveButton(R.string.confirm, { dialog, id -> Config.setPlanShouldLearn(learnPerDayTxt.getText().toString()) })
+        builder.setPositiveButton(R.string.confirm, { dialog, id -> Config.setPlanShouldLearn(learnPerDayTxt.getText().toString().toInt()) })
                 .setNegativeButton(R.string.cancel, { dialog, id -> })
 
 

@@ -111,7 +111,8 @@
     <string name="US_SPEECH_DESC">美音</string>
     <string name="CHOOSE_SPEECH">发音选择</string>
     <string name="ONLY_CHINESE_ENGLISH_SUPPORT">只能输入中英文</string>
-    <string name="youdaoTitle">有道单词详情</string> <string name="please_select_export_type">请选择要导出哪些单词.</string>
+    <string name="youdaoTitle">有道单词详情</string>
+    <string name="please_select_export_type">请选择要导出哪些单词.</string>
 
     <string name="theme_setting">主题设置</string>
     <string name="about_app_str">关于软件</string>

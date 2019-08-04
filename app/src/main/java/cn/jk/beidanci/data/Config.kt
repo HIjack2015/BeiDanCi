@@ -43,10 +43,8 @@ object Config {
      */
     val planShouldLearn: Int
         get() {
-            val planLearn = SPUtil.get(context!!, Constant.PLAN_LEARN, "99") as String
-            return if (planLearn == null || planLearn.isEmpty()) {
-                10
-            } else Integer.valueOf(planLearn)
+            val planLearn = SPUtil.get(context!!, Constant.PLAN_LEARN, 50) as Int
+           return Integer.valueOf(planLearn)
         }
 
     val examTime: Date?
@@ -79,7 +77,7 @@ object Config {
         get() = SPUtil.get(context!!, Constant.SHOW_CHINESE_LIST, true) as Boolean
         set(showChinese) = SPUtil.putAndApply(context!!, Constant.SHOW_CHINESE_LIST, showChinese)
 
-    fun setPlanShouldLearn(planShouldLearn: String) {
+    fun setPlanShouldLearn(planShouldLearn: Int) {
         SPUtil.putAndApply(context!!, Constant.PLAN_LEARN, planShouldLearn)
     }
 

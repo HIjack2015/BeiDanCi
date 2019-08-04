@@ -34,7 +34,8 @@
         <activity android:name=".settings.CommonQuestionActivity" />
         <activity android:name=".settings.DonateActivity" />
         <activity android:name=".settings.FeedbackActivity" />
-        <activity android:name=".settings.AdvanceSettingActivity"></activity>
+        <activity android:name=".settings.AdvanceSettingActivity" />
+        <activity android:name=".learnword.AdjustWordCardActivity"></activity>
     </application>
 
 </manifest>
