@@ -1,13 +1,14 @@
 package cn.jk.beidanci.home
 
 import android.app.Fragment
-import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.content.ContextCompat.startActivity
 import android.view.Menu
 import android.view.MenuItem
 import cn.jk.beidanci.BaseActivity
 import cn.jk.beidanci.R
+import cn.jk.beidanci.R.id.navigationView
 import cn.jk.beidanci.choosebook.ChooseBookActivity
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.myword.MyWordActivity
@@ -23,6 +24,11 @@ class MainActivity : BaseActivity() {
     internal lateinit var reviewFragment: ReviewFragment
     internal lateinit var settingFragment: SettingFragment
     internal var currentFragment: Fragment? = null
+
+
+    private var needRefreshdata: Boolean=false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -75,16 +81,7 @@ class MainActivity : BaseActivity() {
 
         }
         fragmentManager.beginTransaction().hide(homeFragment).hide(reviewFragment).hide(settingFragment).commit()
-        if (savedInstanceState == null) {
-            showFragment(homeFragment)
-        } else {
-            val shouldShowSettingFragment = savedInstanceState.getBoolean(Constant.SHOULD_SHOW_SETTING_FRAGMENT)
-            if (shouldShowSettingFragment) {
-                showFragment(settingFragment)
-            } else {
-                showFragment(homeFragment)
-            }
-        }
+        showFragment(homeFragment)
         navigationView.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             var showFragment: Fragment = homeFragment
             when (item.itemId) {
@@ -118,6 +115,12 @@ class MainActivity : BaseActivity() {
             getSupportActionBar()!!.setTitle(title)
         }
 
+    }
+
+
+
+    fun setNeedRefreshData() {
+        needRefreshdata=true
     }
 }
 

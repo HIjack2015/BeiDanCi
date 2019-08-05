@@ -4,13 +4,12 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import cn.jk.beidanci.utils.PreferenceHelper
-import cn.jk.colorful.ColorfulActivity
 
 
 /**
  * Created by jack on 2018/1/13.
  */
-open class BaseActivity : ColorfulActivity() {
+open class BaseActivity : AppCompatActivity() {
     lateinit var prefs: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -13,12 +13,12 @@ import kotlinx.android.synthetic.main.layout_word_brief.view.*
  */
 class WordListAdapter(var wordList: MutableList<DbWord>, var showChinese: Boolean = true
 ) : RecyclerView.Adapter<WordListAdapter.ViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent!!.context)
                 .inflate(R.layout.layout_word_brief, parent, false)
         return ViewHolder(v)
     }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setValue(wordList[position], showChinese)

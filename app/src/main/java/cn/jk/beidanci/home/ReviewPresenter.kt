@@ -93,29 +93,37 @@ class ReviewPresenter(val view: ReviewContract.View, val prefs: SharedPreference
 
     }
 
+    /**
+     * 转成2018-06-03的格式
+     *
+     */
     private fun calendarDayToDbDay(calendarDay: CalendarDay): String {
         val month = "%02d".format(calendarDay.month + 1)
-        val dbDay = "${calendarDay.year}-$month-${calendarDay.day}"
+        val day = "%02d".format(calendarDay.day);
+        val dbDay = "${calendarDay.year}-$month-$day"
         return dbDay
     }
 
     override fun setSelectDay(calendarDay: CalendarDay) {
         val dbDay = calendarDayToDbDay(calendarDay)
-        var todayLearnRecord = SQLite.select().from(LearnRecord::class.java).
-                where(LearnRecord_Table.learnTime.eq(dbDay)).queryList()
-        var knownCount = 0
-        var unknownCount = 0
-        var neverShowCount = 0
-        todayLearnRecord.forEach {
-            when (it.dbWord!!.state) {
-                WordState.known -> knownCount++
-                WordState.neverShow -> neverShowCount++
-                WordState.unknown -> unknownCount++
-                else -> {
+        select.from(LearnRecord::class.java).where(LearnRecord_Table.learnTime.eq(dbDay))
+                .rx()
+                .list { todayLearnRecord ->
+                    var knownCount = 0
+                    var unknownCount = 0
+                    var neverShowCount = 0
+                    todayLearnRecord.forEach {
+                        when (it.dbWord!!.state) {
+                            WordState.known -> knownCount++
+                            WordState.neverShow -> neverShowCount++
+                            WordState.unknown -> unknownCount++
+                            else -> {
+                            }
+                        }
+                    }
+                    view.showReviewCount(unknownCount, knownCount, neverShowCount)
+
                 }
-            }
-        }
-        view.showReviewCount(unknownCount, knownCount, neverShowCount)
 
     }
 

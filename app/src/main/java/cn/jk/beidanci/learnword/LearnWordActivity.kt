@@ -7,12 +7,14 @@ import android.view.View
 import cn.jk.beidanci.BaseViewActivity
 import cn.jk.beidanci.InitApplication.Companion.context
 import cn.jk.beidanci.R
+import cn.jk.beidanci.R.id.chooseShowItemBtn
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.DbWord
 import cn.jk.beidanci.utils.MediaUtil
 import kotlinx.android.synthetic.main.activity_learn_word.*
 import org.jetbrains.anko.forEachChild
 import org.jetbrains.anko.selector
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 
@@ -46,6 +48,11 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
         val autoDisplayChk = menu.findItem(R.id.autoDisplayChk)
 
         autoDisplayChk.isChecked = prefs[Constant.AUTO_DISPLAY, false]
+        val chooseShowItemBtn=menu.findItem(R.id.chooseShowItemBtn)
+        chooseShowItemBtn.setOnMenuItemClickListener {
+            startActivity<AdjustWordCardActivity>()
+            false
+        }
         return true
     }
 
@@ -134,10 +141,11 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
 
     }
 
-    //注意单词必须为最后一个参数.否则缓存会有问题
+
     private fun displayPronunciation(english: String) {
         val speech = prefs[Constant.SPEECH_COUNTRY, Constant.US_SPEECH]
         // String voiceUrl = Constant.youdaoVoiceUrl + words.getCurrent().getEnglish();
+        //注意单词必须为最后一个参数.否则缓存会有问题
         val voiceUrl = Constant.youdaoDictUrl + speech + "&" + Constant.ENGLISH_AUDIO_QUERY_PARA + "=" + english
         val urlOk = MediaUtil.display(voiceUrl, context)
         if (!urlOk) {
@@ -196,6 +204,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                     if (sb.isNotEmpty()) {
                         sb.deleteCharAt(sb.length - 1)
                         phraseTxt.text = sb.toString()
+                        phraseLyt.visibility = View.VISIBLE
                     } else {
                         phraseLyt.visibility = View.GONE
                     }
@@ -212,6 +221,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                     if (sb.isNotEmpty()) {
                         sb.deleteCharAt(sb.length - 1)
                         sentenceTxt.text = sb.toString()
+                        sentenceLyt.visibility = View.VISIBLE
                     } else {
                         sentenceLyt.visibility = View.GONE
                     }
@@ -222,6 +232,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                 if (remMethod == null) {
                     remMethodLyt.visibility = View.GONE
                 } else {
+                    remMethodLyt.visibility = View.VISIBLE
                     remMthodTxt.text = remMethod.value
                 }
                 sb = StringBuilder()
@@ -235,6 +246,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                     if (sb.isNotEmpty()) {
                         sb.deleteCharAt(sb.length - 1)
                         relsTxt.text = sb.toString()
+                        relsLyt.visibility = View.VISIBLE
                     } else {
                         relsLyt.visibility = View.GONE
                     }
@@ -258,6 +270,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                     if (sb.isNotEmpty()) {
                         sb.deleteCharAt(sb.length - 1)
                         hwdTxt.text = sb.toString()
+                        hwdLyt.visibility = View.VISIBLE
                     } else {
                         hwdLyt.visibility = View.GONE
                     }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--不加这个aapt2 会报错 -->
+    <declare-styleable name="Theme">
+        <attr name="colorSecondary" format="color|reference"/>
+    </declare-styleable>
+</resources>

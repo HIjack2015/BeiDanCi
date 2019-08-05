@@ -41,6 +41,7 @@ class BookListAdapter(val bookList: List<Book>) : RecyclerView.Adapter<BookListA
                 nameTxt.text = book.title
                 originTxt.text = book.bookOrigin.toString()
                 wordCountTxt.text = context.getText(R.string.word_count).toString() + book.wordNum.toString()
+           //     downloadBtn.background.setColorFilter(ContextCompat.getColor(context, R.color.accent_material_light), PorterDuff.Mode.MULTIPLY);
                 if (book.exists()) {
                     downloadBtn.setText(R.string.alreadyDownload)
                     downloadBtn.isEnabled = false

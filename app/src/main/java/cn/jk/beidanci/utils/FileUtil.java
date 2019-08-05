@@ -1,11 +1,18 @@
 package cn.jk.beidanci.utils;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +27,43 @@ import okhttp3.ResponseBody;
  */
 
 public class FileUtil {
+
+    public static boolean saveImg(Context context, String fileName, Bitmap bitmap) {
+        OutputStream fOut = null;
+        Uri outputFileUri = null;
+        try {
+            File root = new File(context.getFilesDir()
+                     + File.separator + "image" + File.separator);
+            root.mkdirs();
+            File sdImageMainDirectory = new File(root, fileName);
+
+
+            outputFileUri = Uri.fromFile(sdImageMainDirectory);
+            fOut = new FileOutputStream(sdImageMainDirectory);
+        } catch (Exception e) {
+            Toast.makeText(context, "Error occured. Please try again later.",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        try {
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+            fOut.flush();
+            fOut.close();
+        } catch (Exception e) {
+            return  false;
+        }
+        File imgFile = new File(outputFileUri.getPath());
+        try {
+            MediaStore.Images.Media.insertImage(context.getContentResolver(), imgFile.getAbsolutePath(), fileName, null);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(imgFile)));
+        return true;
+    }
+
     public static File writeResponseBodyToDisk(ResponseBody body, Context context, String fileName) {
         try {
             // todo change the file location/name according to your needs
