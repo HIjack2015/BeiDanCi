@@ -12,7 +12,8 @@
         android:key="examDate"
         android:summary="Summary"
         android:title="开考时间" />
-    <Preference
+  <!--  <Preference
+
         android:key="@string/export_word"
         android:title="单词导出" />
     <Preference
@@ -23,5 +24,5 @@
         android:title="备份学习记录到云端"/>
     <Preference
         android:key="@string/restore_record"
-        android:title="从云端恢复学习记录"/>
+        android:title="从云端恢复学习记录"/> -->
 </PreferenceScreen>

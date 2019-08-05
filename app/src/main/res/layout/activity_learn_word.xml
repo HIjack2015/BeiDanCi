@@ -167,6 +167,7 @@
 
 
                     <ScrollView
+
                         android:id="@+id/wordDescLyt"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -175,22 +176,24 @@
                         <LinearLayout
 
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical">
 
 
                             <TextView
                                 android:id="@+id/transTxt"
+                                android:textSize="16sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="翻译的内容,仅显示汉语,最多三行" />
 
                             <LinearLayout
+
                                 android:id="@+id/phraseLyt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="8dp"
                                 android:orientation="vertical">
 
                                 <View
@@ -199,6 +202,7 @@
                                     android:background="@android:color/darker_gray" />
 
                                 <TextView
+                                    style="@style/fieldDescStyle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="短语" />
@@ -224,6 +228,7 @@
                                     android:background="@android:color/darker_gray" />
 
                                 <TextView
+                                    style="@style/fieldDescStyle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="例句" />
@@ -249,6 +254,7 @@
                                     android:background="@android:color/darker_gray" />
 
                                 <TextView
+                                    style="@style/fieldDescStyle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="记忆方法" />
@@ -274,6 +280,7 @@
                                     android:background="@android:color/darker_gray" />
 
                                 <TextView
+                                    style="@style/fieldDescStyle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="同根词" />
@@ -299,6 +306,7 @@
                                     android:background="@android:color/darker_gray" />
 
                                 <TextView
+                                    style="@style/fieldDescStyle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="近义词" />

@@ -1,9 +1,11 @@
 package cn.jk.beidanci.learnword
 
 import cn.jk.beidanci.data.model.DbWord
+import cn.jk.beidanci.data.model.DbWord_Table
 import cn.jk.beidanci.data.model.LearnRecord
 import cn.jk.beidanci.data.model.WordState
 import com.raizlabs.android.dbflow.kotlinextensions.save
+import com.raizlabs.android.dbflow.kotlinextensions.select
 import com.raizlabs.android.dbflow.kotlinextensions.update
 import java.util.*
 
@@ -53,10 +55,24 @@ open class WordList(var words: List<DbWord>, var title: String,
             dbWord.state = WordState.unknown
             dbWord.unknownCount += 1
             dbWord.lastLearnTime = Date()
-            dbWord.update()
+            updateAllStateByThis(dbWord)
 
         }
 
+    }
+
+    private fun updateAllStateByThis(dbWord: DbWord) {
+        val wordList= select.from(DbWord::class.java).where(DbWord_Table.head.eq(dbWord.head)).queryList().map { it as DbWord }
+        wordList.forEach {
+            val existDbWord =it
+            existDbWord.unknownCount=dbWord.unknownCount
+            existDbWord.knownCount=dbWord.knownCount
+            existDbWord.easy=dbWord.easy
+            existDbWord.lastLearnTime=dbWord.lastLearnTime
+            existDbWord.rank=dbWord.rank
+            existDbWord.state=dbWord.state
+            existDbWord.update()
+        }
     }
 
     open fun currentKnown() {
@@ -65,7 +81,7 @@ open class WordList(var words: List<DbWord>, var title: String,
             dbWord.state = WordState.known
             dbWord.knownCount += 1
             dbWord.lastLearnTime = Date()
-            dbWord.update()
+            updateAllStateByThis(dbWord)
         }
     }
 
@@ -84,7 +100,7 @@ open class WordList(var words: List<DbWord>, var title: String,
             dbWord.state = WordState.neverShow
             dbWord.knownCount += 1
             dbWord.lastLearnTime = Date()
-            dbWord.update()
+            updateAllStateByThis(dbWord)
             LearnRecord(dbWord = dbWord).save()
         }
     }

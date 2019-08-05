@@ -54,7 +54,8 @@ class AdvanceSettingFragment : PreferenceFragment() {
         }
 
 
-        val exportWordPref = findPreference(getString(R.string.export_word))
+       /** val exportWordPref = findPreference(getString(R.string.export_word))
+
         exportWordPref.onPreferenceClickListener = Preference.OnPreferenceClickListener {
             MaterialDialog.Builder(context!!)
                     .title(R.string.please_select_export_type)
@@ -119,6 +120,7 @@ class AdvanceSettingFragment : PreferenceFragment() {
 //
 //            false
 //        }
+   **/
     }
 
     private fun exportWord(which: Array<out Int>?) {

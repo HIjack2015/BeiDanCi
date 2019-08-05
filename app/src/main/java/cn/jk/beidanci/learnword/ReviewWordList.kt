@@ -21,6 +21,10 @@ class ReviewWordList(val learnRecords: List<LearnRecord>, title: String, beforeC
      * 将当前学习记录状态设为已经复习,如果是最后一个单词,则重置当天复习状态
      */
     private fun setCurrentReviewed() {
+        if (currentPosition>=learnRecords.size) {
+            //来到这里可能是点太快了.
+            return;
+        }
         val currentRecord = learnRecords.get(currentPosition)
         currentRecord.reviewed = true
         currentRecord.update()

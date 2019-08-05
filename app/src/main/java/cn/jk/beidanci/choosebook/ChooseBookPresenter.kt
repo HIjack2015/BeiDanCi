@@ -2,13 +2,12 @@ package cn.jk.beidanci.choosebook
 
 import android.util.Log
 import cn.jk.beidanci.data.api.ApiManager
-import cn.jk.beidanci.data.model.Book
-import cn.jk.beidanci.data.model.BooksResult
-import cn.jk.beidanci.data.model.DbWord
-import cn.jk.beidanci.data.model.GeneralErrorHandler
+import cn.jk.beidanci.data.model.*
 import cn.jk.beidanci.data.source.AppDatabase
 import com.raizlabs.android.dbflow.config.FlowManager
+import com.raizlabs.android.dbflow.kotlinextensions.exists
 import com.raizlabs.android.dbflow.kotlinextensions.insert
+import com.raizlabs.android.dbflow.kotlinextensions.select
 import com.raizlabs.android.dbflow.structure.database.transaction.FastStoreModelTransaction
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -26,16 +25,18 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
 
 
     override fun downloadBook(book: Book) {
+        view.showDownLoad()
+        Log.i("time", "startDownload")
         ApiManager.booksService.downloadBookFile(book.offlinedata)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
-                    view.showDownLoad()
-                    Log.i("time", "1")
+
+
                 }
                 .observeOn(Schedulers.io())
                 .map({
                     dealResponse(it, book)
-                    Log.i("time", "1")
+                    Log.i("time", "downloadSuccess")
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -47,7 +48,6 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
                 })
 
     }
-
 
     private fun dealResponse(body: ResponseBody, book: Book) {
         val zis = ZipInputStream(BufferedInputStream(body.byteStream()))
@@ -63,11 +63,22 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
                 }
 
                 val dbWord = DbWord(aWord, book)
+                val dbWordList= select.from(DbWord::class.java).where(DbWord_Table.head.eq(dbWord.head)).queryList().map { it as DbWord }
+                if (dbWordList.size>0) {
+                    val existDbWord=dbWordList.get(0)
+                    dbWord.unknownCount=existDbWord.unknownCount
+                    dbWord.knownCount=existDbWord.knownCount
+                    dbWord.easy=existDbWord.easy
+                    dbWord.lastLearnTime=existDbWord.lastLearnTime
+                    dbWord.rank=existDbWord.rank
+                    dbWord.state=existDbWord.state
+                }
                 wordList.add(dbWord)
             }
 
         }
         warn("完成构造list")
+
         FlowManager.getDatabase(AppDatabase::class.java).executeTransaction(FastStoreModelTransaction
                 .insertBuilder(FlowManager.getModelAdapter(DbWord::class.java))
                 .addAll(wordList)
