@@ -25,6 +25,8 @@ class DbWord(
         @Column(typeConverter = WordStateConverter::class)
         var state: WordState = WordState.unlearned,
         @Column(getterName = "getImportant") var important: Boolean = false,
+        @Column(getterName = "getCollect") var collect: Boolean = false,
+
         @Column var knownCount: Int = 0,
         @Column var unknownCount: Int = 0,
         @Column var lastLearnTime: Date? = null

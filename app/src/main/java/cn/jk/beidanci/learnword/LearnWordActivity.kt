@@ -1,18 +1,24 @@
 package cn.jk.beidanci.learnword
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.app.DialogFragment
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import cn.jk.beidanci.BaseViewActivity
 import cn.jk.beidanci.InitApplication.Companion.context
 import cn.jk.beidanci.R
-import cn.jk.beidanci.R.id.chooseShowItemBtn
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.DbWord
 import cn.jk.beidanci.utils.MediaUtil
+import com.raizlabs.android.dbflow.kotlinextensions.update
 import kotlinx.android.synthetic.main.activity_learn_word.*
 import org.jetbrains.anko.forEachChild
+import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.selector
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -37,7 +43,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
             finish()
             return
         }
-        supportActionBar!!.setTitle(dbWordList.title)
+        supportActionBar!!.title = dbWordList.title
         setLogic()
         mPresenter.start()
     }
@@ -53,18 +59,24 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
             startActivity<AdjustWordCardActivity>()
             false
         }
+
         return true
+    }
+
+
+    private fun currentNeverShow() {
+        prefs[Constant.TIPS_OF_NEVER_SHOW_SHOULD_SHOW] = false
+        dbWordList.currentNeverShow()
+        next()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.neverShowBtn -> {
                 if (prefs[Constant.TIPS_OF_NEVER_SHOW_SHOULD_SHOW, true]) {
-                    //NeverShowWordDialog().show(fragmentManager, "neverShowTag")//TODO
+                    NeverShowWordDialog().show(fragmentManager, "neverShowTag")//TODO
                 } else {
-                    prefs[Constant.TIPS_OF_NEVER_SHOW_SHOULD_SHOW] = false
-                    dbWordList.currentNeverShow()
-                    next()
+                    currentNeverShow()
                 }
                 return true
             }
@@ -90,7 +102,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
 
 
     private fun next() {
-        var dbWord = WordListHelper.wordList.next();
+        var dbWord = WordListHelper.wordList.next()
         if (dbWord == null) {
             toast(dbWordList.getFinishMessage())
             finish()
@@ -157,6 +169,8 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
     }
 
     override fun inflateCardView(dbWord: DbWord) {
+
+
         with(dbWord) {
             wordDescLyt.visibility = View.GONE
             learnRecordLyt.visibility = View.VISIBLE
@@ -165,6 +179,24 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
             voiceBtn.setOnClickListener {
                 displayPronunciation(head)
             }
+
+            if (dbWord.collect) {
+                collectBtn.background = resources.getDrawable(R.drawable.ic_star_deep_blue_24dp)
+            } else {
+                collectBtn.background = resources.getDrawable(R.drawable.ic_star_border_blue_24dp)
+            }
+
+            collectBtn.onClick {
+                dbWord.collect = !dbWord.collect
+                dbWord.update()
+                if (dbWord.collect) {
+                    scaleDownThenUp(collectBtn, R.drawable.ic_star_deep_blue_24dp)
+                } else {
+                    scaleDownThenUp(collectBtn, R.drawable.ic_star_border_blue_24dp)
+                }
+
+            }
+
             with(getWordContent()) {
                 wordDescLyt.forEachChild {
                     it.visibility = View.VISIBLE
@@ -283,4 +315,53 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
 
         }
     }
+
+    internal class NeverShowWordDialog : DialogFragment() {
+
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+            // Use the Builder class for convenient dialog construction
+            val builder = AlertDialog.Builder(activity)
+            builder.setMessage(R.string.tips_never_show)
+                    .setPositiveButton(R.string.confirm_never_show) { dialog, id ->
+
+
+                        (activity as LearnWordActivity).currentNeverShow()
+                    }
+                    .setNegativeButton(R.string.cancel) { dialog, id ->
+                        toast("哈，还真有人点取消啊")
+                    }
+            // Create the AlertDialog object and return it
+            return builder.create()
+        }
+    }
+
+    /**
+     * 对icon进行缩放的方法.
+     *
+     * @param iconImg    要缩放的view
+     * @param finalImgId 缩放结束后的img id
+     */
+    private fun scaleDownThenUp(iconImg: View, finalImgId: Int) {
+        val scaleDownAnimation = AnimationUtils.loadAnimation(context, R.anim.icon_scale_down)
+        val scaleUpAnimation = AnimationUtils.loadAnimation(context, R.anim.icon_scale_up)
+
+        scaleDownAnimation.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animation) {
+                iconImg.setBackgroundResource(finalImgId)
+                iconImg.startAnimation(scaleUpAnimation)
+            }
+
+            override fun onAnimationRepeat(animation: Animation) {
+
+            }
+        })
+        iconImg.startAnimation(scaleDownAnimation)
+
+    }
+
+
 }

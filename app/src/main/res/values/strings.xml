@@ -120,6 +120,7 @@
     <string name="donate_developer">捐赠开发者</string>
     <string name="back_to_server">back_to_server</string>
     <string name="restore_record">restore_record</string>
+    <string name="choose_this">换这本背</string>
     <string-array name="word_type">
         <item>已掌握</item>
         <item>已认识</item>

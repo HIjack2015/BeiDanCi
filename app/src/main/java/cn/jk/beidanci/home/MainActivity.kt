@@ -3,12 +3,10 @@ package cn.jk.beidanci.home
 import android.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.content.ContextCompat.startActivity
 import android.view.Menu
 import android.view.MenuItem
 import cn.jk.beidanci.BaseActivity
 import cn.jk.beidanci.R
-import cn.jk.beidanci.R.id.navigationView
 import cn.jk.beidanci.choosebook.ChooseBookActivity
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.myword.MyWordActivity
@@ -25,8 +23,15 @@ class MainActivity : BaseActivity() {
     internal lateinit var settingFragment: SettingFragment
     internal var currentFragment: Fragment? = null
 
+    companion object {
+        //暂时用不到
+        var needRefreshdata = false
 
-    private var needRefreshdata: Boolean=false
+        fun setNeedRefreshData() {
+            needRefreshdata = true
+        }
+    }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,16 +116,12 @@ class MainActivity : BaseActivity() {
         } else if (fragment === settingFragment) {
             title = getString(R.string.title_setting)
         }
-        if(getSupportActionBar()!=null) {
-            getSupportActionBar()!!.setTitle(title)
+        if (supportActionBar != null) {
+            supportActionBar!!.title = title
         }
 
     }
 
 
-
-    fun setNeedRefreshData() {
-        needRefreshdata=true
-    }
 }
 

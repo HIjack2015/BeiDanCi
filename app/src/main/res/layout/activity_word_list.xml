@@ -3,13 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="cn.jk.beidanci.searchword.SearchWordActivity">
 
     <android.support.v7.widget.RecyclerView
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/wordListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp">
 
     </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/emptyView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/empty"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

@@ -5,7 +5,6 @@ import cn.jk.beidanci.data.api.ApiManager
 import cn.jk.beidanci.data.model.*
 import cn.jk.beidanci.data.source.AppDatabase
 import com.raizlabs.android.dbflow.config.FlowManager
-import com.raizlabs.android.dbflow.kotlinextensions.exists
 import com.raizlabs.android.dbflow.kotlinextensions.insert
 import com.raizlabs.android.dbflow.kotlinextensions.select
 import com.raizlabs.android.dbflow.structure.database.transaction.FastStoreModelTransaction
@@ -22,6 +21,9 @@ import java.util.zip.ZipInputStream
  * Created by jack on 2018/1/10.
  */
 class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBookContract.Presenter, AnkoLogger {
+    override fun chooseBook(book: Book) {
+        view.chooseBook(book.id)
+    }
 
 
     override fun downloadBook(book: Book) {
@@ -95,10 +97,11 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
 
     private lateinit var disposable: Disposable
     override fun start() {
+        view.showLoad()
         disposable = ApiManager.booksService.getBookList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
-                    view.showLoad()
+
                 }
                 .subscribeOn(Schedulers.io())
                 .subscribe({ bookResult: BooksResult ->

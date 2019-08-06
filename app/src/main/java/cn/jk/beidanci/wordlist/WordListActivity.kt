@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import cn.jk.beidanci.BaseActivity
 import cn.jk.beidanci.InitApplication
 import cn.jk.beidanci.R
@@ -23,9 +24,15 @@ class WordListActivity : BaseActivity() {
         var layoutManager = LinearLayoutManager(InitApplication.context)
 
         wordListView.setHasFixedSize(true)
-        wordListView.setLayoutManager(layoutManager)
+        wordListView.layoutManager = layoutManager
 
         wordListView.adapter = wordListAdapter
+
+        if (ShowWordListHelper.dbWordList.size == 0) {
+            emptyView.visibility = View.VISIBLE
+        } else {
+            emptyView.visibility = View.GONE
+        }
 
     }
 

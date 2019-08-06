@@ -8,20 +8,11 @@
     tools:context="cn.jk.beidanci.choosebook.ChooseBookActivity">
 
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        app:tabGravity="fill"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextColor="#FFF" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs">
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -42,6 +33,19 @@
 
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
     </FrameLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="#FFF" />
+
 
     <ProgressBar
         android:id="@+id/progress_bar"

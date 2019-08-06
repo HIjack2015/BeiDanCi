@@ -19,6 +19,7 @@ interface ChooseBookContract {
         fun clear()
         fun hideReload()
         fun downloadSuccess(bookId: String)
+        fun chooseBook(id: String)
 
 
     }
@@ -28,6 +29,7 @@ interface ChooseBookContract {
         fun downloadBook(book: Book)
 
         fun reload()
+        fun chooseBook(book: Book)
     }
 
 }

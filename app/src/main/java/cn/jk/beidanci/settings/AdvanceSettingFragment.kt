@@ -1,32 +1,14 @@
 package cn.jk.beidanci.settings
 
 
-import android.content.Context
-import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
-import android.os.Environment
 import android.preference.Preference
 import android.preference.PreferenceFragment
-import android.preference.SwitchPreference
 import android.support.v4.app.Fragment
-import android.text.InputType
-import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Constant
-import cn.jk.beidanci.data.Constant.Companion.WORD_LIST_LBL
 import cn.jk.beidanci.home.MainActivity
-import cn.jk.beidanci.utils.NetWorkUtil
-import cn.jk.beidanci.wordlist.WordListActivity
-
-
-import com.afollestad.materialdialogs.MaterialDialog
-
-
-
-
 import org.jetbrains.anko.toast
 
 /**
@@ -49,7 +31,7 @@ class AdvanceSettingFragment : PreferenceFragment() {
         super.onViewCreated(view, savedInstanceState)
         val pieWordPref = findPreference(Constant.PIE_WORD)
         pieWordPref.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
-            (activity as MainActivity).setNeedRefreshData()
+            MainActivity.setNeedRefreshData()
             true
         }
 

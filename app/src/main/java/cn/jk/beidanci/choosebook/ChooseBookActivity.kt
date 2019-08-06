@@ -17,14 +17,17 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
     override fun downloadSuccess(bookId: String) {
         hideDownLoad()
         toast(R.string.downloadSuccess)
+
+        chooseBook(bookId)
+        finish()
+    }
+
+    override fun chooseBook(bookId: String) {
         //TODO 写sharedpreference 明显该由presenter来做,downlodSuccess也不应该接受一个bookId的参数.
         //但是当前真的没什么好办法,先这样吧.
         prefs[Constant.CURRENT_BOOK] = bookId
         startActivity<MainActivity>()
-
-        finish()
     }
-
     override fun hideReload() {
         refreshLyt.finishRefresh()
     }
@@ -67,11 +70,6 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
             mPresenter.reload()
         }
         downLoadBookDialog = DownloadBookDialog()
-    }
-
-    override fun onStart() {
-        super.onStart()
-
     }
 
     override fun showBookList(bookResult: BooksResult) {

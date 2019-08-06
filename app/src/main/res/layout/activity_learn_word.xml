@@ -324,6 +324,13 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <Button
+                android:id="@+id/collectBtn"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="8dp"
+                android:background="@drawable/ic_star_deep_blue_24dp" />
 
         </android.support.v7.widget.CardView>
     </LinearLayout>
@@ -338,16 +345,16 @@
 
 
         <Button
-
+            style="@style/setStateBtn"
             android:id="@+id/unknownBtn"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="不认识" />
 
         <Button
-
+            style="@style/setStateBtn"
+            android:layout_marginLeft="16dp"
             android:id="@+id/knowBtn"
-            android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:text="认识" />
 

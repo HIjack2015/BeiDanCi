@@ -10,6 +10,7 @@ import cn.jk.beidanci.data.model.Book
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.raizlabs.android.dbflow.kotlinextensions.exists
 import kotlinx.android.synthetic.main.layout_book_item.view.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 /**
  * Created by jack on 2018/1/11.
@@ -43,8 +44,13 @@ class BookListAdapter(val bookList: List<Book>) : RecyclerView.Adapter<BookListA
                 wordCountTxt.text = context.getText(R.string.word_count).toString() + book.wordNum.toString()
            //     downloadBtn.background.setColorFilter(ContextCompat.getColor(context, R.color.accent_material_light), PorterDuff.Mode.MULTIPLY);
                 if (book.exists()) {
-                    downloadBtn.setText(R.string.alreadyDownload)
-                    downloadBtn.isEnabled = false
+                    downloadBtn.setText(R.string.choose_this)
+                    downloadBtn.onClick {
+                        var context2 = getContext()
+
+                        (context2 as ChooseBookActivity).getPresenter().chooseBook(book)
+
+                    }
                 } else {
                     downloadBtn.setOnClickListener {
                         var context2 = context
