@@ -7,6 +7,7 @@ import com.raizlabs.android.dbflow.annotation.Column
 import com.raizlabs.android.dbflow.annotation.PrimaryKey
 import com.raizlabs.android.dbflow.annotation.Table
 import org.json.JSONObject
+import java.io.Serializable
 import java.util.*
 
 /**
@@ -31,7 +32,7 @@ class DbWord(
         @Column var unknownCount: Int = 0,
         @Column var lastLearnTime: Date? = null
 
-) {
+) : Serializable {
     constructor(netWord: String, book: Book) : this() {
         val wordJsonObject = JSONObject(netWord)
         val contentOut = wordJsonObject.getJSONObject("content").getJSONObject("word")

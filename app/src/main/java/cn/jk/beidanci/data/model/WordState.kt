@@ -54,4 +54,8 @@ enum class WordState {
         return wordStates[position]
     }
 
+    fun isNeverShow(word: DbWord): Boolean {
+        return word.state.equals(neverShow)
+    }
+
 }

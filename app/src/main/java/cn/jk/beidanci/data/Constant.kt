@@ -5,6 +5,7 @@ package cn.jk.beidanci.data
  */
 class Constant {
     companion object {
+        val DB_WORD: String = "DB_WORD"
         val CURRENT_BOOK = "CURRENT_BOOK"
         val SHOULD_SHOW_SETTING_FRAGMENT = "SHOULD_SHOW_SETTING_FRAGMENT"
 
@@ -65,7 +66,7 @@ class Constant {
         var allWordCount = 5492
         var PLAN_LEARN_NO = 60
         var youdaoWordPageUrl = "https://m.youdao.com/dict?le=eng&q="
-         public val searchTipShow = "searchTipShow"
+        val searchTipShow = "searchTipShow"
           var shouldShowGuide = "shouldShowGuide"
         var downloadVoicePackUrl = "http://kydc-1253381140.costj.myqcloud.com/english.zip"
 

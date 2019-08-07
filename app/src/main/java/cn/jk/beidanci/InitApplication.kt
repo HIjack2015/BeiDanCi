@@ -8,6 +8,7 @@ import cn.jk.beidanci.data.Constant
 import com.danikula.videocache.HttpProxyCacheServer
 import com.danikula.videocache.file.FileNameGenerator
 import com.raizlabs.android.dbflow.config.FlowManager
+import com.tencent.bugly.crashreport.CrashReport
 import java.net.URLDecoder
 
 
@@ -21,7 +22,8 @@ class InitApplication : MultiDexApplication() {
         context = applicationContext
         Config.setContext(applicationContext)
         FlowManager.init(this)
-       
+        CrashReport.initCrashReport(applicationContext, "22a1b5f7bc", false)
+
 //        setDefaultRefreshHeaderCreater(object : DefaultRefreshHeaderCreater {
 //            override fun createRefreshHeader(context: Context?, layout: RefreshLayout?): RefreshHeader {
 //                layout!!.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色

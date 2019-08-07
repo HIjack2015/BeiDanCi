@@ -8,8 +8,15 @@ import cn.jk.beidanci.data.model.DbWord
  */
 
 object ShowWordListHelper {
+    fun useDefault(title: String, dbWords: List<DbWord>) {
+        ShowWordListHelper.title = title
+        dbWordList = dbWords as MutableList<DbWord>
+        showCollectIcon = true
+        showDeleteIcon = true
+    }
+
     var title = ""
     lateinit var dbWordList: MutableList<DbWord>
-//    var showDeleteIcon = true
-//    var showCollectIcon = true
+    var showDeleteIcon = true
+    var showCollectIcon = true
 }

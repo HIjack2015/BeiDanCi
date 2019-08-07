@@ -38,7 +38,7 @@ open class WordList(var words: List<DbWord>, var title: String,
     }
 
     fun getCurrentWord(): DbWord? {
-        if (currentPosition >= words.size) {
+        if (currentPosition >= words.size || currentPosition < 0) {
             return null
         } else {
             return words.get(currentPosition)
@@ -91,6 +91,15 @@ open class WordList(var words: List<DbWord>, var title: String,
      */
     fun next(): DbWord? {
         currentPosition++
+        return getCurrentWord()
+    }
+
+    fun previous(): DbWord? {
+        if (currentPosition == 0) {
+            return null
+        } else {
+            currentPosition--
+        }
         return getCurrentWord()
     }
 

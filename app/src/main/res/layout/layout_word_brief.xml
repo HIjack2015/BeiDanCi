@@ -26,10 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ic_star_yellow_24dp" />
+        android:src="@drawable/ic_star_deep_blue_24dp" />
 
     <ImageView
-
+        android:id="@+id/neverShowBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/collectBtn"

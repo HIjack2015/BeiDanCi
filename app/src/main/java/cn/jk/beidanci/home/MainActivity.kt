@@ -9,8 +9,12 @@ import cn.jk.beidanci.BaseActivity
 import cn.jk.beidanci.R
 import cn.jk.beidanci.choosebook.ChooseBookActivity
 import cn.jk.beidanci.data.Constant
+import cn.jk.beidanci.data.model.DbWord
+import cn.jk.beidanci.data.model.DbWord_Table
 import cn.jk.beidanci.myword.MyWordActivity
 import cn.jk.beidanci.searchword.SearchWordActivity
+import cn.jk.beidanci.wordlist.ShowWordListHelper
+import com.raizlabs.android.dbflow.kotlinextensions.select
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
@@ -53,6 +57,8 @@ class MainActivity : BaseActivity() {
                 return true
             }
             R.id.myWordView -> {
+                val dbWords = select.from(DbWord::class.java).where(DbWord_Table.collect.eq(true)).queryList().map { it as DbWord }
+                ShowWordListHelper.useDefault("收藏" + dbWords.size, dbWords)
                 startActivity<MyWordActivity>()
                 return true
             }

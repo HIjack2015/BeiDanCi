@@ -41,11 +41,11 @@ class SearchWordActivity : BaseActivity() {
 
 
     private fun setRecView() {
-        wordListAdapter = WordListAdapter(ArrayList<DbWord>())
+        wordListAdapter = WordListAdapter(wordList = ArrayList<DbWord>(), context = context!!)
         var layoutManager = LinearLayoutManager(context)
 
         candidateWordView.setHasFixedSize(true)
-        candidateWordView.setLayoutManager(layoutManager)
+        candidateWordView.layoutManager = layoutManager
 
         candidateWordView.adapter = wordListAdapter
     }
@@ -67,7 +67,7 @@ class SearchWordActivity : BaseActivity() {
 
     private fun setQueryTextLogic(wordSearchView: SearchView) {
 
-        wordSearchView.setIconified(false)
+        wordSearchView.isIconified = false
         wordSearchView.setOnQueryTextFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
             if (!hasFocus) {
                 finish()

@@ -23,8 +23,9 @@ class HomePresenter(private val view: HomeContract.View, val prefs: SharedPrefer
         val dbWords = select.from(DbWord::class.java).
                 where(DbWord_Table.state.eq(wordState)).
                 and(DbWord_Table.bookId.eq(bookId)).queryList().map { it as DbWord }
-        ShowWordListHelper.title = label
-        ShowWordListHelper.dbWordList = dbWords as MutableList<DbWord>
+        ShowWordListHelper.useDefault(label, dbWords)
+
+
     }
 
 

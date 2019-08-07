@@ -9,7 +9,9 @@ buildscript {
         google()
         jcenter()
     }
-    dependencies {          
+    dependencies {
+        classpath 'com.tencent.bugly:symtabfileuploader:latest.release'
+
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"

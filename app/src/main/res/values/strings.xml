@@ -121,6 +121,7 @@
     <string name="back_to_server">back_to_server</string>
     <string name="restore_record">restore_record</string>
     <string name="choose_this">换这本背</string>
+    <string name="ALREADY_FIRST">已经是第一个单词了</string>
     <string-array name="word_type">
         <item>已掌握</item>
         <item>已认识</item>

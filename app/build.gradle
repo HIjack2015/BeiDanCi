@@ -3,7 +3,12 @@ apply plugin: "com.android.application"
 apply plugin: "kotlin-android"
 apply plugin: 'kotlin-kapt'
 apply plugin: "kotlin-android-extensions"
+apply plugin: 'bugly'
 
+bugly {
+    appId = '22a1b5f7bc' // 注册时分配的App ID
+    appKey = '82f6b8bd-fce2-433e-b461-fcfffa75ae63' // 注册时分配的App Key
+}
 android {
     compileSdkVersion 27
     defaultConfig {

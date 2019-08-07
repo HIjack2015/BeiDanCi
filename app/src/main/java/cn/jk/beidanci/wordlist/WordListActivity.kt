@@ -12,14 +12,16 @@ import cn.jk.beidanci.data.Constant
 import kotlinx.android.synthetic.main.activity_word_list.*
 import org.jetbrains.anko.forEachChild
 
-class WordListActivity : BaseActivity() {
+open class WordListActivity : BaseActivity() {
     lateinit var wordListAdapter: WordListAdapter
+    var wordType = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_word_list)
 
         supportActionBar!!.title = ShowWordListHelper.title
-        wordListAdapter = WordListAdapter(ShowWordListHelper.dbWordList, prefs[Constant.SHOW_CHINESE_LIST, true])
+        wordType = ShowWordListHelper.title.replace("\\d".toRegex(), "")
+        wordListAdapter = WordListAdapter(ShowWordListHelper.dbWordList, this, prefs[Constant.SHOW_CHINESE_LIST, true])
 
         var layoutManager = LinearLayoutManager(InitApplication.context)
 
@@ -44,6 +46,10 @@ class WordListActivity : BaseActivity() {
         return true
     }
 
+    fun refreshTitle() {
+        val size = ShowWordListHelper.dbWordList.size
+        supportActionBar!!.title = wordType + size
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
 
