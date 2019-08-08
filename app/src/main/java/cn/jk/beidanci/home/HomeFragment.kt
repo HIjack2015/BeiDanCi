@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import cn.jk.beidanci.BaseViewFragment
 import cn.jk.beidanci.R
+import cn.jk.beidanci.data.Config
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.WordState
 import cn.jk.beidanci.learnword.LearnWordActivity
@@ -19,6 +20,8 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.startActivity
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -44,7 +47,36 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
             mPresenter.setLearnWordList()
             startActivity<LearnWordActivity>()
         }
+        Timer().schedule(ShowRemainTime(), 0, 1000)
 
+    }
+
+    internal inner class ShowRemainTime : TimerTask() {
+        override fun run() {
+            if (activity != null) {
+                activity.runOnUiThread { setRemainTime() }
+            }
+        }
+    }
+
+    private fun setRemainTime() {
+        val now = Date()
+        val diff = Config.examTime!!.time - now.time
+        if (diff < 0) {
+            Config.addExamDate()
+            return
+        }
+
+
+        val diffSeconds = diff / 1000 % 60
+        val diffMinutes = diff / (60 * 1000) % 60
+        val diffHours = diff / (60 * 60 * 1000) % 24
+        val diffDays = diff / (24 * 60 * 60 * 1000)
+
+
+        val remainTime = (diffDays.toString() + "天" + String.format(Locale.getDefault(), "%02d", diffHours) + "时"
+                + String.format(Locale.getDefault(), "%02d", diffMinutes) + "分" + String.format(Locale.getDefault(), "%02d", diffSeconds) + "秒")
+        remainTimeTxt.text = remainTime
     }
 
 

@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'
    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'// todo 这里会有冲突，选新的版本也会
+    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
 
    implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
 

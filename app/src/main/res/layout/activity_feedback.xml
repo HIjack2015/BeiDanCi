@@ -14,7 +14,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="35dp"
         android:gravity="top|left"
-        android:hint="这里写意见"
+        android:hint="这里写意见,也可以去微博给我提意见哦~"
         android:inputType="textMultiLine"
         android:lines="8"
         app:layout_constraintHorizontal_bias="0.5"
@@ -40,8 +40,20 @@
         android:id="@+id/submitBtn"
         style="@style/longButton"
         android:text="@string/submit"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/openWeiboBtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/openWeiboBtn"
+        style="@style/longButton"
+
+        android:text="打开微博提意见"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="602dp" />
 </android.support.constraint.ConstraintLayout>

@@ -23,7 +23,6 @@ class InitApplication : MultiDexApplication() {
         Config.setContext(applicationContext)
         FlowManager.init(this)
         CrashReport.initCrashReport(applicationContext, "22a1b5f7bc", false)
-
 //        setDefaultRefreshHeaderCreater(object : DefaultRefreshHeaderCreater {
 //            override fun createRefreshHeader(context: Context?, layout: RefreshLayout?): RefreshHeader {
 //                layout!!.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色

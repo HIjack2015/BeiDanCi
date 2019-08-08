@@ -105,7 +105,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
     private fun next() {
         var dbWord = WordListHelper.wordList.next()
         if (dbWord == null) {
-            showMsg(dbWordList.getFinishMessage())
+            toast(dbWordList.getFinishMessage())
             finish()
             return
         }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="@string/dark_theme_on"
-        android:persistent="true"
-        android:title="@string/dark_theme" />
-
+    <!-- <SwitchPreference
+         android:defaultValue="false"
+         android:key="@string/dark_theme_on"
+         android:persistent="true"
+         android:title="@string/dark_theme" />
+ -->
     <Preference
 
         android:key="@string/download_book_pref"
