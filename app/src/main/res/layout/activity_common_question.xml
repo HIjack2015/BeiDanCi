@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".settings.CommonQuestionActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/questionRcl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+    </android.support.v7.widget.RecyclerView>
+
 </android.support.constraint.ConstraintLayout>

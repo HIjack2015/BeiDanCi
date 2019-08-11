@@ -7,6 +7,6 @@ import cn.jk.beidanci.data.Constant
  */
 object Settings {
     const  val BOOK_LIST="reciteword/v1/books?le=en&sv=1.1"
-    const  val YOUDAO_SERVER="http://reciteword.youdao.com"
+    const val YOUDAO_SERVER = "https://reciteword.youdao.com"
     const val FEED_BACK_URL = Constant.FEEDBACK_URL
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
@@ -17,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -156,5 +156,21 @@ public class FileUtil {
         }
 
         return true;
+    }
+
+    public static String streamToString(InputStream is) throws IOException {
+        String content;
+
+
+        int size = is.available();
+
+        byte[] buffer = new byte[size];
+
+        is.read(buffer);
+
+        is.close();
+
+        content = new String(buffer, StandardCharsets.UTF_8);
+        return content;
     }
 }

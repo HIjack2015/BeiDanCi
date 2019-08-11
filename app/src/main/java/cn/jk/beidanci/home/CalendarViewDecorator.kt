@@ -17,7 +17,7 @@ class CalendarViewDecorator(val dates: Collection<CalendarDay>, private val cont
     }
 
     override fun decorate(view: DayViewFacade) {
-        view.setBackgroundDrawable(context.resources.getDrawable(R.drawable.star_grey))
+        view.setBackgroundDrawable(context.resources.getDrawable(R.drawable.star_deep_blue))
 
     }
 }

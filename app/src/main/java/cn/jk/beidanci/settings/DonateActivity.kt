@@ -1,11 +1,12 @@
 package cn.jk.beidanci.settings
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import cn.jk.beidanci.R
 import cn.jk.beidanci.utils.FileUtil
@@ -62,5 +63,11 @@ class DonateActivity : AppCompatActivity() {
         if (saveSuccess) {
             toast(String.format("已将二维码保存至本地,请打开%s扫一扫", currentImgType))
         }
+    }
+
+    @SuppressLint("NeedOnRequestPermissionsResult")
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        onRequestPermissionsResult(requestCode, grantResults)
     }
 }
