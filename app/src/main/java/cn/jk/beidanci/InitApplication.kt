@@ -7,6 +7,8 @@ import cn.jk.beidanci.data.Config
 import cn.jk.beidanci.data.Constant
 import com.danikula.videocache.HttpProxyCacheServer
 import com.danikula.videocache.file.FileNameGenerator
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import com.raizlabs.android.dbflow.config.FlowManager
 import com.tencent.bugly.crashreport.CrashReport
 import java.net.URLDecoder
@@ -21,6 +23,7 @@ class InitApplication : MultiDexApplication() {
         super.onCreate()
         context = applicationContext
         Config.setContext(applicationContext)
+        Logger.addLogAdapter(AndroidLogAdapter())
         FlowManager.init(this)
         CrashReport.initCrashReport(applicationContext, "22a1b5f7bc", false)
 //        setDefaultRefreshHeaderCreater(object : DefaultRefreshHeaderCreater {

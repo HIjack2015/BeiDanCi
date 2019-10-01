@@ -19,7 +19,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_home.*
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -54,7 +54,7 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
     internal inner class ShowRemainTime : TimerTask() {
         override fun run() {
             if (activity != null) {
-                activity.runOnUiThread { setRemainTime() }
+                activity!!.runOnUiThread { setRemainTime() }
             }
         }
     }
@@ -76,6 +76,9 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
 
         val remainTime = (diffDays.toString() + "天" + String.format(Locale.getDefault(), "%02d", diffHours) + "时"
                 + String.format(Locale.getDefault(), "%02d", diffMinutes) + "分" + String.format(Locale.getDefault(), "%02d", diffSeconds) + "秒")
+        if (remainTimeTxt == null) {
+            return
+        }
         remainTimeTxt.text = remainTime
     }
 
@@ -83,7 +86,7 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
     override fun showPi(map: HashMap<WordState, Int>, countAll: Int) {
         var pieWord: String? = prefs[Constant.PIE_WORD]
         if (pieWord == null) {
-            pieWord = activity.getString(R.string.DEFAULT_PIE_WORD)
+            pieWord = activity!!.getString(R.string.DEFAULT_PIE_WORD)
         }
         progressRatePi.centerText = pieWord
 
@@ -96,15 +99,15 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
             } else {
                 fakeCount = count
             }
-            entries.add(PieEntry(fakeCount.toFloat(), wordState.getDesc(activity, wordState) + count))
+            entries.add(PieEntry(fakeCount.toFloat(), wordState.getDesc(activity!!, wordState) + count))
         }
         val set = PieDataSet(entries, "")
         set.setDrawValues(false)
         set.valueTextSize = 18f
-        val grey4 = ContextCompat.getColor(activity, R.color.grey400)
-        val grey6 = ContextCompat.getColor(activity, R.color.grey600)
-        val grey8 = ContextCompat.getColor(activity, R.color.grey800)
-        val grey9 = ContextCompat.getColor(activity, R.color.grey900)
+        val grey4 = ContextCompat.getColor(activity!!, R.color.grey400)
+        val grey6 = ContextCompat.getColor(activity!!, R.color.grey600)
+        val grey8 = ContextCompat.getColor(activity!!, R.color.grey800)
+        val grey9 = ContextCompat.getColor(activity!!, R.color.grey900)
         set.setColors(grey4, grey6, grey8, grey9)
         val data = PieData(set)
         progressRatePi.setCenterTextSize(40f)
@@ -118,7 +121,7 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
             override fun onValueSelected(e: Entry, h: Highlight) {
                 val label = (e as PieEntry).label
                 val wordType = label.replace("\\d".toRegex(), "")
-                mPresenter.setShowWordList(label, WordState.neverShow.getState(activity, wordType))
+                mPresenter.setShowWordList(label, WordState.neverShow.getState(activity!!, wordType))
                 progressRatePi.highlightValue(null)
                 startActivity<WordListActivity>()
             }

@@ -1,14 +1,15 @@
 package cn.jk.beidanci
 
-import android.app.Fragment
+
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import cn.jk.beidanci.utils.PreferenceHelper
 
 /**
  * Created by jack on 2018/1/15.
  */
-abstract open class BaseViewFragment<T : BasePresenter> : BaseView, Fragment() {
+abstract class BaseViewFragment<T : BasePresenter> : BaseView, Fragment() {
     lateinit var prefs: SharedPreferences
     protected abstract var mPresenter: T
 
@@ -24,7 +25,7 @@ abstract open class BaseViewFragment<T : BasePresenter> : BaseView, Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        prefs = PreferenceHelper.defaultPrefs(activity)
+        prefs = PreferenceHelper.defaultPrefs(activity!!)
     }
 
     inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
@@ -52,7 +53,7 @@ abstract open class BaseViewFragment<T : BasePresenter> : BaseView, Fragment() {
      * [T] is the type of value
      * @param defaultValue optional default value - will take null for strings, false for bool and -1 for numeric values if [defaultValue] is not specified
      */
-    operator inline fun <reified T : Any> SharedPreferences.get(key: String, defaultValue: T? = null): T? {
+    inline operator fun <reified T : Any> SharedPreferences.get(key: String, defaultValue: T? = null): T? {
         return when (T::class) {
             String::class -> getString(key, defaultValue as? String) as T?
             Int::class -> getInt(key, defaultValue as? Int ?: -1) as T?

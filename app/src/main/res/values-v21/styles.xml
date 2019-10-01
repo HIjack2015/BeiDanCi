@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="colorBtn" parent="android:Widget.Material.Button">
-        <item name="android:background">#00ff00</item>
-    </style>
-</resources>

@@ -79,6 +79,7 @@ open class Constant {
         const val ENGLISH_AUDIO_QUERY_PARA = "audio"
         const val REVIEW_TITLE: String = "复习模式"
         const val FORGET_CURVE_LEARN_MODE: String = "遗忘曲线复习"
+        val NOT_INIT: String = "NOT_INIT"
 
 
     }

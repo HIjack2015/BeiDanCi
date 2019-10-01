@@ -8,6 +8,7 @@ import cn.jk.beidanci.learnword.ReviewWordList
 import cn.jk.beidanci.learnword.WordList
 import cn.jk.beidanci.learnword.WordListHelper
 import cn.jk.beidanci.utils.DateUtil
+import com.orhanobut.logger.Logger
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.raizlabs.android.dbflow.kotlinextensions.and
 import com.raizlabs.android.dbflow.kotlinextensions.select
@@ -99,25 +100,35 @@ class ReviewPresenter(val view: ReviewContract.View, val prefs: SharedPreference
      */
     private fun calendarDayToDbDay(calendarDay: CalendarDay): String {
         val month = "%02d".format(calendarDay.month + 1)
-        val day = "%02d".format(calendarDay.day);
+        val day = "%02d".format(calendarDay.day)
         val dbDay = "${calendarDay.year}-$month-$day"
         return dbDay
     }
 
     override fun setSelectDay(calendarDay: CalendarDay) {
+
         val dbDay = calendarDayToDbDay(calendarDay)
         select.from(LearnRecord::class.java).where(LearnRecord_Table.learnTime.eq(dbDay))
                 .rx()
                 .list { todayLearnRecord ->
+
                     var knownCount = 0
                     var unknownCount = 0
                     var neverShowCount = 0
                     todayLearnRecord.forEach {
-                        when (it.dbWord!!.state) {
-                            WordState.known -> knownCount++
-                            WordState.neverShow -> neverShowCount++
-                            WordState.unknown -> unknownCount++
-                            else -> {
+                        if (it != null && it.dbWord != null) {
+                            when (it.dbWord!!.state) {
+                                WordState.known -> knownCount++
+                                WordState.neverShow -> neverShowCount++
+                                WordState.unknown -> unknownCount++
+                                else -> {
+                                }
+                            }
+                        } else {
+                            if (it == null) {
+                                Logger.wtf("record is null , 这不可能发生!")
+                            } else {
+                                Logger.wtf("record %s 对应不到word 也很奇怪!", it.id.toString())
                             }
                         }
                     }

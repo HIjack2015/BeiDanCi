@@ -68,8 +68,8 @@ class AdvanceSettingFragment : PreferenceFragment() {
                toast("请先联网")
                 return@OnPreferenceClickListener false
             }
-            PleaseDonateDialog().show(fragmentManager, "pleaseDonate")
-            false
+
+       false
         }
 
         val backupPref = findPreference(getString(R.string.back_to_server))

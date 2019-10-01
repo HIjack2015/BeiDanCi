@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:largeHeap="true"
         android:usesCleartextTraffic="true"
         android:name=".InitApplication"
         android:allowBackup="true"

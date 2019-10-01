@@ -25,26 +25,20 @@ public class MediaUtil {
         }
         mediaPlayer.reset();
         try {
-            new Runnable() {
+
+
+            mediaPlayer.setDataSource(proxyUrl);
+            mediaPlayer.prepareAsync();
+
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
-                public void run() {
-                    try {
+                public void onPrepared(MediaPlayer player) {
+                    player.start();
 
-                        mediaPlayer.setDataSource(proxyUrl);
-                        mediaPlayer.prepareAsync();
-
-                        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                            @Override
-                            public void onPrepared(MediaPlayer player) {
-                                player.start();
-
-                            }
-                        });
-                    } catch (Exception e) {
-                        Log.e("mediaUtil", e.getStackTrace().toString());
-                    }
                 }
-            }.run();
+            });
+
+
         } catch (Exception e) {
             Log.e("error", e.toString());
             return false;

@@ -2,8 +2,9 @@ package cn.jk.beidanci.learnword
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.app.DialogFragment
+
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,8 +14,10 @@ import cn.jk.beidanci.R
 import cn.jk.beidanci.animate.ScaleDownThenUp
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.DbWord
+import cn.jk.beidanci.home.MainActivity
 import cn.jk.beidanci.utils.MediaUtil
 import cn.jk.beidanci.utils.OnSwipeTouchListener
+import com.orhanobut.logger.Logger
 import com.raizlabs.android.dbflow.kotlinextensions.update
 import kotlinx.android.synthetic.main.activity_learn_word.*
 import kotlinx.android.synthetic.main.layout_word_card.*
@@ -22,6 +25,7 @@ import org.jetbrains.anko.forEachChild
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.selector
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 
@@ -37,7 +41,12 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn_word)
-
+        if (!WordListHelper.isInitialized()) {
+//            当来到这里的时候大多是因为activity 被destroy掉了.
+            Logger.w("在 启动时发现没有对应的wordList 初始化")
+            startActivity<MainActivity>()
+            return
+        }
         dbWordList = WordListHelper.wordList
         if (dbWordList.isEmpty()) {
             toast(dbWordList.getEmptyMessage())
@@ -75,7 +84,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
         when (item.itemId) {
             R.id.neverShowBtn -> {
                 if (prefs[Constant.TIPS_OF_NEVER_SHOW_SHOULD_SHOW, true]) {
-                    NeverShowWordDialog().show(fragmentManager, "neverShowTag")//TODO
+                    NeverShowWordDialog().show(supportFragmentManager, "neverShowTag")//TODO
                 } else {
                     currentNeverShow()
                 }

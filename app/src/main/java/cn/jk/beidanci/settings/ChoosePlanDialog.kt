@@ -2,8 +2,8 @@ package cn.jk.beidanci.settings
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.app.DialogFragment
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Config
 import cn.jk.beidanci.utils.DayUtil
 import kotlinx.android.synthetic.main.dialog_plan_learn.*
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.support.v4.toast
 import java.util.*
 
 /**
@@ -27,7 +27,8 @@ class ChoosePlanDialog : DialogFragment() {
     internal var learnPerDayRecord = -1
     internal var needDayRecord = -1
     // Save your custom view at the class level
-    lateinit var customView: View;
+    lateinit var customView: View
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View?
     {
@@ -62,7 +63,7 @@ class ChoosePlanDialog : DialogFragment() {
                 needDayTxt.setText(needDay.toString())
                 val calendar = Calendar.getInstance()
                 calendar.add(Calendar.DAY_OF_MONTH, needDay)
-                finishTimeTxt.setText(DayUtil.getFormatDate(calendar))
+                finishTimeTxt.text = DayUtil.getFormatDate(calendar)
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -100,7 +101,7 @@ class ChoosePlanDialog : DialogFragment() {
                 learnPerDayTxt.setText(learnPerDay.toString())
                 val calendar = Calendar.getInstance()
                 calendar.add(Calendar.DAY_OF_MONTH, needDay)
-                finishTimeTxt.setText(DayUtil.getFormatDate(calendar))
+                finishTimeTxt.text = DayUtil.getFormatDate(calendar)
             }
         })
         unGraspCount = 100 //TODO 这里怎么从数据库取出来再看
@@ -116,13 +117,21 @@ class ChoosePlanDialog : DialogFragment() {
 
         val builder = AlertDialog.Builder(activity)
         // Get the layout inflater
-        val inflater = activity.layoutInflater
+        val inflater = activity!!.layoutInflater
          customView = inflater.inflate(R.layout.dialog_plan_learn, null)
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(customView)
         // Add action buttons
-        builder.setPositiveButton(R.string.confirm, { dialog, id -> Config.setPlanShouldLearn(learnPerDayTxt.getText().toString().toInt()) })
+
+        builder.setPositiveButton(R.string.confirm) { dialog, id ->
+            if (learnPerDayTxt.text.isNullOrEmpty()) {
+                toast("你需要输入每天的掌握单词数才可以哦~")
+                return@setPositiveButton
+            }
+            Config.setPlanShouldLearn(learnPerDayTxt.text.toString().toInt())
+            toast("设置成功 你真棒 ~")
+        }
                 .setNegativeButton(R.string.cancel, { dialog, id -> })
 
 

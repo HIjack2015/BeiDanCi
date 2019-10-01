@@ -11,7 +11,7 @@ import cn.jk.beidanci.learnword.LearnWordActivity
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import kotlinx.android.synthetic.main.fragment_review.*
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
 import java.util.*
 
 /**
@@ -19,7 +19,7 @@ import java.util.*
  */
 class ReviewFragment : BaseViewFragment<ReviewContract.Presenter>(), ReviewContract.View {
     override fun highlightDay(days: List<CalendarDay>) {
-        calendarView.addDecorator(CalendarViewDecorator(days, activity))
+        calendarView.addDecorator(CalendarViewDecorator(days, activity!!))
     }
 
     override fun onStart() {

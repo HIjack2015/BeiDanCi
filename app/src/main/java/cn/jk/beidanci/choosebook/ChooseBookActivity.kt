@@ -43,7 +43,7 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
 
 
     override fun showDownLoad() {
-        downLoadBookDialog!!.show(fragmentManager, "downloadBook")
+        downLoadBookDialog!!.show(supportFragmentManager, "downloadBook")
 
 
     }

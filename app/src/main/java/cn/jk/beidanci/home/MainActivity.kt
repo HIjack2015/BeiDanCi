@@ -1,8 +1,9 @@
 package cn.jk.beidanci.home
 
-import android.app.Fragment
+
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
 import cn.jk.beidanci.BaseActivity
@@ -80,18 +81,18 @@ class MainActivity : BaseActivity() {
             homeFragment = HomeFragment()
             reviewFragment = ReviewFragment()
             settingFragment = SettingFragment()
-            fragmentManager.beginTransaction().add(R.id.main_content, homeFragment, "homeFragment").commit()
-            fragmentManager.beginTransaction().add(R.id.main_content, reviewFragment, "reviewFragment").commit()
-            fragmentManager.beginTransaction().add(R.id.main_content, settingFragment, "settingFragment").commit()
+            supportFragmentManager.beginTransaction().add(R.id.main_content, homeFragment, "homeFragment").commit()
+            supportFragmentManager.beginTransaction().add(R.id.main_content, reviewFragment, "reviewFragment").commit()
+            supportFragmentManager.beginTransaction().add(R.id.main_content, settingFragment, "settingFragment").commit()
 
         } else {
-            homeFragment = fragmentManager.findFragmentByTag("homeFragment") as HomeFragment
-            reviewFragment = fragmentManager.findFragmentByTag("reviewFragment") as ReviewFragment
-            settingFragment = fragmentManager.findFragmentByTag("settingFragment") as SettingFragment
+            homeFragment = supportFragmentManager.findFragmentByTag("homeFragment") as HomeFragment
+            reviewFragment = supportFragmentManager.findFragmentByTag("reviewFragment") as ReviewFragment
+            settingFragment = supportFragmentManager.findFragmentByTag("settingFragment") as SettingFragment
 
 
         }
-        fragmentManager.beginTransaction().hide(homeFragment).hide(reviewFragment).hide(settingFragment).commit()
+        supportFragmentManager.beginTransaction().hide(homeFragment).hide(reviewFragment).hide(settingFragment).commit()
         showFragment(homeFragment)
         navigationView.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             var showFragment: Fragment = homeFragment
@@ -111,9 +112,9 @@ class MainActivity : BaseActivity() {
         }
         var title = getString(R.string.app_name)
         if (currentFragment != null) {
-            fragmentManager.beginTransaction().hide(currentFragment).commit()
+            supportFragmentManager.beginTransaction().hide(currentFragment as Fragment).commit()
         }
-        fragmentManager.beginTransaction().show(fragment).commit()
+        supportFragmentManager.beginTransaction().show(fragment).commit()
         currentFragment = fragment
         if (fragment === homeFragment) {
             title = getString(R.string.app_name)
