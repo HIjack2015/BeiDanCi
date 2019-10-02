@@ -119,10 +119,12 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
 
         progressRatePi.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
             override fun onValueSelected(e: Entry, h: Highlight) {
+                showMsg("正在准备单词,稍等哦~")
                 val label = (e as PieEntry).label
                 val wordType = label.replace("\\d".toRegex(), "")
                 mPresenter.setShowWordList(label, WordState.neverShow.getState(activity!!, wordType))
-                progressRatePi.highlightValue(null)
+                progressRatePi.highlightValue(h)
+
                 startActivity<WordListActivity>()
             }
 

@@ -9,38 +9,27 @@ import cn.jk.beidanci.BaseActivity
 import cn.jk.beidanci.InitApplication
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Constant
+import cn.jk.beidanci.data.model.DbWord
 import kotlinx.android.synthetic.main.activity_word_list.*
 import org.jetbrains.anko.forEachChild
 
 open class WordListActivity : BaseActivity() {
     lateinit var wordListAdapter: WordListAdapter
     var wordType = ""
+    internal var currentPosition = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_word_list)
-
         supportActionBar!!.title = ShowWordListHelper.title
-        wordType = ShowWordListHelper.title.replace("\\d".toRegex(), "")
-        wordListAdapter = WordListAdapter(ShowWordListHelper.dbWordList, this, prefs[Constant.SHOW_CHINESE_LIST, true])
-
-        var layoutManager = LinearLayoutManager(InitApplication.context)
-
-        wordListView.setHasFixedSize(true)
-        wordListView.layoutManager = layoutManager
-
-        wordListView.adapter = wordListAdapter
-
-        if (ShowWordListHelper.dbWordList.size == 0) {
-            emptyView.visibility = View.VISIBLE
-        } else {
-            emptyView.visibility = View.GONE
-        }
-
+        showWord()
     }
 
+    open fun getMenuId(): Int {
+        return R.menu.menu_word_list
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
-        menuInflater.inflate(R.menu.menu_word_list, menu)
+        menuInflater.inflate(getMenuId(), menu)
         val showChineseChk = menu.findItem(R.id.showChineseChk)
         showChineseChk.isChecked = prefs[Constant.SHOW_CHINESE_LIST, true]
         return true
@@ -64,6 +53,35 @@ open class WordListActivity : BaseActivity() {
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun showWord() {
+
+        wordType = ShowWordListHelper.title.replace("\\d".toRegex(), "")
+        wordListAdapter = WordListAdapter(ShowWordListHelper.dbWordList, this, prefs[Constant.SHOW_CHINESE_LIST, true])
+
+        var layoutManager = LinearLayoutManager(InitApplication.context)
+
+        wordListView.setHasFixedSize(true)
+        wordListView.layoutManager = layoutManager
+
+        wordListView.adapter = wordListAdapter
+
+        if (ShowWordListHelper.dbWordList.size == 0) {
+            emptyView.visibility = View.VISIBLE
+        } else {
+            emptyView.visibility = View.GONE
+        }
+    }
+
+    fun addWordToShow(word: DbWord) {
+        ShowWordListHelper.dbWordList.add(word)
+        wordListAdapter.notifyItemInserted(ShowWordListHelper.dbWordList.size - 1)
+        if (ShowWordListHelper.dbWordList.size == 0) {
+            emptyView.visibility = View.VISIBLE
+        } else {
+            emptyView.visibility = View.GONE
         }
     }
 }

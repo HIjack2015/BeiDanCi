@@ -60,6 +60,11 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
         return mPresenter
     }
 
+    override fun setLoadingMsg(msg: String) {
+        runOnUiThread {
+            downLoadBookDialog!!.setMessage(msg)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_book)

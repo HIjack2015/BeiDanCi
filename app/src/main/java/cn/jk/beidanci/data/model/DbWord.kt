@@ -2,7 +2,6 @@ package cn.jk.beidanci.data.model
 
 import cn.jk.beidanci.data.source.AppDatabase
 import com.google.gson.Gson
-import com.google.gson.annotations.SerializedName
 import com.raizlabs.android.dbflow.annotation.Column
 import com.raizlabs.android.dbflow.annotation.PrimaryKey
 import com.raizlabs.android.dbflow.annotation.Table
@@ -60,12 +59,4 @@ class DbWord(
     }
 
 
-    private class Word(
-            var wordRank: String?,
-            var headWord: String?,
-            @SerializedName("content")
-            var contentOutOut: WordContentOutOut)
-
-    class WordContentOutOut(var word: WordContentOut)
-    class WordContentOut(var wordHead: String, var wordId: String, var content: Any)
 }

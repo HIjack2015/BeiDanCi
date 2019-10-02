@@ -80,6 +80,7 @@ open class Constant {
         const val REVIEW_TITLE: String = "复习模式"
         const val FORGET_CURVE_LEARN_MODE: String = "遗忘曲线复习"
         val NOT_INIT: String = "NOT_INIT"
+        val INSTALL_TIME: String = "INSTALL_TIME"
 
 
     }

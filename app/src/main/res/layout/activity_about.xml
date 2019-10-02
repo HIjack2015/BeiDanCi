@@ -74,11 +74,12 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+
             android:background="@color/grey400" />
 
         <TextView
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:id="@+id/commonQuestionLbl"
             style="@style/aboutTextStyle"
             android:layout_width="match_parent"
@@ -89,11 +90,12 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+
             android:background="@color/grey400" />
 
         <TextView
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:id="@+id/rateLbl"
             style="@style/aboutTextStyle"
             android:layout_width="match_parent"
@@ -104,11 +106,12 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+
             android:background="@color/grey400" />
 
         <TextView
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:id="@+id/feedbackLbl"
             style="@style/aboutTextStyle"
             android:layout_width="match_parent"
@@ -118,24 +121,22 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
             android:background="@color/grey400" />
 
         <TextView
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:visibility="gone"
             android:id="@+id/donateLbl"
             style="@style/aboutTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="捐赠开发者" />
+            android:text="捐赠开发者的父亲~" />
 
         <View
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
             android:background="@color/grey400" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -2,13 +2,15 @@ package cn.jk.beidanci.settings
 
 import android.content.Intent
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import cn.jk.beidanci.BaseActivity
 import cn.jk.beidanci.R
+import cn.jk.beidanci.data.Constant.Companion.INSTALL_TIME
 import kotlinx.android.synthetic.main.activity_about.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import java.util.*
 
 class AboutActivity : BaseActivity() {
 
@@ -42,10 +44,14 @@ class AboutActivity : BaseActivity() {
             startActivity<FeedbackActivity>()
             false
         }
+        val installTime: Long = prefs[INSTALL_TIME, -1L]
+        val after3Days = (Date().time - installTime) / 1000 / 60 / 60 / 24 > 3
+        if (after3Days) {
+            donateLbl.visibility = View.VISIBLE
+        }
         donateLbl.setOnClickListener {
             startActivity<DonateActivity>()
             false
         }
-
     }
 }

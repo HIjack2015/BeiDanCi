@@ -7,7 +7,12 @@ buildscript {
     ext.dbflow_version = "4.2.4"
     repositories {
         google()
-        jcenter()
+        jcenter(){
+            url "http://jcenter.bintray.com/"
+        }
+        maven {
+            url 'https://maven.google.com'
+        }
     }
     dependencies {
         classpath 'com.tencent.bugly:symtabfileuploader:2.2.1'
@@ -16,9 +21,13 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
         repositories {
+            google()
+            jcenter(){
+                url "http://jcenter.bintray.com/"
+            }
+
             maven {
                 url 'https://maven.google.com'
-
             }
         }
 

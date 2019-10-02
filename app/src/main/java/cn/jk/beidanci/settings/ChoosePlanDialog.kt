@@ -11,7 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Config
+import cn.jk.beidanci.data.Constant
+import cn.jk.beidanci.data.model.DbWord
+import cn.jk.beidanci.data.model.DbWord_Table
+import cn.jk.beidanci.data.model.WordState
 import cn.jk.beidanci.utils.DayUtil
+import cn.jk.beidanci.utils.PreferenceHelper
+import com.raizlabs.android.dbflow.sql.language.SQLite
 import kotlinx.android.synthetic.main.dialog_plan_learn.*
 import org.jetbrains.anko.support.v4.toast
 import java.util.*
@@ -22,10 +28,13 @@ import java.util.*
 
 class ChoosePlanDialog : DialogFragment() {
 
+    var bookId: String? = ""
     //未掌握单词数目.
-    internal var unGraspCount = 0
+    internal var unGraspCount = 100
+
     internal var learnPerDayRecord = -1
     internal var needDayRecord = -1
+
     // Save your custom view at the class level
     lateinit var customView: View
 
@@ -36,8 +45,12 @@ class ChoosePlanDialog : DialogFragment() {
         return customView
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+
     {
+
         super.onViewCreated(view, savedInstanceState)
+        bookId = PreferenceHelper.getString(activity!!, Constant.CURRENT_BOOK, "")
+        unGraspCount = SQLite.selectCountOf().from(DbWord::class.java).where(DbWord_Table.bookId.eq(bookId), DbWord_Table.state.notEq(WordState.neverShow)).longValue().toInt()
         learnPerDayTxt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
@@ -81,6 +94,8 @@ class ChoosePlanDialog : DialogFragment() {
             }
 
             override fun onTextChanged(needDayStr: CharSequence?, start: Int, before: Int, count: Int) {
+
+
                 if (needDayStr == null || needDayStr.toString().isEmpty()) {
                     return
                 }
@@ -104,7 +119,7 @@ class ChoosePlanDialog : DialogFragment() {
                 finishTimeTxt.text = DayUtil.getFormatDate(calendar)
             }
         })
-        unGraspCount = 100 //TODO 这里怎么从数据库取出来再看
+
 
         val learnPerDay = Config.planShouldLearn
         learnPerDayTxt.setText(learnPerDay.toString())

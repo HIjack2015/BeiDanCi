@@ -26,6 +26,9 @@ class DownloadBookDialog : DialogFragment() {
     }
 
     fun setMessage(s: String) {
-        progressDialog.setMessage(s)
+        if (::progressDialog.isInitialized) {
+            progressDialog.setMessage(s)
+        }
+
     }
 }

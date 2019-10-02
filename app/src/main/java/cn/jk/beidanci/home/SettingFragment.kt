@@ -5,12 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.preference.Preference
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.RecyclerView
 import cn.jk.beidanci.R
 import cn.jk.beidanci.choosebook.ChooseBookActivity
 import cn.jk.beidanci.settings.AboutActivity
 import cn.jk.beidanci.settings.AdvanceSettingActivity
 import cn.jk.beidanci.settings.ChoosePlanDialog
 import org.jetbrains.anko.support.v4.startActivity
+
 
 /**
  * Created by jack on 2018/1/14.
@@ -19,6 +22,7 @@ class SettingFragment : android.support.v7.preference.PreferenceFragmentCompat()
     override fun onCreatePreferences(p0: Bundle?, p1: String?) {
 
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,5 +53,12 @@ class SettingFragment : android.support.v7.preference.PreferenceFragmentCompat()
             startActivity(intent)
             false
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val recyclerView = listView
+        val itemDecoration = DividerItemDecoration(context, RecyclerView.VERTICAL)
+        recyclerView.addItemDecoration(itemDecoration)
     }
 }

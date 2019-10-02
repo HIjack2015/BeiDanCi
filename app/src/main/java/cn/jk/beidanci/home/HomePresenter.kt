@@ -86,6 +86,14 @@ class HomePresenter(private val view: HomeContract.View, val prefs: SharedPrefer
     }
 
     override fun start() {
+        recordInstallTime()
         drawPi()
+    }
+
+    private fun recordInstallTime() {
+        val installTime: Long? = prefs[Constant.INSTALL_TIME]
+        if (installTime == -1L) {
+            prefs[Constant.INSTALL_TIME] = Date().time
+        }
     }
 }

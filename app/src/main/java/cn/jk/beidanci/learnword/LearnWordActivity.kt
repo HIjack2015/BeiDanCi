@@ -98,12 +98,13 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
             }
             R.id.speechBtn -> {
                 val countries = listOf(getString(R.string.UK_SPEECH_DESC), getString(R.string.US_SPEECH_DESC))
-                selector(getString(R.string.CHOOSE_SPEECH), countries, { dialogInterface, i ->
+                selector(getString(R.string.CHOOSE_SPEECH), countries) { dialogInterface, i ->
                     when (i) {
                         0 -> prefs[Constant.SPEECH_COUNTRY] = Constant.UK_SPEECH
                         1 -> prefs[Constant.SPEECH_COUNTRY] = Constant.US_SPEECH
                     }
-                })
+                    showMsg("当前发音选项为" + countries[i])
+                }
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

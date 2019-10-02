@@ -76,7 +76,7 @@
     <string name="about_app">about_pref</string>
     <string name="app_desc">小巧干净的背单词工具</string>
     <string name="share_content">我正在使用背单词app来背单词,这东西还不错,你也来试试?</string>
-    <string name="donate_use">  &#160;&#160;&#160;&#160;你的捐赠是我继续前行的动力,谢谢你的支持.</string>
+    <string name="donate_use">  如果你能请开发者的父亲喝杯茶,想来他一定会为自己的儿子感到骄傲的.\n 而开发者感觉到自己被他人肯定,从而有更大的动力去完善这个app</string>
     <string name="download_voice_pack">download_voice_pack</string>
     <string name="pleaseDonate">语音包使用了云存储,这东西开发者是贴了钱的,所以如果您要使用此功能,
         请打开-关于软件-捐赠开发者,向开发者付款5角

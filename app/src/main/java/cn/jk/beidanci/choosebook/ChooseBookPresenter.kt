@@ -29,11 +29,11 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
     override fun downloadBook(book: Book) {
         view.showDownLoad()
         Log.i("time", "startDownload")
+
         ApiManager.booksService.downloadBookFile(book.offlinedata)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
-
-
+                    view.setLoadingMsg("下载完成,开始解压数据文件...")
                 }
                 .observeOn(Schedulers.io())
                 .map({
@@ -81,6 +81,7 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
         }
         warn("完成构造list")
 
+        view.setLoadingMsg("完成解压和解析数据,正在进行最后一步 录入数据库...")
         FlowManager.getDatabase(AppDatabase::class.java).executeTransaction(FastStoreModelTransaction
                 .insertBuilder(FlowManager.getModelAdapter(DbWord::class.java))
                 .addAll(wordList)

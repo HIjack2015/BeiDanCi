@@ -20,13 +20,14 @@ interface ChooseBookContract {
         fun hideReload()
         fun downloadSuccess(bookId: String)
         fun chooseBook(id: String)
-
+        fun setLoadingMsg(msg: String)
 
     }
 
     interface Presenter : BasePresenter {
         override fun stop()
         fun downloadBook(book: Book)
+
 
         fun reload()
         fun chooseBook(book: Book)
