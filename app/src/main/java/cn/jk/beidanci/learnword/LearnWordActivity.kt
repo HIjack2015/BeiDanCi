@@ -2,9 +2,8 @@ package cn.jk.beidanci.learnword
 
 import android.app.AlertDialog
 import android.app.Dialog
-
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -25,7 +24,6 @@ import org.jetbrains.anko.forEachChild
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.selector
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 
@@ -250,12 +248,12 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                 //只考虑中文翻译现在
                 var sb = StringBuilder()
                 trans.forEach {
-                    val pos = if (it.pos == null) "" else it.pos
+                    val pos = if (it.pos == null) "" else "<i>" + it.pos + ".</i>"
                     sb.append(pos + " " + it.tranCn + "\n")
                 }
                 if (sb.isNotEmpty()) {
                     sb.deleteCharAt(sb.length - 1)
-                    transTxt.text = sb.toString()
+                    transTxt.text = Html.fromHtml(sb.toString().replace("\n", "<br />"))
                 }
                 sb = StringBuilder()
                 if (phrase != null) {
@@ -299,14 +297,14 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                 sb = StringBuilder()
                 if (relWord != null) {
                     relWord.rels.forEach {
-                        sb.append(it.pos + "\n")
+                        sb.append("<i>" + it.pos + ".</i>" + "\n")
                         it.words.forEach {
                             sb.append(it.hwd + " " + it.tran + "\n")
                         }
                     }
                     if (sb.isNotEmpty()) {
                         sb.deleteCharAt(sb.length - 1)
-                        relsTxt.text = sb.toString()
+                        relsTxt.text = Html.fromHtml(sb.toString().replace("\n", "<br />"))
                         relsLyt.visibility = View.VISIBLE
                     } else {
                         relsLyt.visibility = View.GONE
@@ -319,7 +317,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                 sb = StringBuilder()
                 if (syno != null) {
                     syno.synos.forEach {
-                        sb.append(it.pos + " " + it.tran + "\n")
+                        sb.append("<i>" + it.pos + ".</i>" + " " + it.tran + "\n")
                         for (hwd in it.hwds) {
                             sb.append(hwd.w + ",")
                         }
@@ -330,7 +328,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                     }
                     if (sb.isNotEmpty()) {
                         sb.deleteCharAt(sb.length - 1)
-                        hwdTxt.text = sb.toString()
+                        hwdTxt.text = Html.fromHtml(sb.toString().replace("\n", "<br />"))
                         hwdLyt.visibility = View.VISIBLE
                     } else {
                         hwdLyt.visibility = View.GONE
@@ -345,7 +343,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
         }
     }
 
-    internal class NeverShowWordDialog : DialogFragment() {
+    internal class NeverShowWordDialog : androidx.fragment.app.DialogFragment() {
 
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
             // Use the Builder class for convenient dialog construction

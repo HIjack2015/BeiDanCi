@@ -2,8 +2,6 @@ package cn.jk.beidanci.home
 
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
 import cn.jk.beidanci.BaseActivity
@@ -15,6 +13,7 @@ import cn.jk.beidanci.data.model.DbWord_Table
 import cn.jk.beidanci.myword.MyWordActivity
 import cn.jk.beidanci.searchword.SearchWordActivity
 import cn.jk.beidanci.wordlist.ShowWordListHelper
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.raizlabs.android.dbflow.kotlinextensions.select
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
@@ -26,7 +25,7 @@ class MainActivity : BaseActivity() {
     internal lateinit var homeFragment: HomeFragment
     internal lateinit var reviewFragment: ReviewFragment
     internal lateinit var settingFragment: SettingFragment
-    internal var currentFragment: Fragment? = null
+    internal var currentFragment: androidx.fragment.app.Fragment? = null
 
     companion object {
         //暂时用不到
@@ -77,7 +76,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun dealFragment(savedInstanceState: Bundle?) {
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null || supportFragmentManager.findFragmentByTag("homeFragment") == null) {
             homeFragment = HomeFragment()
             reviewFragment = ReviewFragment()
             settingFragment = SettingFragment()
@@ -95,7 +94,7 @@ class MainActivity : BaseActivity() {
         supportFragmentManager.beginTransaction().hide(homeFragment).hide(reviewFragment).hide(settingFragment).commit()
         showFragment(homeFragment)
         navigationView.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            var showFragment: Fragment = homeFragment
+            var showFragment: androidx.fragment.app.Fragment = homeFragment
             when (item.itemId) {
                 R.id.navigation_home -> showFragment = homeFragment
                 R.id.navigation_review -> showFragment = reviewFragment
@@ -106,13 +105,13 @@ class MainActivity : BaseActivity() {
         })
     }
 
-    fun showFragment(fragment: Fragment) {
+    fun showFragment(fragment: androidx.fragment.app.Fragment) {
         if (currentFragment === fragment) {
             return
         }
         var title = getString(R.string.app_name)
         if (currentFragment != null) {
-            supportFragmentManager.beginTransaction().hide(currentFragment as Fragment).commit()
+            supportFragmentManager.beginTransaction().hide(currentFragment as androidx.fragment.app.Fragment).commit()
         }
         supportFragmentManager.beginTransaction().show(fragment).commit()
         currentFragment = fragment

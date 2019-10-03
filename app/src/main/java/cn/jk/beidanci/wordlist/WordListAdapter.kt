@@ -3,7 +3,6 @@ package cn.jk.beidanci.wordlist
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
  * Created by jack on 2018/1/20.
  */
 class WordListAdapter(var wordList: MutableList<DbWord>, val context: Context, var showChinese: Boolean = true
-) : RecyclerView.Adapter<WordListAdapter.ViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<WordListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
                 .inflate(cn.jk.beidanci.R.layout.layout_word_brief, parent, false)
@@ -38,7 +37,7 @@ class WordListAdapter(var wordList: MutableList<DbWord>, val context: Context, v
         return wordList.size
     }
 
-    class ViewHolder(val containerView: View) : RecyclerView.ViewHolder(containerView) {
+    class ViewHolder(val containerView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView) {
         fun setValue(dbWord: DbWord, showChinese: Boolean, position: Int, wordListAdapter: WordListAdapter) {
             with(containerView) {
                 this.onClick {

@@ -3,22 +3,20 @@ package cn.jk.beidanci.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.StringRes
-import android.support.v7.preference.Preference
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.StringRes
+import androidx.preference.Preference
+import androidx.recyclerview.widget.RecyclerView
 import cn.jk.beidanci.R
 import cn.jk.beidanci.choosebook.ChooseBookActivity
 import cn.jk.beidanci.settings.AboutActivity
 import cn.jk.beidanci.settings.AdvanceSettingActivity
 import cn.jk.beidanci.settings.ChoosePlanDialog
-import org.jetbrains.anko.support.v4.startActivity
 
 
 /**
  * Created by jack on 2018/1/14.
  */
-class SettingFragment : android.support.v7.preference.PreferenceFragmentCompat() {
+class SettingFragment : androidx.preference.PreferenceFragmentCompat() {
     override fun onCreatePreferences(p0: Bundle?, p1: String?) {
 
     }
@@ -58,7 +56,7 @@ class SettingFragment : android.support.v7.preference.PreferenceFragmentCompat()
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val recyclerView = listView
-        val itemDecoration = DividerItemDecoration(context, RecyclerView.VERTICAL)
+        val itemDecoration = androidx.recyclerview.widget.DividerItemDecoration(context, androidx.recyclerview.widget.RecyclerView.VERTICAL)
         recyclerView.addItemDecoration(itemDecoration)
     }
 }

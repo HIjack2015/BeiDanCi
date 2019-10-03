@@ -2,7 +2,7 @@ package cn.jk.beidanci
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import cn.jk.beidanci.utils.PreferenceHelper
 
 
@@ -43,7 +43,7 @@ open class BaseActivity : AppCompatActivity() {
      * [T] is the type of value
      * @param defaultValue optional default value - will take null for strings, false for bool and -1 for numeric values if [defaultValue] is not specified
      */
-    operator inline fun <reified T : Any> SharedPreferences.get(key: String, defaultValue: T): T {
+    inline operator fun <reified T : Any> SharedPreferences.get(key: String, defaultValue: T): T {
         return when (T::class) {
             String::class -> getString(key, defaultValue as String) as T
             Int::class -> getInt(key, defaultValue as? Int ?: -1) as T

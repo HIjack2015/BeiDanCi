@@ -1,7 +1,7 @@
 package cn.jk.beidanci.settings
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.CommonQuestion

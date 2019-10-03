@@ -2,8 +2,6 @@ package cn.jk.beidanci.choosebook
 
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_book_list.*
 /**
  *
  */
-class BookListFragment : Fragment() {
+class BookListFragment : androidx.fragment.app.Fragment() {
 
     val key = "data"
 
@@ -32,9 +30,9 @@ class BookListFragment : Fragment() {
         val cate = Gson().fromJson<Cate>(arguments!!.getString(key), Cate::class.java)
 
         val adapter = BookListAdapter(cate.bookList)
-        var layoutManager = LinearLayoutManager(context)
+        var layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         bookListRcy.setHasFixedSize(true)
-        bookListRcy.setLayoutManager(layoutManager)
+        bookListRcy.layoutManager = layoutManager
         bookListRcy.adapter = adapter
 
 

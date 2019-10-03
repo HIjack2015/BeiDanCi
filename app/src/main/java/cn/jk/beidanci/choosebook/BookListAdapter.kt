@@ -1,6 +1,5 @@
 package cn.jk.beidanci.choosebook
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
  * Created by jack on 2018/1/11.
  * 展示单词书列表的adapter
  */
-class BookListAdapter(val bookList: List<Book>) : RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
+class BookListAdapter(val bookList: List<Book>) : androidx.recyclerview.widget.RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val book = bookList[position]
         holder.setValue(book)
@@ -35,11 +34,12 @@ class BookListAdapter(val bookList: List<Book>) : RecyclerView.Adapter<BookListA
         return bookList.size
     }
 
-    class ViewHolder(val containerView: View) : RecyclerView.ViewHolder(containerView) {
+    class ViewHolder(val containerView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView) {
 
         fun setValue(book: Book) {
             with(containerView) {
-                nameTxt.text = book.title
+                //我们并没有图片...
+                nameTxt.text = book.title!!.replace("（图片记忆）", "")
                 originTxt.text = book.bookOrigin.toString()
                 wordCountTxt.text = context.getText(R.string.word_count).toString() + book.wordNum.toString()
            //     downloadBtn.background.setColorFilter(ContextCompat.getColor(context, R.color.accent_material_light), PorterDuff.Mode.MULTIPLY);

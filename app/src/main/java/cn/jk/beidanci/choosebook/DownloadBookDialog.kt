@@ -1,18 +1,16 @@
 package cn.jk.beidanci.choosebook
 
+
 import android.app.Dialog
 import android.app.ProgressDialog
-
-
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import cn.jk.beidanci.R
 
 /**
  * Created by jack on 2018/1/14.
  */
 
-class DownloadBookDialog : DialogFragment() {
+class DownloadBookDialog : androidx.fragment.app.DialogFragment() {
     lateinit var progressDialog: ProgressDialog
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

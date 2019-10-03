@@ -1,7 +1,6 @@
 package cn.jk.beidanci.wordlist
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -61,7 +60,7 @@ open class WordListActivity : BaseActivity() {
         wordType = ShowWordListHelper.title.replace("\\d".toRegex(), "")
         wordListAdapter = WordListAdapter(ShowWordListHelper.dbWordList, this, prefs[Constant.SHOW_CHINESE_LIST, true])
 
-        var layoutManager = LinearLayoutManager(InitApplication.context)
+        var layoutManager = androidx.recyclerview.widget.LinearLayoutManager(InitApplication.context)
 
         wordListView.setHasFixedSize(true)
         wordListView.layoutManager = layoutManager

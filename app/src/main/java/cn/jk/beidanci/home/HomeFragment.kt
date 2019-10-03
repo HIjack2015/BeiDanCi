@@ -1,10 +1,10 @@
 package cn.jk.beidanci.home
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import cn.jk.beidanci.BaseViewFragment
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Config
@@ -19,7 +19,6 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_home.*
-import org.jetbrains.anko.support.v4.startActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -119,7 +118,6 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
 
         progressRatePi.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
             override fun onValueSelected(e: Entry, h: Highlight) {
-                showMsg("正在准备单词,稍等哦~")
                 val label = (e as PieEntry).label
                 val wordType = label.replace("\\d".toRegex(), "")
                 mPresenter.setShowWordList(label, WordState.neverShow.getState(activity!!, wordType))

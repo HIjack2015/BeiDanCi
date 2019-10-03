@@ -4,8 +4,8 @@ package cn.jk.beidanci.settings
 import android.os.Bundle
 import android.preference.Preference
 import android.preference.PreferenceFragment
-import android.support.v4.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.home.MainActivity

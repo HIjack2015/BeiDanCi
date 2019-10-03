@@ -3,7 +3,6 @@ package cn.jk.beidanci.myword
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import cn.jk.beidanci.wordlist.WordListActivity
 import com.google.gson.Gson
 import com.raizlabs.android.dbflow.kotlinextensions.insert
 import kotlinx.android.synthetic.main.dialog_add_word.*
-import org.jetbrains.anko.support.v4.toast
 import java.util.*
 
 
@@ -21,7 +19,7 @@ import java.util.*
  * Created by jack on 2017/11/24.
  */
 
-class AddWordDialog : DialogFragment() {
+class AddWordDialog : androidx.fragment.app.DialogFragment() {
     // Save your custom view at the class level
     lateinit var customView: View
 

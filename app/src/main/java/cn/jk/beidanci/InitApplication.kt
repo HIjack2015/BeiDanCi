@@ -2,7 +2,7 @@ package cn.jk.beidanci
 
 import android.content.Context
 import android.net.Uri
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import cn.jk.beidanci.data.Config
 import cn.jk.beidanci.data.Constant
 import com.danikula.videocache.HttpProxyCacheServer

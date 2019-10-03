@@ -3,7 +3,6 @@ package cn.jk.beidanci.settings
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -19,14 +18,13 @@ import cn.jk.beidanci.utils.DayUtil
 import cn.jk.beidanci.utils.PreferenceHelper
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import kotlinx.android.synthetic.main.dialog_plan_learn.*
-import org.jetbrains.anko.support.v4.toast
 import java.util.*
 
 /**
  * Created by Administrator on 2017/7/10.
  */
 
-class ChoosePlanDialog : DialogFragment() {
+class ChoosePlanDialog : androidx.fragment.app.DialogFragment() {
 
     var bookId: String? = ""
     //未掌握单词数目.

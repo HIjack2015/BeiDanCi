@@ -1,6 +1,6 @@
 package cn.jk.beidanci
 
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 
 interface BaseView {
     fun showMsg(message: String)

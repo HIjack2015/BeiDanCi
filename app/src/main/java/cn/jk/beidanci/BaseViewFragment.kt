@@ -3,14 +3,13 @@ package cn.jk.beidanci
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import cn.jk.beidanci.utils.PreferenceHelper
 import org.jetbrains.anko.design.snackbar
 
 /**
  * Created by jack on 2018/1/15.
  */
-abstract class BaseViewFragment<T : BasePresenter> : BaseView, Fragment() {
+abstract class BaseViewFragment<T : BasePresenter> : BaseView, androidx.fragment.app.Fragment() {
     lateinit var prefs: SharedPreferences
     protected abstract var mPresenter: T
 

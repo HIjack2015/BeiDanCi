@@ -1,6 +1,5 @@
 package cn.jk.beidanci.settings
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import cn.jk.beidanci.BaseActivity
 import cn.jk.beidanci.R

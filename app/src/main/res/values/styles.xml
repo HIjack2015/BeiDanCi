@@ -88,6 +88,7 @@
     </style>
 
     <style name="setStateBtn">
+        <item name="android:textColor">@color/white</item>
         <item name="android:layout_width">120dp</item>
     </style>
 

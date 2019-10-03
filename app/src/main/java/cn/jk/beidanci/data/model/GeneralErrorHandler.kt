@@ -1,7 +1,7 @@
 package cn.jk.beidanci.data.model
 
-import android.support.annotation.StringRes
 import android.text.TextUtils
+import androidx.annotation.StringRes
 import cn.jk.beidanci.BaseView
 import cn.jk.beidanci.R
 import io.reactivex.functions.Consumer
