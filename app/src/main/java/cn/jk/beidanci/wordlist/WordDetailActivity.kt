@@ -2,6 +2,7 @@ package cn.jk.beidanci.wordlist
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.forEach
 import cn.jk.beidanci.BaseActivity
 import cn.jk.beidanci.InitApplication
 import cn.jk.beidanci.R
@@ -11,7 +12,6 @@ import cn.jk.beidanci.data.model.DbWord
 import cn.jk.beidanci.utils.MediaUtil
 import com.raizlabs.android.dbflow.kotlinextensions.update
 import kotlinx.android.synthetic.main.layout_word_card.*
-
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import java.text.SimpleDateFormat
 
@@ -62,9 +62,10 @@ class WordDetailActivity : BaseActivity() {
             }
 
             with(getWordContent()) {
-                forEach({
+
+                wordDescLyt.forEach {
                     it.visibility = View.VISIBLE
-                })
+                }
                 val isUsPhonetic: Boolean = prefs[Constant.SPEECH_COUNTRY, Constant.US_SPEECH] == Constant.US_SPEECH
                 var phoneticStr = if (isUsPhonetic)
                     usphone else ukphone

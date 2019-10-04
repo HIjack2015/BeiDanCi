@@ -23,8 +23,7 @@ class Book(var cover: String? = null, //封面
            @Column
            var cateName: String? = null,
            var version: String? = null
-) {
-}
+)
 
 data class BookOrigin(
         var originUrl: String,

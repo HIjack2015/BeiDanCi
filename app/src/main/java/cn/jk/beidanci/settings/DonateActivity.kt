@@ -27,18 +27,18 @@ class DonateActivity : AppCompatActivity() {
         setContentView(R.layout.activity_donate)
 
 
-        title=baseContext.getString(R.string.donate_developer)
+        title = baseContext.getString(R.string.donate_developer)
 
         alipayBtn.setOnClickListener {
-            openAlipayBtn.visibility= View.VISIBLE
+            openAlipayBtn.visibility = View.VISIBLE
             donateImg.setImageResource(R.drawable.donate_alipay)
-            currentImgType=alipay
+            currentImgType = alipay
         }
 
         weixinBtn.setOnClickListener {
-            openAlipayBtn.visibility= View.INVISIBLE
+            openAlipayBtn.visibility = View.INVISIBLE
             donateImg.setImageResource(R.drawable.donate_weixin)
-            currentImgType=weixin
+            currentImgType = weixin
 
         }
         openAlipayBtn.setOnClickListener {
@@ -49,17 +49,18 @@ class DonateActivity : AppCompatActivity() {
         }
 
         saveDonateImgBtn.setOnClickListener {
-          saveImgWithPermissionCheck()
+            saveImgWithPermissionCheck()
         }
     }
+
     @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    fun  saveImg() {
+    fun saveImg() {
 
         val resId = if (currentImgType.equals(weixin)) R.drawable.donate_weixin else R.drawable.donate_alipay
         val donateBm = BitmapFactory.decodeResource(resources, resId)
 
-        val fileName = if (currentImgType.equals(weixin) ) "IMG_donateByWeiXin.png" else "IMG_donateByAlipay.png"
-        val saveSuccess=FileUtil.saveImg(applicationContext, fileName, donateBm)
+        val fileName = if (currentImgType.equals(weixin)) "IMG_donateByWeiXin.png" else "IMG_donateByAlipay.png"
+        val saveSuccess = FileUtil.saveImg(applicationContext, fileName, donateBm)
         if (saveSuccess) {
             toast(String.format("已将二维码保存至本地,请打开%s扫一扫", currentImgType))
         }

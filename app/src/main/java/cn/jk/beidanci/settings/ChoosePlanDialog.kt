@@ -38,14 +38,12 @@ class ChoosePlanDialog : androidx.fragment.app.DialogFragment() {
     lateinit var customView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View?
-    {
+                              savedInstanceState: Bundle?): View? {
         // Simply return the already inflated custom view
         return customView
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
 
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
         bookId = PreferenceHelper.getString(activity!!, Constant.CURRENT_BOOK, "")
@@ -132,7 +130,7 @@ class ChoosePlanDialog : androidx.fragment.app.DialogFragment() {
         val builder = AlertDialog.Builder(activity)
         // Get the layout inflater
         val inflater = activity!!.layoutInflater
-         customView = inflater.inflate(R.layout.dialog_plan_learn, null)
+        customView = inflater.inflate(R.layout.dialog_plan_learn, null)
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(customView)
@@ -152,9 +150,6 @@ class ChoosePlanDialog : androidx.fragment.app.DialogFragment() {
 
         return builder.create()
     }
-
-
-
 
 
 }

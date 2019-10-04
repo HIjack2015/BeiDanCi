@@ -41,10 +41,10 @@
     <string name="dark_theme_summary">应用夜间模式至整个应用</string>
 
     <string name="primary_color">基础色</string>
-    <string name="primary_color_summary">更改主题基础色</string>
+    <string name="primary_color_summary">更改标题栏,顶部...的颜色</string>
 
     <string name="accent_color">强调色</string>
-    <string name="accent_color_summary">更改主题强调色</string>
+    <string name="accent_color_summary">更改按钮,小标题,强调型文字...的颜色</string>
 
     <string name="colored_status_bar">状态栏跟随</string>
     <string name="colored_status_bar_summary">开启后顶部状态栏颜色跟随主题变化</string>
@@ -122,6 +122,7 @@
     <string name="restore_record">restore_record</string>
     <string name="choose_this">换这本背</string>
     <string name="ALREADY_FIRST">已经是第一个单词了</string>
+    <string name="choose_color">选择颜色</string>
     <string-array name="word_type">
         <item>已掌握</item>
         <item>已认识</item>

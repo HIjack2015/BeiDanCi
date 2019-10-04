@@ -15,7 +15,7 @@ import com.raizlabs.android.dbflow.annotation.Table
 @Table(database = AppDatabase::class)
 class LearnRecord(@PrimaryKey(autoincrement = true)
                   var id: Long = 0,
-                  //如果设为true则只取主键
+        //如果设为true则只取主键
                   @ForeignKey(stubbedRelationship = false)
                   var dbWord: DbWord? = null,
                   @Column
@@ -23,6 +23,4 @@ class LearnRecord(@PrimaryKey(autoincrement = true)
                   @Column(getterName = "getReviewed")
                   var reviewed: Boolean = false
 
-) {
-
-}
+)

@@ -62,15 +62,15 @@ open class WordList(var words: List<DbWord>, var title: String,
     }
 
     private fun updateAllStateByThis(dbWord: DbWord) {
-        val wordList= select.from(DbWord::class.java).where(DbWord_Table.head.eq(dbWord.head)).queryList().map { it as DbWord }
+        val wordList = select.from(DbWord::class.java).where(DbWord_Table.head.eq(dbWord.head)).queryList().map { it as DbWord }
         wordList.forEach {
-            val existDbWord =it
-            existDbWord.unknownCount=dbWord.unknownCount
-            existDbWord.knownCount=dbWord.knownCount
-            existDbWord.easy=dbWord.easy
-            existDbWord.lastLearnTime=dbWord.lastLearnTime
-            existDbWord.rank=dbWord.rank
-            existDbWord.state=dbWord.state
+            val existDbWord = it
+            existDbWord.unknownCount = dbWord.unknownCount
+            existDbWord.knownCount = dbWord.knownCount
+            existDbWord.easy = dbWord.easy
+            existDbWord.lastLearnTime = dbWord.lastLearnTime
+            existDbWord.rank = dbWord.rank
+            existDbWord.state = dbWord.state
             existDbWord.update()
         }
     }

@@ -79,17 +79,17 @@ class ReviewPresenter(val view: ReviewContract.View, val prefs: SharedPreference
         SQLite.select(LearnRecord_Table.learnTime).distinct().from(LearnRecord::class.java)
                 .where(LearnRecord_Table.learnTime.greaterThanOrEq(firstDayOfMonth), LearnRecord_Table.learnTime.lessThanOrEq(lastDayOfMonth))
                 .rx().list {
-            val days = it.map {
-                val dateStrArr = it.learnTime.split("-")
-                val year = dateStrArr[0].toInt()
-                val month = dateStrArr[1].toInt() - 1
-                val day = dateStrArr[2].toInt()
-                CalendarDay(year, month, day)
-            }
-            if (days.isNotEmpty()) {
-                view.highlightDay(days)
-            }
-        }
+                    val days = it.map {
+                        val dateStrArr = it.learnTime.split("-")
+                        val year = dateStrArr[0].toInt()
+                        val month = dateStrArr[1].toInt() - 1
+                        val day = dateStrArr[2].toInt()
+                        CalendarDay(year, month, day)
+                    }
+                    if (days.isNotEmpty()) {
+                        view.highlightDay(days)
+                    }
+                }
 
 
     }

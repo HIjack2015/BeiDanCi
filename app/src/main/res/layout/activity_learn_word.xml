@@ -18,8 +18,8 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="-8dp"
-            android:layout_marginTop="-6dp" />
+            android:layout_marginTop="-6dp"
+            android:layout_marginBottom="-8dp" />
 
         <include layout="@layout/layout_word_card" />
     </LinearLayout>
@@ -34,17 +34,17 @@
 
 
         <Button
-            style="@style/setStateBtn"
             android:id="@+id/unknownBtn"
+            style="@style/setStateBtn"
             android:layout_height="wrap_content"
             android:text="不认识" />
 
         <Button
-            style="@style/setStateBtn"
-            android:layout_marginLeft="16dp"
             android:id="@+id/knowBtn"
-
+            style="@style/setStateBtn"
             android:layout_height="wrap_content"
+
+            android:layout_marginLeft="16dp"
             android:text="认识" />
 
 

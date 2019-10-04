@@ -28,6 +28,7 @@ open class BaseActivity : AppCompatActivity() {
         Aesthetic.pause(this)
         super.onPause()
     }
+
     inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
         val editor = this.edit()
         operation(editor)
@@ -39,7 +40,7 @@ open class BaseActivity : AppCompatActivity() {
      */
     operator fun SharedPreferences.set(key: String, value: Any?) {
         when (value) {
-            is String? -> edit({ it.putString(key, value) })
+            is String? -> edit { it.putString(key, value) }
             is Int -> edit({ it.putInt(key, value) })
             is Boolean -> edit({ it.putBoolean(key, value) })
             is Float -> edit({ it.putFloat(key, value) })

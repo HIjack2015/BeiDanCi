@@ -2,4 +2,8 @@
 <resources>
     <dimen name="book_cover_height">110.0dip</dimen>
     <dimen name="book_cover_width">80.0dip</dimen>
+    <dimen name="ate_preference_inset">16dp</dimen>
+    <dimen name="md_content_textsize">16sp</dimen>
+    <dimen name="md_dialog_frame_margin">24dp</dimen>
+    <dimen name="md_title_frame_margin_bottom">12dp</dimen>
 </resources>

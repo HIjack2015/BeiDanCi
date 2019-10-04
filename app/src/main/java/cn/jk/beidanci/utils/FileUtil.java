@@ -33,7 +33,7 @@ public class FileUtil {
         Uri outputFileUri = null;
         try {
             File root = new File(context.getFilesDir()
-                     + File.separator + "image" + File.separator);
+                    + File.separator + "image" + File.separator);
             root.mkdirs();
             File sdImageMainDirectory = new File(root, fileName);
 
@@ -50,7 +50,7 @@ public class FileUtil {
             fOut.flush();
             fOut.close();
         } catch (Exception e) {
-            return  false;
+            return false;
         }
         File imgFile = new File(outputFileUri.getPath());
         try {

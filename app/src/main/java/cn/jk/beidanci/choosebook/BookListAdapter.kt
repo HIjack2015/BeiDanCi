@@ -43,7 +43,7 @@ class BookListAdapter(val bookList: List<Book>) : androidx.recyclerview.widget.R
                 nameTxt.text = book.title!!.replace("（图片记忆）", "")
                 originTxt.text = book.bookOrigin.toString()
                 wordCountTxt.text = context.getText(R.string.word_count).toString() + book.wordNum.toString()
-           //     downloadBtn.background.setColorFilter(ContextCompat.getColor(context, R.color.accent_material_light), PorterDuff.Mode.MULTIPLY);
+                //     downloadBtn.background.setColorFilter(ContextCompat.getColor(context, R.color.accent_material_light), PorterDuff.Mode.MULTIPLY);
                 if (book.exists()) {
                     downloadBtn.setText(R.string.choose_this)
                     downloadBtn.onClick {

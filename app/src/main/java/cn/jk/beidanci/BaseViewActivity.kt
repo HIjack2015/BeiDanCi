@@ -11,11 +11,11 @@ abstract class BaseViewActivity<T : BasePresenter> : BaseActivity(), BaseView {
 
     protected abstract var mPresenter: T
     override fun showMsg(msg: String) {
-        snackbar(window.decorView.rootView, msg)
+        window.decorView.rootView.snackbar(msg)
     }
 
     override fun showMsg(message: Int) {
-        snackbar(mainView, message)
+        mainView.snackbar(message)
     }
 
     override fun onStop() {

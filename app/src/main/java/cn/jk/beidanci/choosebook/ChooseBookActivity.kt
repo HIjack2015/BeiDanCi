@@ -37,6 +37,7 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
         prefs[Constant.CURRENT_BOOK] = bookId
         startActivity<MainActivity>()
     }
+
     override fun hideReload() {
         refreshLyt.finishRefresh()
     }
@@ -74,6 +75,7 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
             downLoadBookDialog!!.setMessage(msg)
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_book)

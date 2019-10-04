@@ -4,14 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import cn.jk.beidanci.R
-import cn.jk.beidanci.data.Config.context
-import cn.jk.beidanci.data.Constant.Companion
-
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-
 import cn.jk.beidanci.utils.SPUtil
+import java.text.SimpleDateFormat
+import java.util.*
 
 @SuppressLint("StaticFieldLeak")//TODO 这里有内存泄漏哦。
 /**
@@ -44,7 +39,7 @@ object Config {
     val planShouldLearn: Int
         get() {
             val planLearn = SPUtil.get(context!!, Constant.PLAN_LEARN, 50) as Int
-           return Integer.valueOf(planLearn)
+            return Integer.valueOf(planLearn)
         }
 
     val examTime: Date?
@@ -115,7 +110,7 @@ object Config {
         var month = examDate.get(Calendar.MONTH)
         month++//应该是12月,但是calendar month最大是11.
         val day = examDate.get(Calendar.DAY_OF_MONTH)
-        val formatExamDate = year.toString() + "-" + month + "-" + day
+        val formatExamDate = "$year-$month-$day"
         SPUtil.putAndApply(context!!, Constant.EXAM_DATE, formatExamDate)
     }
 

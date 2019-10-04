@@ -39,7 +39,6 @@ class MainActivity : BaseActivity() {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Aesthetic.isFirstTime) {
@@ -120,12 +119,10 @@ class MainActivity : BaseActivity() {
         }
         supportFragmentManager.beginTransaction().show(fragment).commit()
         currentFragment = fragment
-        if (fragment === homeFragment) {
-            title = getString(R.string.app_name)
-        } else if (fragment === reviewFragment) {
-            title = getString(R.string.title_review)
-        } else if (fragment === settingFragment) {
-            title = getString(R.string.title_setting)
+        when {
+            fragment === homeFragment -> title = getString(R.string.app_name)
+            fragment === reviewFragment -> title = getString(R.string.title_review)
+            fragment === settingFragment -> title = getString(R.string.title_setting)
         }
         if (supportActionBar != null) {
             supportActionBar!!.title = title

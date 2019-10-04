@@ -12,6 +12,7 @@ import cn.jk.beidanci.choosebook.ChooseBookActivity
 import cn.jk.beidanci.settings.AboutActivity
 import cn.jk.beidanci.settings.AdvanceSettingActivity
 import cn.jk.beidanci.settings.ChoosePlanDialog
+import cn.jk.beidanci.settings.ThemeSettingActivity
 import cn.jk.beidanci.utils.ThemeUtil
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -44,26 +45,28 @@ class SettingFragment : androidx.preference.PreferenceFragmentCompat() {
             startActivity<ChooseBookActivity>()
             false
         })
+        startActivityOnClick(R.string.theme_setting, ThemeSettingActivity::class.java)
 
 
-
-        startActivityOnClick(R.string.about_app,AboutActivity::class.java)
-        startActivityOnClick(R.string.advance_setting,AdvanceSettingActivity::class.java)
+        startActivityOnClick(R.string.about_app, AboutActivity::class.java)
+        startActivityOnClick(R.string.advance_setting, AdvanceSettingActivity::class.java)
         findPreference(activity!!.getString(R.string.should_learn)).setOnPreferenceClickListener {
             ChoosePlanDialog().show(activity!!.supportFragmentManager!!, "choosePlay")
             false
         }
     }
-    fun setClickListener(@StringRes id:Int,listener:Preference.OnPreferenceClickListener) {
+
+    fun setClickListener(@StringRes id: Int, listener: Preference.OnPreferenceClickListener) {
         val pref = findPreference(activity!!.getString(id))
         pref.onPreferenceClickListener = listener
     }
-    fun startActivityOnClick(@StringRes id:Int, activityToStart: Class< out Any>) {
+
+    fun startActivityOnClick(@StringRes id: Int, activityToStart: Class<out Any>) {
         val pref = findPreference(activity!!.getString(id))
 
         pref.setOnPreferenceClickListener {
 
-            val intent=Intent(activity,activityToStart)
+            val intent = Intent(activity, activityToStart)
             startActivity(intent)
             false
         }

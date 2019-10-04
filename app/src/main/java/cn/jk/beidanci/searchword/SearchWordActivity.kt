@@ -94,17 +94,17 @@ class SearchWordActivity : BaseActivity() {
         queryTextObserver  // 2
                 .observeOn(AndroidSchedulers.mainThread()).filter {
 
-            val isFineWord = Pattern.compile("^[\\u4e00-\\u9fa5_a-zA-Z]+$").matcher(it).matches()
-            if (isFineWord || it.isEmpty()) {
-                true
-            } else {
-                if (!haveShowChineseTip) {
-                    toast(R.string.ONLY_CHINESE_ENGLISH_SUPPORT)
-                    haveShowChineseTip = true
+                    val isFineWord = Pattern.compile("^[\\u4e00-\\u9fa5_a-zA-Z]+$").matcher(it).matches()
+                    if (isFineWord || it.isEmpty()) {
+                        true
+                    } else {
+                        if (!haveShowChineseTip) {
+                            toast(R.string.ONLY_CHINESE_ENGLISH_SUPPORT)
+                            haveShowChineseTip = true
+                        }
+                        false
+                    }
                 }
-                false
-            }
-        }
                 .observeOn(Schedulers.io())
                 .debounce(300, TimeUnit.MILLISECONDS)
                 // 3
@@ -132,9 +132,7 @@ class SearchWordActivity : BaseActivity() {
     }
 
     private fun getCandidateList(english: String): MutableList<DbWord> {
-        val dbWordList = select.from(DbWord::class.java).
-                where(DbWord_Table.bookId.eq(prefs[Constant.CURRENT_BOOK, ""])).
-                and(DbWord_Table.head.like(english + "%")).queryList().map { it as DbWord }
+        val dbWordList = select.from(DbWord::class.java).where(DbWord_Table.bookId.eq(prefs[Constant.CURRENT_BOOK, ""])).and(DbWord_Table.head.like(english + "%")).queryList().map { it as DbWord }
         return dbWordList as MutableList<DbWord>
     }
 

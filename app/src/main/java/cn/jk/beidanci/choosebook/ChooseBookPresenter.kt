@@ -65,15 +65,15 @@ class ChooseBookPresenter(private val view: ChooseBookContract.View) : ChooseBoo
                 }
 
                 val dbWord = DbWord(aWord, book)
-                val dbWordList= select.from(DbWord::class.java).where(DbWord_Table.head.eq(dbWord.head)).queryList().map { it as DbWord }
-                if (dbWordList.size>0) {
-                    val existDbWord=dbWordList.get(0)
-                    dbWord.unknownCount=existDbWord.unknownCount
-                    dbWord.knownCount=existDbWord.knownCount
-                    dbWord.easy=existDbWord.easy
-                    dbWord.lastLearnTime=existDbWord.lastLearnTime
-                    dbWord.rank=existDbWord.rank
-                    dbWord.state=existDbWord.state
+                val dbWordList = select.from(DbWord::class.java).where(DbWord_Table.head.eq(dbWord.head)).queryList().map { it as DbWord }
+                if (dbWordList.size > 0) {
+                    val existDbWord = dbWordList.get(0)
+                    dbWord.unknownCount = existDbWord.unknownCount
+                    dbWord.knownCount = existDbWord.knownCount
+                    dbWord.easy = existDbWord.easy
+                    dbWord.lastLearnTime = existDbWord.lastLearnTime
+                    dbWord.rank = existDbWord.rank
+                    dbWord.state = existDbWord.state
                 }
                 wordList.add(dbWord)
             }

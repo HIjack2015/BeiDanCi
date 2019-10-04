@@ -9,9 +9,9 @@
         app:actionViewClass="android.widget.CheckBox"
         app:showAsAction="never" />
     <item
-        android:visible="false"
         android:id="@+id/chooseShowItemBtn"
         android:title="定制单词卡片"
+        android:visible="false"
         app:showAsAction="never" />
     <item
         android:id="@+id/speechBtn"

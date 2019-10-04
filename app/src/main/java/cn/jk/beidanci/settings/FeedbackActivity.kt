@@ -53,6 +53,7 @@ class FeedbackActivity : BaseActivity() {
             return false
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(cn.jk.beidanci.R.layout.activity_feedback)

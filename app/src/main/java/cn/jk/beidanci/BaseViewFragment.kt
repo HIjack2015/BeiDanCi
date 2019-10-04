@@ -65,10 +65,10 @@ abstract class BaseViewFragment<T : BasePresenter> : BaseView, androidx.fragment
     }
 
     override fun showMsg(msg: Int) {
-        snackbar(activity!!.window.decorView.rootView, msg)
+        activity!!.window.decorView.rootView.snackbar(msg)
     }
 
     override fun showMsg(msg: String) {
-        snackbar(activity!!.window.decorView.rootView, msg)
+        activity!!.window.decorView.rootView.snackbar(msg)
     }
 }

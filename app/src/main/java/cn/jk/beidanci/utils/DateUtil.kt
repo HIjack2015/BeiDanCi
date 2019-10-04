@@ -1,6 +1,5 @@
 package cn.jk.beidanci.utils
 
-import com.prolificinteractive.materialcalendarview.R.id.month
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,8 +27,7 @@ class DateUtil {
         /**
          * @param month 参数从0-11
          */
-        fun lastDayOfMonth(year: Int,month: Int): String
-        {
+        fun lastDayOfMonth(year: Int, month: Int): String {
             val calendar = Calendar.getInstance()
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)

@@ -62,9 +62,9 @@ public class DatePreference extends DialogPreference {
             lastMonth = picker.getMonth() + 1;
             lastDate = picker.getDayOfMonth();
 
-            String dateval = String.valueOf(lastYear) + "-"
-                    + String.valueOf(lastMonth) + "-"
-                    + String.valueOf(lastDate);
+            String dateval = lastYear + "-"
+                    + lastMonth + "-"
+                    + lastDate;
 
             if (callChangeListener(dateval)) {
                 persistString(dateval);

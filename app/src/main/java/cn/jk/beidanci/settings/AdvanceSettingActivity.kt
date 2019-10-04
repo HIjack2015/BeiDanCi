@@ -6,7 +6,7 @@ import cn.jk.beidanci.R
 
 class AdvanceSettingActivity : BaseActivity() {
 
-    lateinit var fragment:AdvanceSettingFragment
+    lateinit var fragment: AdvanceSettingFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_advance_setting)
@@ -17,6 +17,6 @@ class AdvanceSettingActivity : BaseActivity() {
             fragment = fragmentManager.findFragmentById(R.id.content_frames) as AdvanceSettingFragment
 
         }
-        title=("高级设置")
+        title = ("高级设置")
     }
 }

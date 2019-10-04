@@ -7,6 +7,7 @@ import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.core.view.forEach
 import cn.jk.beidanci.BaseViewActivity
 import cn.jk.beidanci.InitApplication.Companion.context
 import cn.jk.beidanci.R
@@ -62,7 +63,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
         val autoDisplayChk = menu.findItem(R.id.autoDisplayChk)
 
         autoDisplayChk.isChecked = prefs[Constant.AUTO_DISPLAY, false]
-        val chooseShowItemBtn=menu.findItem(R.id.chooseShowItemBtn)
+        val chooseShowItemBtn = menu.findItem(R.id.chooseShowItemBtn)
         chooseShowItemBtn.setOnMenuItemClickListener {
             startActivity<AdjustWordCardActivity>()
             false
@@ -138,6 +139,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
         }
         dealWordChange(dbWord)
     }
+
     private fun setLogic() {
         voiceBtn.setOnClickListener(View.OnClickListener {
             netErrorShouldShow = true
@@ -225,9 +227,11 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
             }
 
             with(getWordContent()) {
-                forEach({
+                wordDescLyt.forEach {
                     it.visibility = View.VISIBLE
-                })
+                }
+
+
                 val isUsPhonetic: Boolean = prefs[Constant.SPEECH_COUNTRY, Constant.US_SPEECH] == Constant.US_SPEECH
                 var phoneticStr = if (isUsPhonetic)
                     usphone else ukphone
@@ -235,7 +239,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                     phoneticTxt.visibility = View.GONE
                 } else {
                     phoneticTxt.visibility = View.VISIBLE
-                    phoneticTxt.text = "/" + phoneticStr + "/"
+                    phoneticTxt.text = "/$phoneticStr/"
                 }
 
                 knownTimeTxt.text = knownCount.toString()
@@ -362,7 +366,6 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
             return builder.create()
         }
     }
-
 
 
 }

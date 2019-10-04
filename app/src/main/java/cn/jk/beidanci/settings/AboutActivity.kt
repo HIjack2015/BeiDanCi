@@ -18,7 +18,7 @@ class AboutActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_about)
-        title=getString(R.string.about_app_str)
+        title = getString(R.string.about_app_str)
         try {
             versionLbl.text = packageManager.getPackageInfo(packageName, 0).versionName
         } catch (e: Exception) {
@@ -36,7 +36,7 @@ class AboutActivity : BaseActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             } catch (e: Exception) {
-              toast("没有找到应用市场.sorry")
+                toast("没有找到应用市场.sorry")
             }
 
         }

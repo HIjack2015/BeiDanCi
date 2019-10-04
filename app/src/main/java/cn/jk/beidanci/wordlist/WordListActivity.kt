@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.core.view.forEach
 import cn.jk.beidanci.BaseActivity
 import cn.jk.beidanci.InitApplication
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.DbWord
 import kotlinx.android.synthetic.main.activity_word_list.*
-import org.jetbrains.anko.forEachChild
 
 open class WordListActivity : BaseActivity() {
     lateinit var wordListAdapter: WordListAdapter
@@ -26,6 +26,7 @@ open class WordListActivity : BaseActivity() {
     open fun getMenuId(): Int {
         return R.menu.menu_word_list
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
         menuInflater.inflate(getMenuId(), menu)
@@ -38,6 +39,7 @@ open class WordListActivity : BaseActivity() {
         val size = ShowWordListHelper.dbWordList.size
         supportActionBar!!.title = wordType + size
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
 
@@ -45,7 +47,7 @@ open class WordListActivity : BaseActivity() {
                 item.isChecked = !item.isChecked
                 prefs[Constant.SHOW_CHINESE_LIST] = item.isChecked
                 wordListAdapter.showChinese = item.isChecked
-                wordListView.forEachChild {
+                wordListView.forEach {
                     val holder = wordListView.getChildViewHolder(it) as WordListAdapter.ViewHolder
                     holder.setChineseVisibility(item.isChecked)
                 }
@@ -72,6 +74,11 @@ open class WordListActivity : BaseActivity() {
         } else {
             emptyView.visibility = View.GONE
         }
+    }
+
+    override fun onPause() {
+        wordListView.stopScroll()  //这里有一个bug...就是在scroll的时候pause aesthetic就会崩溃.
+        super.onPause()
     }
 
     fun addWordToShow(word: DbWord) {

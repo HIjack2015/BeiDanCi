@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <cn.jk.beidanci.settings.ColorPickerPreference
+        android:key="primary_color_key"
+        android:persistent="false"
+        android:summary="@string/primary_color_summary"
+        android:title="@string/primary_color" />
+
+    <cn.jk.beidanci.settings.ColorPickerPreference
+        android:key="accent_color_key"
+        android:persistent="false"
+        android:summary="@string/accent_color_summary"
+        android:title="@string/accent_color" />
+    <cn.jk.beidanci.settings.ColorPickerPreference
+        android:key="unlearn_key"
+        android:persistent="false"
+        android:summary="未学习板块颜色"
+        android:title="饼图配置" />
+    <cn.jk.beidanci.settings.ColorPickerPreference
+        android:key="unknown_key"
+        android:persistent="false"
+        android:summary="不认识板块颜色"
+        android:title="饼图配置" />
+    <cn.jk.beidanci.settings.ColorPickerPreference
+        android:key="known_key"
+        android:persistent="false"
+        android:summary="已认识板块颜色"
+        android:title="饼图配置" />
+
+    <cn.jk.beidanci.settings.ColorPickerPreference
+        android:key="grasp_key"
+        android:persistent="false"
+        android:summary="已掌握板块颜色"
+        android:title="饼图配置" />
+
+</androidx.preference.PreferenceScreen>

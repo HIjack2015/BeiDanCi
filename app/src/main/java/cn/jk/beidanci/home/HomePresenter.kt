@@ -20,9 +20,7 @@ import java.util.*
 class HomePresenter(private val view: HomeContract.View, val prefs: SharedPreferences) : HomeContract.Presenter, BasePresenterImpl() {
     override fun setShowWordList(label: String, wordState: WordState) {
         val bookId: String? = prefs[Constant.CURRENT_BOOK]
-        val dbWords = select.from(DbWord::class.java).
-                where(DbWord_Table.state.eq(wordState)).
-                and(DbWord_Table.bookId.eq(bookId)).queryList().map { it as DbWord }
+        val dbWords = select.from(DbWord::class.java).where(DbWord_Table.state.eq(wordState)).and(DbWord_Table.bookId.eq(bookId)).queryList().map { it as DbWord }
         ShowWordListHelper.useDefault(label, dbWords)
 
 
@@ -34,11 +32,9 @@ class HomePresenter(private val view: HomeContract.View, val prefs: SharedPrefer
         val bookId: String? = prefs[Constant.CURRENT_BOOK]
 
         val stateList = mutableListOf(WordState.unknown, WordState.unlearned, WordState.known, WordState.neverShow)
-        var countAll = SQLite.selectCountOf().from(DbWord::class.java).
-                where(DbWord_Table.bookId.eq(bookId)).longValue()
+        var countAll = SQLite.selectCountOf().from(DbWord::class.java).where(DbWord_Table.bookId.eq(bookId)).longValue()
         for (state in stateList) {
-            var count = SQLite.selectCountOf().from(DbWord::class.java).
-                    where(DbWord_Table.bookId.eq(bookId), DbWord_Table.state.eq(state)).longValue()
+            var count = SQLite.selectCountOf().from(DbWord::class.java).where(DbWord_Table.bookId.eq(bookId), DbWord_Table.state.eq(state)).longValue()
 
             map.put(state, count.toInt())
 
@@ -51,8 +47,7 @@ class HomePresenter(private val view: HomeContract.View, val prefs: SharedPrefer
         val currentBookId: String? = prefs[Constant.CURRENT_BOOK]
 
         val learnPerDay: Int? = prefs[Constant.PLAN_LEARN, Constant.PLAN_LEARN_NO]
-        var todayLearnRecord = SQLite.select().from(LearnRecord::class.java).
-                where(LearnRecord_Table.learnTime.eq(DateUtil.formateToday())).queryList()
+        var todayLearnRecord = SQLite.select().from(LearnRecord::class.java).where(LearnRecord_Table.learnTime.eq(DateUtil.formateToday())).queryList()
         val todayLearnCount = todayLearnRecord.size
         val todayWordIdList = todayLearnRecord.map { it.dbWord!!.wordId }
 
@@ -61,20 +56,17 @@ class HomePresenter(private val view: HomeContract.View, val prefs: SharedPrefer
 //                .queryList()
 
         if (todayLearnCount == 0) { //说明还没有背单词
-            val dbWordList = SQLite.select().from(DbWord::class.java).
-                    where(DbWord_Table.bookId.eq(currentBookId), DbWord_Table.state.notEq(WordState.neverShow))
+            val dbWordList = SQLite.select().from(DbWord::class.java).where(DbWord_Table.bookId.eq(currentBookId), DbWord_Table.state.notEq(WordState.neverShow))
                     .orderBy(OrderBy.fromString(" RANDOM() "))
                     .limit(learnPerDay!!).queryList()
             WordListHelper.wordList = LearnWordList(dbWordList, Constant.LEARN_MODE)
         } else if (todayLearnCount < learnPerDay!!) {
             val needLearn = learnPerDay - todayLearnCount
-            val dbWordList = SQLite.select().from(DbWord::class.java).
-                    where(DbWord_Table.bookId.eq(currentBookId), DbWord_Table.state.notEq(WordState.neverShow), DbWord_Table.wordId.notIn(todayWordIdList))
+            val dbWordList = SQLite.select().from(DbWord::class.java).where(DbWord_Table.bookId.eq(currentBookId), DbWord_Table.state.notEq(WordState.neverShow), DbWord_Table.wordId.notIn(todayWordIdList))
                     .limit(needLearn).queryList()
             WordListHelper.wordList = LearnWordList(dbWordList, Constant.LEARN_MODE, todayLearnCount)
         } else {
-            val dbWordList = SQLite.select().from(DbWord::class.java).
-                    where(DbWord_Table.bookId.eq(currentBookId), DbWord_Table.state.notEq(WordState.neverShow), DbWord_Table.wordId.notIn(todayWordIdList))
+            val dbWordList = SQLite.select().from(DbWord::class.java).where(DbWord_Table.bookId.eq(currentBookId), DbWord_Table.state.notEq(WordState.neverShow), DbWord_Table.wordId.notIn(todayWordIdList))
                     .limit(learnPerDay).queryList() //再取出计划学习数.
             view.showMsg(R.string.FINISH_PLAN)
             WordListHelper.wordList = LearnWordList(dbWordList, Constant.EXTRA_LEARN, learnPerDay, learnPerDay)

@@ -9,6 +9,9 @@ import cn.jk.beidanci.BaseViewFragment
 import cn.jk.beidanci.R
 import cn.jk.beidanci.data.Config
 import cn.jk.beidanci.data.Constant
+import cn.jk.beidanci.data.Constant.Companion.grasp_key
+import cn.jk.beidanci.data.Constant.Companion.known_key
+import cn.jk.beidanci.data.Constant.Companion.unknown_key
 import cn.jk.beidanci.data.model.WordState
 import cn.jk.beidanci.learnword.LearnWordActivity
 import cn.jk.beidanci.wordlist.WordListActivity
@@ -92,6 +95,24 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
         progressRatePi.centerText = pieWord
 
         val entries = ArrayList<PieEntry>()
+        val colors = ArrayList<Int>()
+        val stateToColorKeyMap = hashMapOf<WordState, String>(
+                WordState.unlearned to Constant.unlearn_key,
+                WordState.unknown to unknown_key,
+                WordState.known to known_key,
+                WordState.neverShow to grasp_key
+
+        )
+        val grey4 = ContextCompat.getColor(activity!!, R.color.grey400)
+        val grey6 = ContextCompat.getColor(activity!!, R.color.grey600)
+        val grey8 = ContextCompat.getColor(activity!!, R.color.grey800)
+        val grey9 = ContextCompat.getColor(activity!!, R.color.grey900)
+        val defaultMap = hashMapOf(
+                Constant.unlearn_key to grey4,
+                unknown_key to grey6,
+                known_key to grey8,
+                grasp_key to grey9
+        )
         for ((wordState, count) in map) {
             var fakeCount = 0
             //防止刚开始学习时显示的太丑
@@ -100,18 +121,23 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
             } else {
                 fakeCount = count
             }
+            val prefKey = stateToColorKeyMap[wordState]
+            val defaultColor: Int? = defaultMap[prefKey]
+            val color: Int = prefs[prefKey!!, defaultColor]!!
+            colors.add(color)
             entries.add(PieEntry(fakeCount.toFloat(), wordState.getDesc(activity!!, wordState) + count))
         }
         val set = PieDataSet(entries, "")
         set.setDrawValues(false)
         set.valueTextSize = 18f
-        val grey4 = ContextCompat.getColor(activity!!, R.color.grey400)
-        val grey6 = ContextCompat.getColor(activity!!, R.color.grey600)
-        val grey8 = ContextCompat.getColor(activity!!, R.color.grey800)
-        val grey9 = ContextCompat.getColor(activity!!, R.color.grey900)
-        set.setColors(grey4, grey6, grey8, grey9)
+
+        set.colors = colors
         val data = PieData(set)
-        progressRatePi.setCenterTextSize(40f)
+        if (!pieWord.isNullOrEmpty() && pieWord.length > 3) {
+            progressRatePi.setCenterTextSize(25f)
+        } else {
+            progressRatePi.setCenterTextSize(40f)
+        }
         progressRatePi.description.isEnabled = false
         progressRatePi.legend.isEnabled = false
 

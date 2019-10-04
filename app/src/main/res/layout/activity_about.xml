@@ -8,11 +8,11 @@
         android:id="@+id/imageView2"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@mipmap/ic_launcher"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,11 +23,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -55,17 +55,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_desc"></TextView>
+            android:text="@string/app_desc"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="49dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -78,13 +78,13 @@
             android:background="@color/grey400" />
 
         <TextView
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:id="@+id/commonQuestionLbl"
             style="@style/aboutTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:text="常见问题" />
 
         <View
@@ -94,12 +94,12 @@
             android:background="@color/grey400" />
 
         <TextView
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:id="@+id/rateLbl"
             style="@style/aboutTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:text="五星好评" />
 
 
@@ -110,12 +110,12 @@
             android:background="@color/grey400" />
 
         <TextView
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:id="@+id/feedbackLbl"
             style="@style/aboutTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:text="意见反馈" />
 
         <View
@@ -124,19 +124,19 @@
             android:background="@color/grey400" />
 
         <TextView
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:visibility="gone"
             android:id="@+id/donateLbl"
             style="@style/aboutTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="捐赠开发者的父亲~" />
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="捐赠开发者的父亲~"
+            android:visibility="gone" />
 
         <View
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/grey400" />
+            android:background="@color/grey400"
+            android:visibility="gone" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

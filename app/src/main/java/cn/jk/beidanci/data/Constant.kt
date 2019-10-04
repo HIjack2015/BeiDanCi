@@ -5,6 +5,11 @@ package cn.jk.beidanci.data
  */
 open class Constant {
     companion object {
+        const val unlearn_key = "unlearn_key"
+        const val unknown_key = "unknown_key"
+        const val known_key = "known_key"
+        const val grasp_key = "grasp_key"
+
         const val WEIBO_USER_ID: String = "5502148603"
         const val DB_WORD: String = "DB_WORD"
         const val CURRENT_BOOK = "CURRENT_BOOK"

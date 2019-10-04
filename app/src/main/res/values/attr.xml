@@ -2,6 +2,6 @@
 <resources>
     <!--不加这个aapt2 会报错 -->
     <declare-styleable name="Theme">
-        <attr name="colorSecondary" format="color|reference"/>
+        <attr name="colorSecondary" format="color|reference" />
     </declare-styleable>
 </resources>

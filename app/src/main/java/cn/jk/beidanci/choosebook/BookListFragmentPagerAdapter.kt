@@ -19,7 +19,7 @@ class BookListFragmentPagerAdapter(fragmentManager: androidx.fragment.app.Fragme
     }
 
     fun setTitle(i: Int, str: String) {
-        this.titleList.set(i, str)
+        this.titleList[i] = str
     }
 
     override fun getItem(i: Int): androidx.fragment.app.Fragment? {

@@ -25,11 +25,11 @@ class NetWordActivity : BaseActivity() {
         if (english == null || english == "") {
             Log.e("error", "怎么可能开始没有english传入")
         }
-        val webSettings = youdaoWebView.getSettings()
-        webSettings.setJavaScriptEnabled(true)
+        val webSettings = youdaoWebView.settings
+        webSettings.javaScriptEnabled = true
         supportActionBar!!.title = getString(R.string.youdaoTitle)
 
-        youdaoWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)
+        youdaoWebView.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
         youdaoWebView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
                 val javaScript = "javascript:(function() {__closeBanner();})()"
