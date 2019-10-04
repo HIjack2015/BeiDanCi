@@ -12,13 +12,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_feedback.*
 import org.jetbrains.anko.design.snackbar
-import org.jetbrains.anko.sdk25.coroutines.onClick
+
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import java.util.*
 
 
 class FeedbackActivity : BaseActivity() {
     fun showMsg(msg: String) {
-        snackbar(window.decorView.rootView, msg)
+        window.decorView.rootView.snackbar(msg)
     }
 
     fun jumpToWeiboProfileInfo(context: Context, uid: String) {

@@ -19,6 +19,8 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_home.*
+
+import org.jetbrains.anko.support.v4.startActivity
 import java.util.*
 import kotlin.collections.ArrayList
 

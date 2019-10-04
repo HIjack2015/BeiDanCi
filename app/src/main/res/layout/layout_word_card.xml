@@ -10,7 +10,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        app:cardBackgroundColor="@color/wordCardColor"
         app:cardCornerRadius="4dp">
 
         <LinearLayout
@@ -38,7 +37,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_marginLeft="4dp"
-                        android:tag=":aesthetic_ignore"
                         android:text="Hello World!"
                         android:textColor="@color/white"
                         android:textSize="26sp"

@@ -77,6 +77,7 @@ dependencies {
     implementation "com.github.Raizlabs.DBFlow:dbflow-rx2-kotlinextensions:${dbflow_version}"
     implementation "org.jetbrains.anko:anko-design:$anko_version" // For SnackBars
     implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'

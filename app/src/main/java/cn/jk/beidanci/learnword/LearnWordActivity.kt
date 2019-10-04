@@ -20,10 +20,10 @@ import com.orhanobut.logger.Logger
 import com.raizlabs.android.dbflow.kotlinextensions.update
 import kotlinx.android.synthetic.main.activity_learn_word.*
 import kotlinx.android.synthetic.main.layout_word_card.*
-import org.jetbrains.anko.forEachChild
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.selector
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 
@@ -225,9 +225,9 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
             }
 
             with(getWordContent()) {
-                wordDescLyt.forEachChild {
+                forEach({
                     it.visibility = View.VISIBLE
-                }
+                })
                 val isUsPhonetic: Boolean = prefs[Constant.SPEECH_COUNTRY, Constant.US_SPEECH] == Constant.US_SPEECH
                 var phoneticStr = if (isUsPhonetic)
                     usphone else ukphone
@@ -287,8 +287,8 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                 } else {
                     sentenceLyt.visibility = View.GONE
                 }
-                //记忆方法
-                if (remMethod == null) {
+                //记忆方法 remMethod 可能为null!
+                if (remMethod == null || remMethod.value.isBlank()) {
                     remMethodLyt.visibility = View.GONE
                 } else {
                     remMethodLyt.visibility = View.VISIBLE
@@ -317,7 +317,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                 sb = StringBuilder()
                 if (syno != null) {
                     syno.synos.forEach {
-                        sb.append("<i>" + it.pos + ".</i>" + " " + it.tran + "\n")
+                        sb.append("<i>" + it.pos + ".</i>" + " ")
                         for (hwd in it.hwds) {
                             sb.append(hwd.w + ",")
                         }
@@ -325,6 +325,7 @@ class LearnWordActivity : BaseViewActivity<LearnWordContract.Presenter>(), Learn
                             sb.deleteCharAt(sb.length - 1)
                         }
                         sb.append("\n")
+                        sb.append(it.tran + "\n")
                     }
                     if (sb.isNotEmpty()) {
                         sb.deleteCharAt(sb.length - 1)

@@ -13,7 +13,8 @@ import cn.jk.beidanci.data.model.WordState
 import com.raizlabs.android.dbflow.kotlinextensions.update
 import kotlinx.android.synthetic.main.layout_word_brief.view.*
 import org.jetbrains.anko.imageResource
-import org.jetbrains.anko.sdk25.coroutines.onClick
+
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 
 /**
@@ -42,10 +43,10 @@ class WordListAdapter(var wordList: MutableList<DbWord>, val context: Context, v
             with(containerView) {
                 this.onClick {
                     val bundle = Bundle()
-                    val intent = Intent(getContext(), WordDetailActivity::class.java)
+                    val intent = Intent(context, WordDetailActivity::class.java)
                     bundle.putSerializable(Constant.DB_WORD, dbWord)
                     intent.putExtras(bundle)
-                    getContext().startActivity(intent)
+                    context.startActivity(intent)
                 }
                 englishTxt.text = dbWord.head
                 if (!showChinese) setChineseVisibility(false)

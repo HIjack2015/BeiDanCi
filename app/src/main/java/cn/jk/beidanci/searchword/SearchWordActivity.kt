@@ -23,6 +23,7 @@ import org.jetbrains.anko.alert
 import org.jetbrains.anko.appcompat.v7.Appcompat
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern

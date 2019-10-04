@@ -12,6 +12,7 @@ import cn.jk.beidanci.wordlist.WordListActivity
 import com.google.gson.Gson
 import com.raizlabs.android.dbflow.kotlinextensions.insert
 import kotlinx.android.synthetic.main.dialog_add_word.*
+import org.jetbrains.anko.support.v4.toast
 import java.util.*
 
 

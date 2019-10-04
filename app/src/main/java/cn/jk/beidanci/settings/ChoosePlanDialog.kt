@@ -18,6 +18,7 @@ import cn.jk.beidanci.utils.DayUtil
 import cn.jk.beidanci.utils.PreferenceHelper
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import kotlinx.android.synthetic.main.dialog_plan_learn.*
+import org.jetbrains.anko.support.v4.toast
 import java.util.*
 
 /**

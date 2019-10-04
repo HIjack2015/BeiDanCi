@@ -10,6 +10,15 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorButtonNormal">@color/colorAccent</item>
     </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme_dark" parent="Base.Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
 
 
     <style name="DescText">

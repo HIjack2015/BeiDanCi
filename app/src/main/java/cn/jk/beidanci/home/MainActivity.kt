@@ -12,7 +12,9 @@ import cn.jk.beidanci.data.model.DbWord
 import cn.jk.beidanci.data.model.DbWord_Table
 import cn.jk.beidanci.myword.MyWordActivity
 import cn.jk.beidanci.searchword.SearchWordActivity
+import cn.jk.beidanci.utils.ThemeUtil
 import cn.jk.beidanci.wordlist.ShowWordListHelper
+import com.afollestad.aesthetic.Aesthetic
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.raizlabs.android.dbflow.kotlinextensions.select
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,6 +42,9 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Aesthetic.isFirstTime) {
+            ThemeUtil.changeTheme()
+        }
         setContentView(R.layout.activity_main)
 
         val currentBookName: String = prefs[Constant.CURRENT_BOOK, ""] //getter

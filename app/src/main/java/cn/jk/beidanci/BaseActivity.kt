@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import cn.jk.beidanci.utils.PreferenceHelper
+import com.afollestad.aesthetic.Aesthetic
 
 
 /**
@@ -12,11 +13,21 @@ import cn.jk.beidanci.utils.PreferenceHelper
 open class BaseActivity : AppCompatActivity() {
     lateinit var prefs: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
+        Aesthetic.attach(this)
         super.onCreate(savedInstanceState)
         prefs = PreferenceHelper.defaultPrefs(this)
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        Aesthetic.resume(this)
+    }
+
+    override fun onPause() {
+        Aesthetic.pause(this)
+        super.onPause()
+    }
     inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
         val editor = this.edit()
         operation(editor)

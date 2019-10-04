@@ -11,8 +11,8 @@ import cn.jk.beidanci.data.model.DbWord
 import cn.jk.beidanci.utils.MediaUtil
 import com.raizlabs.android.dbflow.kotlinextensions.update
 import kotlinx.android.synthetic.main.layout_word_card.*
-import org.jetbrains.anko.forEachChild
-import org.jetbrains.anko.sdk25.coroutines.onClick
+
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import java.text.SimpleDateFormat
 
 class WordDetailActivity : BaseActivity() {
@@ -62,9 +62,9 @@ class WordDetailActivity : BaseActivity() {
             }
 
             with(getWordContent()) {
-                wordDescLyt.forEachChild {
+                forEach({
                     it.visibility = View.VISIBLE
-                }
+                })
                 val isUsPhonetic: Boolean = prefs[Constant.SPEECH_COUNTRY, Constant.US_SPEECH] == Constant.US_SPEECH
                 var phoneticStr = if (isUsPhonetic)
                     usphone else ukphone

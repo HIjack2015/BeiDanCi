@@ -22,6 +22,15 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
         finish()
     }
 
+    override fun onBackPressed() {
+        val bookId: String = prefs[Constant.CURRENT_BOOK, ""]
+        if (bookId.isEmpty()) {
+            showMsg("额,你得先选一本单词书后才能进入学习")
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     override fun chooseBook(bookId: String) {
         //TODO 写sharedpreference 明显该由presenter来做,downlodSuccess也不应该接受一个bookId的参数.
         //但是当前真的没什么好办法,先这样吧.
