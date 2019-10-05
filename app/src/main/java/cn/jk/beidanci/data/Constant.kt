@@ -59,7 +59,15 @@ open class Constant {
 
         const val WORD_LIST_LBL = "WORD_LIST_LBL"
         const val WORD_LIST = "WORD_LIST"
-        val ENCOURAGE_SENTENCE = arrayOf("敢想不敢为者,终困身牢笼", "想要和得到 ,中间还有两个字,就是做到", "又怎会晓得执着的人 拥有隐形翅膀", "若一去不回,便一去不回", "大丈夫当提三尺剑，立不世功", "夫学须静也，才须学也，非学无以广才，非志无以成学", "时人不识凌云木，直待凌云始道高", "What hurts more, the pain of hard work or the pain of regret ? ", "All things come to those who wait", "Nothing is impossible!", "Keep on going never give up", "Nothing for nothing. ", "What is the man's first duty? The answer is brief: to be himself. ", "诶,其实我有点坚持不下去了.:<")
+        val ENCOURAGE_SENTENCE = arrayOf("敢想不敢为者,终困身牢笼", "想要和得到 ,中间还有两个字,就是做到",
+                "又怎会晓得执着的人 拥有隐形翅膀", "若一去不回,便一去不回", "大丈夫当提三尺剑，立不世功",
+                "夫学须静也，才须学也，非学无以广才，非志无以成学", "时人不识凌云木，直待凌云始道高",
+                "What hurts more, the pain of hard work or the pain of regret ? ",
+                "All things come to those who wait", "Nothing is impossible!",
+                "Keep on going never give up", "Nothing for nothing. ",
+                "What is the man's first duty? The answer is brief: to be himself. ",
+                "诶,我的未来在哪里....:<",
+                "show me your brave heart ....ヽ(≧□≦)ノ")
         const val QUERY_SQL = "querySql"
         const val TITLE = "TITLE"
         const val QUERY_BUILDER = "QUERY_BUILDER"

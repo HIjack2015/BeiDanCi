@@ -79,7 +79,7 @@ class ChooseBookActivity : BaseViewActivity<ChooseBookContract.Presenter>(), Cho
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_book)
-
+        supportActionBar!!.title="选单词书"
 
         mPresenter.start()
         refreshLyt.setOnRefreshListener {

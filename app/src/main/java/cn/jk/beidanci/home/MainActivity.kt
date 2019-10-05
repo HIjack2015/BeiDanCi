@@ -42,13 +42,14 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Aesthetic.isFirstTime) {
-            ThemeUtil.changeTheme()
+            ThemeUtil.changeTheme(primaryColor = R.color.colorPrimary)
         }
         setContentView(R.layout.activity_main)
 
         val currentBookName: String = prefs[Constant.CURRENT_BOOK, ""] //getter
         if (currentBookName.isEmpty()) {
             startActivity<ChooseBookActivity>()
+            finish()
         } else {
             dealFragment(savedInstanceState)
         }

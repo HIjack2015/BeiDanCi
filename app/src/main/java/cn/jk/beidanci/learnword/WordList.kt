@@ -1,5 +1,7 @@
 package cn.jk.beidanci.learnword
 
+import cn.jk.beidanci.InitApplication
+import cn.jk.beidanci.R
 import cn.jk.beidanci.data.model.DbWord
 import cn.jk.beidanci.data.model.DbWord_Table
 import cn.jk.beidanci.data.model.LearnRecord
@@ -25,11 +27,11 @@ open class WordList(var words: List<DbWord>, var title: String,
     }
 
     fun getFinishMessage(): String {
-        return "完成学习单词列表"
+        return InitApplication.context!!.getString(R.string.FINISH_PLAN)
     }
 
     fun getEmptyMessage(): String {
-        return "单词列表为空"
+        return InitApplication.context!!.getString(R.string.empty_list)
     }
 
     fun getPercent(): Int {

@@ -68,7 +68,6 @@ class HomePresenter(private val view: HomeContract.View, val prefs: SharedPrefer
         } else {
             val dbWordList = SQLite.select().from(DbWord::class.java).where(DbWord_Table.bookId.eq(currentBookId), DbWord_Table.state.notEq(WordState.neverShow), DbWord_Table.wordId.notIn(todayWordIdList))
                     .limit(learnPerDay).queryList() //再取出计划学习数.
-            view.showMsg(R.string.FINISH_PLAN)
             WordListHelper.wordList = LearnWordList(dbWordList, Constant.EXTRA_LEARN, learnPerDay, learnPerDay)
         }
     }

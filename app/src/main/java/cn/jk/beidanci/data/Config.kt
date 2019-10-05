@@ -17,21 +17,6 @@ object Config {
 
     private var context: Context? = null
 
-    /**
-     * @return 今日剩余需学单词数目
-     */
-    val todayShouldLearn: Int
-        get() {
-            val simpleDateFormat = SimpleDateFormat("yyyyMMdd")
-            val haveLearnSp = simpleDateFormat.format(Date()) + "learn"
-            val haveLearn = SPUtil.get(context!!, haveLearnSp, 0) as Int
-            SPUtil.get(context!!, haveLearnSp, 0)
-            var todayRemain = planShouldLearn - haveLearn
-            if (todayRemain < 0) {
-                todayRemain = 0
-            }
-            return todayRemain
-        }
 
     /**
      * @return 计划今日应学单词总数

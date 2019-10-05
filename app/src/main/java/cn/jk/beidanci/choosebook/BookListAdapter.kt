@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import cn.jk.beidanci.GlideApp
 import cn.jk.beidanci.R
+import cn.jk.beidanci.data.Constant
 import cn.jk.beidanci.data.model.Book
+import cn.jk.beidanci.utils.PreferenceHelper
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.raizlabs.android.dbflow.kotlinextensions.exists
 import kotlinx.android.synthetic.main.layout_book_item.view.*
@@ -45,22 +47,23 @@ class BookListAdapter(val bookList: List<Book>) : androidx.recyclerview.widget.R
                 wordCountTxt.text = context.getText(R.string.word_count).toString() + book.wordNum.toString()
                 //     downloadBtn.background.setColorFilter(ContextCompat.getColor(context, R.color.accent_material_light), PorterDuff.Mode.MULTIPLY);
                 if (book.exists()) {
-                    downloadBtn.setText(R.string.choose_this)
-                    downloadBtn.onClick {
-                        var context2 = context
-
-                        (context2 as ChooseBookActivity).getPresenter().chooseBook(book)
-
+                    val isCurrentBook=book.id.equals(PreferenceHelper.getString(context,Constant.CURRENT_BOOK,""))
+                    if (isCurrentBook) {
+                        downloadBtn.setText(R.string.current_choose)
+                        downloadBtn.setOnClickListener {
+                            (context as ChooseBookActivity).showMsg("你正在背这本书哦~加油~")
+                        }
+                    } else {
+                        downloadBtn.setText(R.string.choose_this)
+                        downloadBtn.onClick {
+                            (context as ChooseBookActivity).getPresenter().chooseBook(book)
+                        }
                     }
                 } else {
                     downloadBtn.setOnClickListener {
-                        var context2 = context
-                        if (context2 is ChooseBookActivity) {
-                            context2.getPresenter().downloadBook(book)
-                        }
+                        (context as ChooseBookActivity).getPresenter().downloadBook(book)
                     }
                     GlideApp.with(context).load(book.cover).diskCacheStrategy(DiskCacheStrategy.ALL).into(book_cover)
-
                 }
             }
         }

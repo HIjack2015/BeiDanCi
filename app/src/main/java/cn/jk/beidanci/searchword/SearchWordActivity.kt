@@ -128,7 +128,6 @@ class SearchWordActivity : BaseActivity() {
         wordListAdapter.wordList = wordList
         wordListAdapter.notifyDataSetChanged()
 
-        //TODO
     }
 
     private fun getCandidateList(english: String): MutableList<DbWord> {

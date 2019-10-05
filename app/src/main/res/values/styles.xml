@@ -23,7 +23,7 @@
 
     <style name="DescText">
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:layout_marginRight">10dp</item>
     </style>
 

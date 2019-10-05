@@ -17,7 +17,7 @@ class Syno(var pos: String, var tran: String, var hwds: List<Hwd>) //hwd 是什�
 class Hwd(var w: String)
 class PhraseOut(var desc: String, var phrases: List<Phrase>) //短语
 class Phrase(var pCn: String, var pContent: String)
-class RemMethod(var desc: String, @SerializedName("val") var value: String)//TODO 不确定行不行. 拆分记忆
+class RemMethod(var desc: String, @SerializedName("val") var value: String)
 class RelWordOut(var rels: List<RelWord>, var desc: String) //同根词
 class RelWord(var pos: String, var words: List<RelWordDesc>) //pos 词性
 class RelWordDesc(var hwd: String, var tran: String) //hwd 英文,tran,中文.

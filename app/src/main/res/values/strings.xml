@@ -76,7 +76,7 @@
     <string name="about_app">about_pref</string>
     <string name="app_desc">小巧干净的背单词工具</string>
     <string name="share_content">我正在使用背单词app来背单词,这东西还不错,你也来试试?</string>
-    <string name="donate_use">  如果你能请开发者的父亲喝杯茶,想来他一定会为自己的儿子感到骄傲的.\n 而开发者感觉到自己被他人肯定,从而有更大的动力去完善这个app</string>
+    <string name="donate_use">  如果你能请开发者的父亲喝杯茶,想来他一定会为自己的儿子感到骄傲的.\n 而开发者感觉到自己被他人肯定,从而有更大的动力去完善这个app ヾ(o◕∀◕)ﾉヾ</string>
     <string name="download_voice_pack">download_voice_pack</string>
     <string name="pleaseDonate">语音包使用了云存储,这东西开发者是贴了钱的,所以如果您要使用此功能,
         请打开-关于软件-捐赠开发者,向开发者付款5角
@@ -101,7 +101,7 @@
     <string name="neverShowDesc">已掌握</string>
     <string name="DEFAULT_PIE_WORD">进度</string>
     <string name="NOT_LEARNED_YET">不曾学过</string>
-    <string name="FINISH_PLAN">已完成今天学习计划,请随意发挥</string>
+    <string name="FINISH_PLAN">已完成今天学习计划 o(≧v≦)o~~好棒</string>
     <string name="download_book_pref">选单词书</string>
     <string name="next">下一个</string>
     <string name="know">认识</string>
@@ -123,6 +123,8 @@
     <string name="choose_this">换这本背</string>
     <string name="ALREADY_FIRST">已经是第一个单词了</string>
     <string name="choose_color">选择颜色</string>
+    <string name="current_choose">当前在背</string>
+    <string name="empty_list">诶呀 单词列表竟然是空的 O__O \"…</string>
     <string-array name="word_type">
         <item>已掌握</item>
         <item>已认识</item>

@@ -22,6 +22,8 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.sdk27.coroutines.onLongClick
+import org.jetbrains.anko.support.v4.longToast
 
 import org.jetbrains.anko.support.v4.startActivity
 import java.util.*
@@ -50,6 +52,12 @@ class HomeFragment : BaseViewFragment<HomeContract.Presenter>(), HomeContract.Vi
         startLearnBtn.setOnClickListener {
             mPresenter.setLearnWordList()
             startActivity<LearnWordActivity>()
+        }
+        countDownView.onLongClick {
+            val encourageSentence = Constant.ENCOURAGE_SENTENCE
+            val choosePosition = Random().nextInt(encourageSentence.size)
+            val showSentence = encourageSentence[choosePosition]
+            longToast(showSentence)
         }
         Timer().schedule(ShowRemainTime(), 0, 1000)
 
