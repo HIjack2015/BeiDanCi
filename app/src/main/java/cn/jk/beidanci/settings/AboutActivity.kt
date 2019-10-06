@@ -45,8 +45,10 @@ class AboutActivity : BaseActivity() {
             false
         }
         val installTime: Long = prefs[INSTALL_TIME, -1L]
-        val after3Days = (Date().time - installTime) / 1000 / 60 / 60 / 24 > 3
-        if (after3Days) {
+
+        val showAfterDay=5
+        val afterDays = (Date().time - installTime) / 1000 / 60 / 60 / 24 > showAfterDay
+        if (afterDays) {
             donateLbl.visibility = View.VISIBLE
         }
         donateLbl.setOnClickListener {
